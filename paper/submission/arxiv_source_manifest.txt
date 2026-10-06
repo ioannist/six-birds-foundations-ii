@@ -1,0 +1,2 @@
+Regenerate this manifest after rebuilding the arXiv source bundle.
+Include file sizes and hashes for the exact files shipped in the submission zip.

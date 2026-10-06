@@ -1,0 +1,274 @@
+\section{Checks against misreadings}\label{sec:integrated-stress}
+
+
+
+In this section a misreading is \emph{excluded} when it is not licensed by the
+results of
+Sections~\ref{sec:fatcd-domain}--\ref{sec:decomposition-exhaustion}.
+The section is a checklist. Each of its six remarks lists misreadings of
+the results of Sections~\ref{sec:lower-bounds}--\ref{sec:decomposition-exhaustion},
+for example asserting exact six without the lower bounds, or reading a
+role channel as an active role, and names the earlier result that rules
+each misreading out; ``stress'' means a check against such a list, and the
+chain \emph{satisfies} a stress family when the result named for each
+misreading in its list rules that misreading out.
+Proposition~\ref{thm:integrated-stress} checks that the earlier results
+block the misreadings listed in the six remarks and combine into the terminal statement.
+The section adds no new mathematics; it collects in one place what the
+results do not permit.
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.34\linewidth}>{\raggedright\arraybackslash}X@{}}
+\toprule
+Misreadings of & Blocked by \\
+\midrule
+dependency (Remark~\ref{prop:dependency-stress}) & the \FATCD{} domain and the order of Theorems~\ref{thm:six-role-lower-bounds}, \ref{thm:upper-bound-classification}, \ref{thm:decomposition-existence} and~\ref{thm:six-channel-exactness} \\
+circularity (Remark~\ref{prop:circularity-stress}) & Proposition~\ref{prop:non-circularity} and the direct proof of Theorem~\ref{thm:decomposition-existence} \\
+channel versus activation (Remark~\ref{prop:channel-activation-stress}) & Proposition~\ref{prop:channel-vs-activation} and Definition~\ref{def:channel-status} \\
+role alignment (Remark~\ref{prop:role-alignment-stress}) & Proposition~\ref{prop:alignment-rules} \\
+upper-bound residual (Remark~\ref{prop:residual-stress}) & Propositions~\ref{prop:probability-closure}--\ref{prop:agency-closure} and Theorem~\ref{thm:upper-bound-classification} \\
+overclaim (Remark~\ref{prop:overclaim-stress}) & Remark~\ref{rem:atlas-global-nonclaims} and Propositions~\ref{prop:nonclaim-closure} and~\ref{prop:non-uniqueness} \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Dependency stress}\label{subsec:dependency-stress}
+
+\begin{remark}[Dependency stress]\label{prop:dependency-stress}
+The scoped exact-six target \(\ScopedExactSix{\FATCD_{\mathrm{RH}}}\)
+depends on the \FATCD{} domain of Section~\ref{sec:fatcd-domain}, the
+upper-bound classification of Theorem~\ref{thm:upper-bound-classification},
+and the decomposition and exhaustion theorems of
+Section~\ref{sec:decomposition-exhaustion}; the last clause of
+Theorem~\ref{thm:scoped-exact-six} also depends on the lower-bound theorem of
+Section~\ref{sec:lower-bounds}. Accordingly, the following are excluded:
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item asserting the target without the \FATCD{} domain;
+  \item asserting the target without the upper-bound classification;
+  \item asserting the target without the decomposition and exhaustion
+    theorems;
+  \item asserting that every channel is active somewhere in
+    \(\FATCD_{\mathrm{RH}}\) without the lower-bound theorem.
+\end{itemize}
+The integrated stress check of Proposition~\ref{thm:integrated-stress} is a
+separate consistency check; the proof of Theorem~\ref{thm:scoped-exact-six}
+does not use it.
+\end{remark}
+
+\subsection{Circularity stress}\label{subsec:circularity-stress}
+
+\begin{remark}[Circularity stress]\label{prop:circularity-stress}
+Three circularity patterns are excluded under the theorem chain:
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item redefining \FATCD{} so that it already contains exactly six role
+    slots by construction;
+  \item declaring the absence of a seventh role by a membership condition
+    of \FATCD{} rather than by an explicitly stated hypothesis;
+  \item justifying decomposition existence by assuming scoped
+    exact-six.
+\end{itemize}
+The non-circularity schema of Proposition~\ref{prop:non-circularity} and
+the direct proof of Theorem~\ref{thm:decomposition-existence}
+block each pattern.
+\end{remark}
+
+\subsection{Channel-versus-activation stress}\label{subsec:channel-activation-stress}
+
+\begin{remark}[Channel-versus-activation stress]\label{prop:channel-activation-stress}
+The following conflations are excluded:
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item requiring that every \(D \in \FATCD{}\) activates all six role
+    channels;
+  \item treating an inactive channel of status \(\belowthr\) as an
+    active witness for its role;
+  \item treating an inactive channel of status \(\collapsedbc\) as an
+    active witness;
+  \item treating an inactive channel of status \(\absentrec\) as an
+    active witness.
+\end{itemize}
+Proposition~\ref{prop:channel-vs-activation} enforces each distinction.
+The same inactive-status check also applies to
+\(\outsidescope\).
+\end{remark}
+
+\subsection{Role-alignment stress}\label{subsec:role-alignment-stress}
+
+\begin{remark}[Role-alignment stress]\label{prop:role-alignment-stress}
+The three forbidden assignments of
+Remark~\ref{rem:three-repaired-alignments} are excluded: generic
+transition data does not project to \Pthree{}, generic path or
+derivation data does not project to \Pfive{}, and generic semantic or
+interpretation data does not project to \Pone{}. The alignment rules
+of Proposition~\ref{prop:alignment-rules} enforce each prohibition.
+\end{remark}
+
+\subsection{Upper-bound residual stress}\label{subsec:upper-bound-residual-stress}
+
+\begin{remark}[Upper-bound residual stress]\label{prop:residual-stress}
+Under Theorem~\ref{thm:upper-bound-classification} and within the covered
+scope, the following misreadings are excluded:
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item probability or uncertainty features of the recognized forms of
+    Proposition~\ref{prop:probability-closure} reopening as unresolved
+    threats;
+  \item causality features of the recognized forms of
+    Proposition~\ref{prop:causality-closure} reopening as unresolved threats;
+  \item agency features of the recognized forms of
+    Proposition~\ref{prop:agency-closure} reopening as unresolved threats;
+  \item any residual feature in the covered scope of a description satisfying the
+    recognition hypothesis remaining unclassified under
+    Definition~\ref{def:residual-scheme};
+  \item any residual feature in the covered scope of a description satisfying
+    the recognition hypothesis passing the recorded seventh-role screen
+    (without that hypothesis such a feature exists: the relation record \(r\) of
+    \(D_{\mathrm{scr}}\), Remark~\ref{rem:recognition-open}).
+\end{itemize}
+Propositions~\ref{prop:probability-closure}--\ref{prop:agency-closure}
+settle the three threat closures, and
+Theorem~\ref{thm:upper-bound-classification}, under the recognition
+hypothesis, delivers the emptiness of categories (x) and (xi).
+\end{remark}
+
+\subsection{Overclaim stress}\label{subsec:overclaim-stress}
+
+\begin{remark}[Overclaim stress]\label{prop:overclaim-stress}
+The following restatements of the scoped exact-six target are
+excluded:
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item restatement as a full six-primitives algebra;
+  \item restatement as a global primitive-independence theorem;
+  \item restatement as unique or canonical decomposition;
+  \item restatement as empirical realization;
+  \item restatement as a claim about all emergence phenomena, or any
+    domain broader than \FATCD{}.
+\end{itemize}
+Remark~\ref{rem:atlas-global-nonclaims},
+Proposition~\ref{prop:nonclaim-closure}, and
+Proposition~\ref{prop:non-uniqueness} carry the corresponding nonclaims
+forward through the theorem chain. In particular, nonclaim closure
+survives the exact-six assembly.
+\end{remark}
+
+\subsection{The integrated stress certification}\label{subsec:integrated-stress-theorem}
+
+\begin{proposition}[Integrated stress certification]\label{thm:integrated-stress}
+Clauses (a)--(d) are statements about descriptions; clause (e) records the
+dependency structure of the proof of Theorem~\ref{thm:scoped-exact-six}.
+The following hold:
+(a) every \(D\in\FATCD{}\), including \(D_{\mathrm{norm}}\notin\FATCD_{\mathrm{RH}}\),
+admits a well-formed decomposition record, and every well-formed record of such
+\(D\) satisfies clauses (i)--(ii) of Theorem~\ref{thm:six-channel-exactness};
+(b) for each \(k\in\{0,\dots,6\}\) some description in \(\FATCD_{\mathrm{RH}}\) has exactly
+\(k\) active channels (Proposition~\ref{prop:channel-vs-activation});
+(c) some description has two distinct well-formed decomposition records
+(Proposition~\ref{prop:non-uniqueness});
+(d) the description \(D_{\mathrm{norm}}\) of Remark~\ref{rem:recognition-open}
+lies in \FATCD{} but not in \(\FATCD_{\mathrm{RH}}\); and
+(e) Theorem~\ref{thm:scoped-exact-six} follows from
+Theorems~\ref{thm:six-role-lower-bounds},
+\ref{thm:upper-bound-classification}, \ref{thm:decomposition-existence}
+and~\ref{thm:six-channel-exactness}, Propositions~\ref{prop:probability-closure}--\ref{prop:agency-closure},
+and the inventory of the records of \(D_1,\ldots,D_6\) given in its proof.
+\end{proposition}
+
+\begin{proof}
+We verify that each of the six stress families is discharged by the earlier
+result it rests on, so that none of the listed misreadings can arise in
+the combined chain.
+
+\emph{Dependency.} The components named in
+Remark~\ref{prop:dependency-stress} are present and ordered: the
+\FATCD{} domain is fixed in Section~\ref{sec:fatcd-domain}, the
+lower-bound theorem in Section~\ref{sec:lower-bounds}
+(Theorem~\ref{thm:six-role-lower-bounds}), the upper-bound
+classification in Section~\ref{sec:upper-bound-classification}
+(Theorem~\ref{thm:upper-bound-classification}), and the
+decomposition and exhaustion theorems in
+Section~\ref{sec:decomposition-exhaustion}
+(Theorems~\ref{thm:decomposition-existence}
+and~\ref{thm:six-channel-exactness}). Theorem~\ref{thm:scoped-exact-six}
+uses Theorems~\ref{thm:decomposition-existence}
+and~\ref{thm:six-channel-exactness}; clause (iii) of
+Theorem~\ref{thm:six-channel-exactness} uses
+Theorem~\ref{thm:upper-bound-classification}; and the last clause of
+Theorem~\ref{thm:scoped-exact-six} uses
+Theorem~\ref{thm:six-role-lower-bounds}. Theorem~\ref{thm:upper-bound-classification} does not use
+Theorem~\ref{thm:six-role-lower-bounds}. The existence argument of
+Theorem~\ref{thm:decomposition-existence} does not use it either; that proof
+cites it only for the separate non-vacuity observation at its end. So the target cannot be asserted
+while skipping one of these uses, and no link consumes its own output.
+
+\emph{Circularity.} The three circularity patterns of
+Remark~\ref{prop:circularity-stress} are blocked by the
+non-circularity schema of Proposition~\ref{prop:non-circularity}, which
+defines \FATCD{} without reference to a six-slot count, and by the
+direct proof of Theorem~\ref{thm:decomposition-existence}, which
+produces a decomposition without assuming scoped exact-six. The absence of
+labels (x) and (xi) is not a membership condition of \FATCD{}: it follows,
+through the label criteria of Definition~\ref{def:residual-scheme}, from the
+recognition hypothesis, which is assumed and fails for the description of
+Remark~\ref{rem:recognition-open}.
+
+\emph{Channel versus activation.} The conflations of
+Remark~\ref{prop:channel-activation-stress} are excluded by
+Proposition~\ref{prop:channel-vs-activation} together with the
+five-status taxonomy of Definition~\ref{def:channel-status}: a channel
+carrying status \(\belowthr\), \(\collapsedbc\), \(\absentrec\), or
+\(\outsidescope\) is an inactive channel and is never read as an active
+projection, so no description is required to activate all six channels.
+
+\emph{Role alignment.} The three forbidden assignments of
+Remark~\ref{prop:role-alignment-stress} are ruled out by the alignment
+rules of Proposition~\ref{prop:alignment-rules}, which refuse generic
+transition data as \Pthree{}, generic path or derivation data as
+\Pfive{}, and generic semantic or interpretation data as \Pone{}, in
+accordance with the alignments of
+Remark~\ref{rem:three-repaired-alignments}.
+
+\emph{Upper-bound residual.} The misreadings of
+Remark~\ref{prop:residual-stress} are closed within the covered scope by
+Propositions~\ref{prop:probability-closure}--\ref{prop:agency-closure},
+which settle the probability, causality, and agency threat closures, and
+by Theorem~\ref{thm:upper-bound-classification}, which --- under the
+recognition hypothesis (Definition~\ref{def:recognition-hypothesis}) ---
+classifies every covered residual feature and delivers the emptiness of
+categories (x) and (xi); hence, under that hypothesis, no covered residual
+reopens as an unresolved threat or passes the recorded seventh-role screen, while the
+three principal threat classes are closed without that hypothesis, in the
+recognized forms of
+Propositions~\ref{prop:probability-closure}--\ref{prop:agency-closure}.
+
+\emph{Overclaim.} The excluded restatements of
+Remark~\ref{prop:overclaim-stress} are blocked because the nonclaims of
+Remark~\ref{rem:atlas-global-nonclaims} are carried forward by
+Proposition~\ref{prop:nonclaim-closure}, and non-uniqueness of the
+decomposition is recorded by Proposition~\ref{prop:non-uniqueness}; thus
+nonclaim closure survives the exact-six assembly, and no full-algebra,
+global-independence, unique-decomposition, empirical-realization, or
+broadened-domain reading is admitted.
+
+Thus each misreading listed in the stress remarks is excluded by the result
+cited for it; dependencies cohere, the channel-versus-activation distinction
+holds and nonclaim closure holds, so the results combine into the terminal
+statement of
+Section~\ref{sec:scoped-exact-six}.
+
+For the concrete clauses: (a) holds because Theorem~\ref{thm:decomposition-existence}
+gives a well-formed decomposition record for every \(D\in\FATCD{}\), and its
+existence construction and clauses (i)--(ii) of
+Theorem~\ref{thm:six-channel-exactness} use only
+Definitions~\ref{def:channel-status} and~\ref{def:decomposition-record} and the
+label criteria after Definition~\ref{def:residual-scheme}, and clause (iii)
+alone cites Theorem~\ref{thm:upper-bound-classification}; (b) is
+Proposition~\ref{prop:channel-vs-activation}; (c) is
+Proposition~\ref{prop:non-uniqueness}; (d) is shown in
+Remark~\ref{rem:recognition-open}; and (e) holds because the proof of
+Theorem~\ref{thm:scoped-exact-six} in Section~\ref{sec:scoped-exact-six} uses exactly
+the results listed in (e) and not this proposition.
+\end{proof}
+
+In the sense of the checklist of this section, the results named in its table
+rule out each listed misreading: dependency, circularity,
+channel-versus-activation, role-alignment, upper-bound residual and overclaim
+misreadings.

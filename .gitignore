@@ -1,0 +1,82 @@
+.lake/
+lean/.validate-logs/
+lean/full/.lake/
+lean/recovered/**/.lake/
+lean-validation.json
+__pycache__/
+*.py[cod]
+
+# LaTeX build logs and intermediates (embed local paths); built PDFs, the
+# flattened source and the Qeios bundle stay tracked
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+
+# Local planning, drafting guides and submission aids (kept on disk)
+/PLAN_*.md
+/paper/notation_and_terminology.md
+/paper/submission/qeios_definitions_packet.*
+/paper/submission/ai_disclosure.txt
+/paper/submission/checklist.md
+/paper/submission/arxiv_submission_notes.md
+
+# Aristotle agent harness and run reports in recovered projects (the Lean
+# projects and their READMEs stay tracked)
+lean/recovered/**/ARISTOTLE_SUMMARY.md
+lean/recovered/**/ARISTOTLE_MANUAL.md
+lean/recovered/**/run_task.py
+lean/recovered/**/sample_aristotle_prompt.md
+lean/recovered/**/plan.md
+lean/recovered/**/tasks/
+lean/recovered/**/six-birds-program/
+lean/recovered/**/package_snapshot.sh
+lean/recovered/**/.package-snapshot-version
+lean/recovered/**/*_snapshot_v*.zip
+lean/recovered/**/results/
+
+# Editor / OS noise
+.DS_Store
+*.swp
+*.swo
+.vscode/
+.idea/
+.pytest_cache/
+
+# Local secrets and credentials (keep only an explicit example file)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+.netrc
+.pypirc
+credentials*.json
+*secret*
+*token*.txt
+
+# Local agent, prompt, transcript and session state (any depth)
+**/.agents/
+**/.codex/
+**/.claude/
+**/.cursor/
+**/.aider*
+**/.continue/
+**/.specstory/
+**/.windsurf/
+/memory/
+/prompts/
+/skills/
+**/transcripts/
+**/rollout-*.jsonl
+**/*.transcript*
+**/CLAUDE.local.md
+**/.claude.json
+**/.codex_thread_id*

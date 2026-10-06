@@ -1,0 +1,1083 @@
+\section{Upper-bound classification under the recognition hypothesis}\label{sec:upper-bound-classification}
+
+
+
+The lower bounds of Section~\ref{sec:lower-bounds} rule out the
+trivialization in which some primitive role lacks an admissible
+witness in \FATCD{}. The upper-bound direction addresses the
+complementary question: whether some additional, seventh closure role
+is needed in the covered scope. This section shows that, under the
+recognition hypothesis of Definition~\ref{def:recognition-hypothesis}, every
+kind residual in the covered scope, every bookkeeping annotation, and every record residual of every
+well-formed decomposition record, is licensed only labels among (i)--(ix) of
+Definition~\ref{def:residual-scheme}, and that the recognized forms of
+probability, causality and agency receive such labels without it. The argument proceeds in three steps. First, we state the
+alignment rules that constrain how raw features may project to
+\Pone{}, \ldots, \Psix{}. Second, we close the three high-priority
+candidate seventh-role threats: probability and uncertainty, residual
+causality, and residual agency. Third, we record the upper-bound
+classification theorem that collects these local classifications into
+a single covered-scope statement.
+
+\subsection{Role-projection alignment rules}\label{subsec:alignment-rules}
+
+The role meanings of Definition~\ref{def:primitive-roles} carry
+alignment rules constraining which raw features may be interpreted as
+active projections of each role. These rules refine the
+alignments of Remark~\ref{rem:repaired-alignments} and form the
+discipline under which the classification theorem is proved.
+
+\begin{proposition}[Role-projection alignment]\label{prop:alignment-rules}
+Under honest bookkeeping and the witness discipline of
+Definition~\ref{def:role-projection}, each role projection is
+constrained as follows.
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item \Pone{}: admissible only when the candidate cluster carries a map or partial-map record of declared use update, source and target relation records of declared use quotient, and a certificate of alternative (a) or (b) of the \(W_1\) row. In particular, a cluster with no map or partial-map record
+    of declared use update, or no relation record of declared use quotient,
+    does not satisfy \(W_1\).
+  \item \Ptwo{}: admissible only when the candidate carries a macro
+    specification, a realization relation, specification-satisfaction
+    data, and evidence of certified unrealizability or failure of
+    representability over the declared packaging kernel; when a
+    satisfying realizer exists, the candidate must also carry a comparison
+    with the classes of the kernel of a declared packaging map, whose
+    declared domain contains the declared candidate class, certifying
+    that some class of that kernel meets both the realizer set and its
+    complement in the candidate class.
+    Macro-level predicates or objectives count only insofar as they are
+    treated as content to be represented. When no realizer exists, the candidate class must be the full declared domain of a map record of the cluster of declared use packaging or update, and the cluster must record a true evaluation of the specification at a declared same-kind record outside that class. Mere quotient equality and
+    arbitrary relations without representability structure are not
+    admissible as \Ptwo{} projections.
+  \item \Pthree{}: admissible only when the candidate carries a route
+    grammar (generating moves and all rewrite rules recorded in \(D\)), generated same-source, same-target route terms, and
+    route-comparison data with a non-reducibility certificate of either
+alternative in the \(W_3\) row. Generic transitions, generic causal arrows, generic
+    path records, and route undefinedness arising from a partial update
+    map are not admissible as \Pthree{} projections unless they are
+    two defined same-source, same-target route records carrying a
+    non-reducibility certificate of either alternative in the \(W_3\) row.
+  \item \Pfour{}: admissible only when the candidate carries a stage,
+    order, transition or refinement record (Definition~\ref{def:raw-record})
+    with a law in the sense of the witness table (for a transition record,
+    a certificate that its table is defined on its declared domain with
+    values in its declared codomain suffices). Bare labels, arbitrary
+    relations without order, transition, or refinement law, quotient
+    packaging, and audit bookkeeping are not admissible as \Pfour{}
+    projections.
+  \item \Pfive{}: admissible only when the candidate carries a quotient
+    relation, a packaging map, the identification of distinct
+    micro-elements, an object record declared as the quotient object, and
+    quotient-validity evidence. Generic structural paths, derivations,
+    topologies or geometries merely because they have paths, and causal
+    chains are not admissible as \Pfive{} projections unless quotient
+    or packaging data is present.
+  \item \Psix{}: admissible only when the cluster carries a declared event,
+    a trace record, a record tied to the event that is that trace record or a
+    provenance record also tied to that trace record, a replay or check record tied to the trace carrying a certificate of a replay or provenance property of
+    the trace, and \(\mathrm{Audit}_0(D)\) contains an entry \(a\), not necessarily a cluster member, referring to a claim
+    annotation, to these event and trace records and to that replay or check
+    record, whose conclusion is the formula of that certificate.
+    Passive logs alone, arbitrary metadata, and certificate-only
+    content without audit/provenance/replay/check structure are not
+    admissible as \Psix{} projections.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+By Definition~\ref{def:role-projection}, an admissible projection
+\(\pi_i(D,C)\) requires \(W_i(C)\), and \(W_i\) is defined by the row for
+\(P_i\) of the \emph{Witness types} table in
+Section~\ref{sec:primitive-role-architecture}. Each constraint below follows
+by reading off the record kinds that row requires; the table is the
+definition and this proposition states its consequences for candidate
+features. We go through the roles in turn.
+
+For \Pone{}, the fixed meaning is update-vs-quotient compatibility and
+descent obstruction. The witness type for that meaning is exactly a
+selected update together with source and target relation records of declared use quotient and a
+certificate of descent compatibility, descent obstruction, or
+update-vs-quotient mismatch; absent such a witness the candidate
+exhibits no descent datum to compare, so it cannot be an active \Pone{}
+projection. In particular generic semantics, generic predicate meaning,
+generic selection criteria, and generic agency carry no descent witness
+and are inadmissible, which is the alignment of
+Remark~\ref{rem:repaired-alignments}.
+
+For \Ptwo{}, the fixed meaning is macro-specification representability.
+Its witness type is a macro specification, a realization relation,
+specification-satisfaction data, and a certificate of unrealizability or of
+failure of representability over the declared packaging kernel; a macro-level predicate or objective
+enters only when treated as content to be represented, since only then
+does it instantiate the representability relation. Mere quotient
+equality is \Pfive{} data, an arbitrary relation lacking
+representability structure supplies no realization relation, and
+empirical observations lacking level and threshold data fail the witness
+discipline; none is an admissible \Ptwo{} projection.
+
+For \Pthree{}, the fixed meaning is enriched route/coherence mismatch,
+and \Pthree{} is not a directionality certificate. Its witness type is
+a route grammar (generating moves and all rewrite rules recorded in \(D\)), generated same-source same-target route terms,
+and route-comparison data carrying a non-reducibility certificate of either
+alternative in the \(W_3\) row. A candidate without such a route
+comparison has nothing of the \Pthree{} type to compare. Generic
+transitions and generic causal arrows are \Pfour{} data, generic path
+records are not route-comparison data, and route undefinedness arising
+from a partial update map is \Pone{} content (Table~\ref{tab:boundary-matrix},
+row \Pone{}/\Pthree{}); none projects to
+\Pthree{} unless the route/coherence threshold is explicitly present and
+the comparison is specifically of the \Pthree{} type. This is the
+alignment that generic transition is not \Pthree{}.
+
+For \Pfour{}, the fixed meaning is stage, order, transition, and
+refinement structure. Its witness type is a stage, order, transition or
+refinement record carrying a law beyond bare labels; staged dynamics and
+regime ordering qualify when recorded in one of these kinds. Bare labels, arbitrary relations without an order,
+transition, or refinement law, quotient packaging (which is \Pfive{}
+data), and audit bookkeeping (which is \Psix{} data) supply no such law
+and are inadmissible as \Pfour{} projections.
+
+For \Pfive{}, the fixed meaning is quotient packaging. Its witness type
+is a quotient relation, a packaging map, the identification of distinct
+micro-elements, an object record declared as the quotient object, and
+quotient-validity evidence. Generic structural paths, derivations,
+topologies or geometries that merely carry paths, and causal chains
+supply no quotient relation or packaging map, so they are inadmissible
+absent quotient or packaging data; this is the alignment that
+generic path or derivation is not \Pfive{}.
+
+For \Psix{}, the fixed meaning is audit, provenance, replay, and
+checkability. Its witness type is a declared event, a trace record tied to it directly or through a provenance record, a replay or check record carrying a certified replay or provenance property of the trace, and an entry of \(\mathrm{Audit}_0(D)\) concluding that property. Passive logs without check
+structure, arbitrary metadata, and certificate-only content lacking
+audit/provenance/replay/check structure supply no checkable audit datum
+and are inadmissible as \Psix{} projections.
+
+In each case the admissibility constraint is forced by the fixed role
+meaning through the witness discipline: a projection is admissible only
+with the witness type that the meaning of the role fixes. Formally, each
+bullet is the contrapositive of the row conjunct it names: \(W_1\) requires an
+update map and quotient relations; \(W_2\) a macro-specification and a
+realization relation; \(W_3\) two defined parallel routes and a certificate;
+\(W_4\) a law-bearing record; \(W_5\) a quotient relation, a packaging map and a
+quotient object; and \(W_6\) an event, a trace, a certified check and an
+\(\mathrm{Audit}_0\) entry. The remaining sentences gloss role meanings and are
+not used.
+\end{proof}
+
+\begin{remark}[Three excluded alignments, held fixed]\label{rem:three-repaired-alignments}
+Proposition~\ref{prop:alignment-rules} fixes three alignments that
+are held throughout: generic transition data does not project to
+\Pthree{}, generic path or derivation data does not project to
+\Pfive{}, and generic semantic or interpretation data does not project
+to \Pone{}. These are carried into every step of the classification
+theorem below.
+\end{remark}
+
+\subsection{Probability, causality and agency}\label{subsec:threat-closures}
+
+Three classes of candidate seventh-role feature require particular
+scrutiny: probability and uncertainty, residual causality in the
+sense of the interventional and counterfactual
+hierarchy~\citep{Pearl2009}, and residual agency in the planning
+sense~\citep{Bratman1987}. Each is classified in a proposition. In the titles of
+Propositions~\ref{prop:probability-closure}--\ref{prop:agency-closure},
+\emph{closure} of a threat means only that each listed form is licensed a label
+among (i)--(ix); it is unrelated to closure operations, to the condition
+\(\Closed{D}\), or to the closure content of
+Definition~\ref{def:recognition-hypothesis}.
+In every case the candidate is classified under the alignment rules
+of Proposition~\ref{prop:alignment-rules} together with the residual
+scheme of Definition~\ref{def:residual-scheme}; no candidate is
+dismissed by definition. These three come first because they are the
+most natural candidates for a seventh role; the general classification
+theorem follows. A \emph{probability or uncertainty feature} is a residual
+feature with a field of declared probability, weight, kernel, confidence or
+error type, or an empirical-bridge annotation whose identified bridge claim has
+such a field in its \(\Audit{D}\) entry; a \emph{residual-causality feature} is one with a field of declared
+intervention, counterfactual or causal-dependence type; and a
+\emph{residual-agency feature} is one with a field of declared goal,
+objective, plan, policy or choice type, or an empirical-bridge annotation
+whose identified bridge claim has such a field in its \(\Audit{D}\) entry.
+Value-type tags enter no label criterion (Definition~\ref{def:raw-record}), and
+the proofs below case only on content; hence each proposition below holds for
+every kind residual whose content takes one of its forms, whether or not it
+carries such a tag. Each recognized form is specified so that a criterion
+among (i)--(ix) applies to it; the propositions list which presentations of
+probabilistic, causal and agentive content the witness rows, seed clauses
+and annotation kinds already accommodate.
+
+\paragraph{The \(P_i\)-form.}\label{par:pi-form} In these propositions, a feature \(r\) has \emph{\(P_i\)-form} when \(r\) is a
+record of a kind occurring in the \(W_i\) row of the witness table,
+contributes a required field to a finite cluster \(C\) satisfying \(W_i(C)\),
+and every predicate, comparison, invariant, law or claim field of \(r\) is
+required for \(W_i\) at \(C\) or is an input to its check
+(Section~\ref{subsec:residual-classification}); or when \(r\) carries a covered
+\(P_i\) seed and each of its predicate, comparison, invariant, law or claim fields is a named seed field of that clause. Such
+a feature satisfies criterion (i) when that criterion holds, and criterion (v)
+otherwise. In the bullets below, \(P_i\)-aligned content is
+labelled (i) or (v); a bullet does not assert that the decomposition record
+names an active projection for it. A seed alone is not an active projection.
+\par\emph{Examples.} For instance, a transition record whose fields are its endpoints, a kernel
+declared with values in the distributions on its state set, and the law that
+each row is such a distribution has \(P_4\)-form: in an aligned cluster in which it is the only law-bearing
+record, deleting the row law leaves the cluster without a law, so \(W_4\)
+fails. By contrast, the predicate \(N\) in the original \(D_{\mathrm{norm}}\) of
+Remark~\ref{rem:recognition-open} has no \(P_i\)-form; neither does a
+standalone transition record without a certified law or covered seed. For a
+composite form, the feature is carried by a finite set \(R_f\) of records, and
+each record of \(R_f\) has the \(P_i\)-form of its own component role (so, by
+the second sentence of this paragraph, it satisfies criterion (i) or (v), and
+also (ii) when it contributes required fields to two named active clusters and every
+predicate, comparison, invariant, law or claim field is required for, or an
+input to the check of, either cluster's witness predicate).
+\par\emph{Composite forms.} For a composite form, ``classifies as a composite'' is a derived
+reading of the finite record set \(R_f\), not an additional residual
+label: \(\operatorname{Classify}\) still labels each member of \(R_f\).
+Label (ii) applies to a member only under the two-cluster condition just
+stated.
+\par\emph{How the propositions proceed.} Each proposition takes a kind residual of \(D\) whose content
+is of the named kind --- probability or uncertainty; causation in the
+interventional and counterfactual sense; agency in the planning sense --- and
+passes it through the residual scheme under the alignment rules. Its proof
+checks, for each recognized form, that the feature supplies the witness type
+of the role it is assigned to, or is an annotation or an outside-domain
+structure; the causality and agency propositions also show that one role is
+unavailable: \Pfive{} without quotient packaging, and \Pone{} without an
+update-vs-quotient descent witness. A stochastic transition record carrying a certified row law, with no assertion
+fields beyond the named fields of its covered \(P_4\) seed, has \(P_4\)-form
+whether or not attachment data are present. Relative to a fixed well-formed
+\(\Dec{D}\), it satisfies criterion (i) if that criterion holds, and criterion
+(v) otherwise; an uncertainty record with provenance and replay data
+has \(P_6\)-form when each of its predicate, comparison, invariant, law or claim
+fields is required for, or an input to, a \(W_6\) check, or is a named field of
+its seed; an empirical-bridge annotation attaching a measurement error to a substrate observable is licensed label (vii) when it meets criterion (vii), the error record itself being classified by its own fields; and a
+confidence level recorded as the threshold predicate of a threshold annotation
+with no other field besides its typing, target and label fields, all of whose
+read records satisfy (R1), is an activation-threshold refinement. A normalization predicate with no free variable, such as the
+one in \(D_{\mathrm{norm}}\) of Remark~\ref{rem:recognition-open}, is not a
+\Ptwo{} seed merely because it states that finitely many weights sum to
+one. That remark shows that this
+specified predicate receives label (x), and discusses conservation laws and
+emergent obstructions separately.
+A record of \(P_i\)-form satisfies alternative (R1) of
+Definition~\ref{def:recognition-hypothesis}, the threshold and bridge forms below
+satisfy (R2), and the outside-domain forms satisfy (R5); the propositions below
+are thus the cases, for these three classes, of the pointwise clause of
+Theorem~\ref{thm:upper-bound-classification}, and assume nothing about the other
+features of \(D\).
+
+\begin{proposition}[Closure of probability and uncertainty]\label{prop:probability-closure}
+\textup{(a)} Every kind residual (Definition~\ref{def:residual-scheme}), in particular every probability or uncertainty feature, of a description
+\(D \in \FATCD{}\) whose content takes one of the recognized forms below,
+where a form naming a \(P_i\) projection or unabsorbed \(P_i\)-aligned content
+requires the feature to have \(P_i\)-form (paragraph \emph{The \(P_i\)-form}
+before Proposition~\ref{prop:probability-closure}),
+is licensed, relative to every well-formed decomposition record \(\Dec{D}\), at least one of the labels of
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item \(P_2\)-aligned content, label (i) or (v), when the feature has \(P_2\)-form (for
+    instance a macro-specification with one free variable and a realization
+    relation whose recorded evaluations take both truth values);
+  \item \(P_4\)-aligned content, label (i) or (v), when the feature has \(P_4\)-form (for
+    instance a stochastic transition record carrying its row law);
+  \item \(P_6\)-aligned content, label (i) or (v), when the feature has \(P_6\)-form (for
+    instance an audited uncertainty-bookkeeping record);
+  \item an activation-threshold refinement, when the feature is a threshold
+    annotation targeting a cluster named for an active projection, with a
+    confidence level recorded as its threshold predicate
+    (Definition~\ref{def:threshold-attachment}) as its only field besides
+    typing, target and label, and that predicate reads at least one record, every record whose values it reads is listed in the annotation's target field, and each such record satisfies (R1); relative to a record that names its target cluster for
+    no active projection, the annotation satisfies criterion (ix-b);
+  \item an empirical-bridge annotation, when the feature is itself an empirical-bridge annotation identifying an admissible bridge claim (Definitions~\ref{prop:honest-bookkeeping} and~\ref{prop:empirical-bridge}) whose \(\Audit{D}\) entry carries the five items of Definition~\ref{prop:empirical-bridge}, with no fields beyond its typing, targets and that identification;
+  \item an outside-domain structure, label (viii), when an assertion field of the feature uses a declared predicate whose extension \(D\) does not record or quantifies over a sort whose carrier \(D\) does not record, the asserted property is true in some expansion of \(D\) and false in another, and every other assertion field of that record either also meets the outside-scope condition or is required for \(W_i\) at a cluster aligned with \(P_i\), an input to its check at such a cluster, or named in a seed clause that the record carries (for instance the \(\mathrm{IsDist}\) presentation of Remark~\ref{rem:recognition-open});
+  \item label (i), (ii) or (v), as a member of a composite of the foregoing
+    projections, when the feature is one of a finite set of records each of which has the \(P_i\)-form of one of the roles above (so, by the paragraph
+    \emph{The \(P_i\)-form}, it satisfies criterion (i) or (v), and also (ii)
+    when it contributes required fields to two named active clusters and every
+    predicate, comparison, invariant, law or claim field is required for, or an
+    input to the check of, either cluster's witness predicate);
+  \item unabsorbed role-aligned content, label~(v) of
+    Definition~\ref{def:residual-scheme}, when it has \(P_i\)-form but
+    criterion (i) does not hold for it, for instance because the cluster lacks
+    the attachment data of Definition~\ref{def:threshold-attachment}.
+\end{itemize}
+A content record targeted by such an empirical-bridge annotation is not thereby classified; it is classified by its own fields and is licensed label (ix-c) exactly when either branch of that criterion holds.
+Each case licenses a label among (i)--(ix) of
+Definition~\ref{def:residual-scheme}, so neither (x) nor (xi) is licensed for
+the feature. Probability or uncertainty content of any of these recognized forms therefore
+requires no seventh role; content of none of these forms is governed by the
+recognition hypothesis (Definition~\ref{def:recognition-hypothesis}).
+\textup{(b)} Let a content record of \(D\) have as its only assertion field the formula \(\bigwedge_k v(w_k)\ge0\wedge\sum_k v(w_k)=1\) over value fields of pairwise distinct declared records \(w_1,\dots,w_n\), none of which is the replaced record, suppose the recorded values \(v(w_k)\) are nonnegative and sum to one (so the recomputed row check is true), and let \(D'\) be the description obtained from \(D\) by replacing that
+feature, with every incoming reference and affected annotation retargeted in a
+type-correct way and with the resulting description \(D'\) in \FATCD{} (in particular, every realization relation still lists exactly the members of its candidate class at which its target's formula is true in \(D'\)), by a transition record \(K:\{*\}\to\mathrm{Dist}(\{w_1,\dots,w_n\})\) (here \(K\) is a transition record, not a candidate class)
+whose declared source is an object record \(\{*\}\) listing a declared state
+record \(*\), whose declared target is \(\mathrm{Dist}(X)\) for an object record
+\(X\) listing \(w_1,\dots,w_n\), recorded by a codomain reference to \(X\) and a
+datum field marking the codomain as distribution-valued (paragraph
+\emph{Laws}), whose unique row is the list of terms
+\(v(w_1),\dots,v(w_n)\), and whose law certificate is
+\((\bigwedge_k v(w_k)\ge0\wedge\sum_k v(w_k)=1,\mathrm{true})\); the records
+\(*\), \(\{*\}\) and \(X\) are added to \(D'\).
+Then \(K\) is a covered \Pfour{} seed of \(D'\) and has \(P_4\)-form, so
+relative to every well-formed decomposition record of \(D'\) it is licensed
+label (i) or (v), and neither (x) nor (xi) (its only assertion field is the
+law certificate, a named seed field of clause (4), so \(K\) has \(P_4\)-form by
+the second branch of the paragraph \emph{The \(P_i\)-form}); the added records \(*\),
+\(\{*\}\) and \(X\) have no assertion field and satisfy (R1) or (R3). The \(w_i\) and their values are
+unchanged, source and target declarations are added, and the claim and audit
+annotations of the replaced feature are retargeted to the row-law check of
+\(K\); in \(D\) itself the feature is not thereby classified.
+\end{proposition}
+
+\begin{proof}
+Let \(r\) be a probability or uncertainty feature (a kind residual) of
+\(D \in \FATCD{}\), and let it pass through the residual scheme of
+Definition~\ref{def:residual-scheme} under the alignment rules of
+Proposition~\ref{prop:alignment-rules}. Role-aligned classifications below require the \(P_i\)-form specified in the
+proposition. Such a record satisfies criterion (i) when that criterion holds and
+criterion (v) otherwise. Composite forms are determined record by record;
+criterion (ii) applies under the two-cluster condition of the paragraph
+\emph{The \(P_i\)-form}. We case on the content of \(r\).
+
+If the probabilistic content is a macro specification or a
+representability or non-representability condition on a description that
+contributes a required field to a cluster satisfying \(W_2\), with its
+realization relation and certificate, then it supplies the \Ptwo{}
+witness, so it has \(P_2\)-form and receives label (i) or (v) (paragraph
+\emph{The \(P_i\)-form}). If instead the content is a stochastic transition,
+regime, or staged structure carrying a valid stage, order, transition,
+or refinement law and has \(P_4\)-form, then it receives label (i) or (v); the
+row law of a kernel is such a law, as in the example before this proposition,
+and a normalization assertion that is not required for \(W_4\) is carried by a
+separate predicate record, classified in its own right
+(Remark~\ref{rem:recognition-open}). If the content is an audited record of uncertainty
+bookkeeping --- event reference, provenance, replay or check structure
+--- it has \(P_6\)-form. A \(P_6\)-form record receives (i) when its named
+active cluster carries the certified trace check and honest audit required by
+\(W_6\); a covered seed without that full witness receives (v). If the
+feature is a threshold annotation of a cluster named for an active projection
+whose only field besides typing, target and label is a threshold predicate recording a confidence level
+that decides when the projection is attempted, and that predicate reads at least one record, every record whose values it reads is listed in the annotation's target field, and each such record satisfies (R1), then it adds no role content and receives
+label (v-b): it is an activation-threshold
+refinement. Relative to a record that names its target cluster for no active projection,
+the annotation is a structural annotation whose fields are its typing, target
+and threshold predicate, with no independent role-theoretic assertion, and
+(v), (vi) and (vii) do not apply, so it satisfies criterion (ix-b). If it is an empirical-bridge annotation whose bridge claim is admissible and has an audit
+entry with the five items of Definition~\ref{prop:empirical-bridge}, and with
+no fields beyond its typing, targets and that identification, it
+receives (vii). A content record targeted by such an annotation is not thereby classified; it is classified by its own fields and is licensed label (ix-c) exactly when either branch of that criterion holds. Finally, if several role aspects occur together, take their finite
+record set \(R_f\). By the composite-form hypothesis each member has
+its component role's \(P_i\)-form, so it satisfies criterion (i) or (v), and
+also (ii) under the two-cluster condition stated there;
+the set has the composite reading of those classifications. These are the recognized forms of probability and uncertainty content, and
+each reduces to the six roles as stated. A probability feature whose content
+has none of these forms is not classified by this proposition. In particular,
+the bare normalization predicate of Remark~\ref{rem:recognition-open} receives
+label (x); other such constraints must be checked against the recognition
+alternatives of Definition~\ref{def:recognition-hypothesis}.
+A feature whose probabilistic content lies outside the covered scope is classified as an outside-domain structure by Definition~\ref{def:residual-scheme}, not absorbed by default: in the outside-domain case, the asserted property is true in some expansion of \(D\) and false in another, and together with the stated condition on the remaining assertion fields this satisfies criterion (viii). The
+closure is therefore scoped, as stated.
+
+For (b), the row of \(K\) is a map from the declared one-point
+domain to the declared set \(\mathrm{Dist}(\{w_1,\dots,w_n\})\), and the finite
+check of nonnegativity and sum one certifies that its value lies in that
+codomain. This is a law in the sense of the witness table, so \(K\) is a
+law-bearing transition record, which is a covered \Pfour{} seed by
+Definition~\ref{def:channel-status}. Its declared source and target records are fixed by reference fields, and the
+value fields of the \(w_k\) are read by that check; none of these records carries
+an assertion of its own.
+Reference closure and honest bookkeeping of \(D'\) are hypotheses of the
+clause; the argument uses only the row of \(K\) and its law certificate.
+\end{proof}
+
+\begin{proposition}[Closure of residual causality]\label{prop:causality-closure}
+Every kind residual (Definition~\ref{def:residual-scheme}), in particular every residual-causality feature, of a description
+\(D \in \FATCD{}\) whose content takes one of the recognized forms below,
+where a form naming a \(P_i\) projection or unabsorbed \(P_i\)-aligned content
+requires the feature to have \(P_i\)-form (paragraph \emph{The \(P_i\)-form}
+before Proposition~\ref{prop:probability-closure}),
+is licensed under the residual scheme, relative to every well-formed
+decomposition record \(\Dec{D}\), at least one of the labels of
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item \(P_4\)-aligned content, label (i) or (v), as the primary classification when the
+    feature has \(P_4\)-form (for instance a directed transition or
+    refinement record with its law);
+  \item \(P_3\)-aligned content, label (i) or (v), only when the feature has \(P_3\)-form and is specifically a
+    route/coherence comparison between generated same-source,
+    same-target routes;
+  \item \(P_6\)-aligned content, label (i) or (v), when the feature has \(P_6\)-form;
+  \item label (i), (ii) or (v), as a member of a composite of \Pfour{} and
+    \Psix{}, when directed dependence and provenance audit are carried by a
+    finite set of records containing the feature, each of which has
+    \(P_4\)-form or \(P_6\)-form (so it satisfies criterion (i) or (v), and also (ii)
+    when it contributes required fields to two named active clusters and every
+    predicate, comparison, invariant, law or claim field is required for, or an
+    input to the check of, either cluster's witness predicate);
+  \item an outside-domain structure, when an assertion field of the feature (for instance a
+    metaphysical-causation assertion) uses a declared predicate whose extension \(D\) does not record, the asserted property is true in some expansion of \(D\) and false in another, and every other assertion field of that record either also meets the outside-scope condition or is required for \(W_i\) at a cluster aligned with \(P_i\), an input to its check at such a cluster, or named in a seed clause that the record carries;
+  \item unabsorbed role-aligned content, label~(v) of
+    Definition~\ref{def:residual-scheme}, when it has \(P_i\)-form but
+    criterion (i) does not hold for it, for instance because the cluster lacks
+    the attachment data of Definition~\ref{def:threshold-attachment}.
+\end{itemize}
+Classification as \Pfive{} is inadmissible in the absence of quotient
+packaging. Each case licenses a label among (i)--(ix) of
+Definition~\ref{def:residual-scheme}, so neither (x) nor (xi) is licensed for
+the feature. For these recognized forms, the covered content requires no
+seventh role; the outside-domain case receives label (viii) without a claim
+about roles beyond the covered scope. None of these classifications uses the
+recognition hypothesis (Definition~\ref{def:recognition-hypothesis}); content
+of none of these forms is governed by it. An interventional mechanism is covered
+when recorded as a law-bearing transition or refinement record of \(P_4\)-form, for instance one whose only assertion field is its law certificate (first bullet); a further assertion field serving no witness can leave it licensed only (x); a
+counterfactual assertion is covered only when it takes one of the listed forms,
+and otherwise falls under the recognition hypothesis.
+\end{proposition}
+
+\begin{proof}
+Let \(r\) be a residual-causality feature (a kind residual) of
+\(D \in \FATCD{}\), causal content being taken from the hierarchy of~\citet{Pearl2009}, and pass
+\(r\) through the residual scheme of Definition~\ref{def:residual-scheme} under
+Proposition~\ref{prop:alignment-rules}. The forms of the proposition cover
+interventional mechanisms recorded as transitions of \(P_4\)-form; counterfactual assertions
+not of these forms fall under the recognition hypothesis. A causal feature presents a
+directed dependence, so we case on how that directedness is carried.
+Role-aligned and composite forms are labelled as in the paragraph
+\emph{The \(P_i\)-form} before Proposition~\ref{prop:probability-closure}: each
+record receives (i) or (v), and (ii) under the two-cluster condition stated
+there.
+
+If \(r\) has \(P_4\)-form as a directed transition, refinement, or
+staged-dependence law, it receives label (i) or (v) by the paragraph
+\emph{The \(P_i\)-form}; this is the primary classification. The record
+kind and its law alone do not establish the assertion-field guard
+defining \(P_4\)-form. One case in which directedness routes elsewhere is when \(r\) is
+specifically a route/coherence comparison between generated
+same-source, same-target routes carrying a non-reducibility certificate of
+either alternative in the \(W_3\) row; only then does it supply the \Pthree{}
+witness, have \(P_3\)-form and receive label (i) or (v). We must not assign a
+generic causal arrow to \Pthree{}, since by the alignment rules a
+generic transition is not a route comparison of the \Pthree{} type. If
+\(r\) is instead a provenance or dependency audit --- event reference
+with a provenance or trace record --- it has \(P_6\)-form. A \(P_6\)-form
+record receives (i) when its named active cluster carries the certified trace
+check and honest audit required by \(W_6\); a covered seed without that full
+witness receives (v). When directed dependence and provenance audit occur together, take
+their finite record set \(R_f\). Its \(P_4\)-form and \(P_6\)-form
+members are licensed (i) or (v) individually by their \(P_i\)-form; together they have
+the stated composite reading.
+Finally, if \(r\) records a metaphysical-causation assertion whose declared
+predicate has no recorded extension in \(D\), its truth is not certified by
+the finite checks of \(D\). In the outside-domain case, the asserted property is true in some
+expansion of \(D\) and false in another. Together with the stated
+condition on the remaining assertion fields, this satisfies
+criterion (viii).
+
+Classification as a \Pfive{} projection is not available here: by
+Proposition~\ref{prop:alignment-rules} a \Pfive{} projection requires a
+quotient relation and packaging map, and a causal feature carrying no
+quotient packaging supplies none; the directedness of a causal chain is
+not packaging data. Hence the \Pfive{}-inadmissibility caveat holds.
+The cases above are the recognized forms of residual-causality content; a
+causality feature whose content is of none of these forms is not classified here
+and falls under the recognition hypothesis
+(Definition~\ref{def:recognition-hypothesis}). The closure is scoped and makes no
+scope-free claim.
+\end{proof}
+
+\begin{proposition}[Closure of residual agency]\label{prop:agency-closure}
+Every kind residual (Definition~\ref{def:residual-scheme}), in particular every residual-agency feature, of a description
+\(D \in \FATCD{}\) whose content takes one of the recognized forms below,
+where a form naming a \(P_i\) projection or unabsorbed \(P_i\)-aligned content
+requires the feature to have \(P_i\)-form (paragraph \emph{The \(P_i\)-form}
+before Proposition~\ref{prop:probability-closure}),
+is licensed under the residual scheme, relative to every well-formed
+decomposition record \(\Dec{D}\), at least one of the labels of
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item label (i), as a constituent of an active \Ptwo{}, \Pfour{} or \Psix{}
+    projection, when the feature has the
+    corresponding \(P_i\)-form and \(\Dec{D}\) names, for an active \(P_i\) projection, the cluster \(C\) of the paragraph \emph{The \(P_i\)-form} (for the seed branch of that paragraph, any named cluster containing the feature);
+  \item label (i), (ii) or (v), as a member of a composite of \Ptwo{},
+    \Pfour{}, and \Psix{}, when the feature is one of an objective or
+    specification record of \(P_2\)-form, a
+    transition, regime, or staged selection record of \(P_4\)-form, and an
+    audited decision-provenance record of \(P_6\)-form, each licensed (i) or (v) by its
+    \(P_i\)-form;
+  \item an empirical-bridge annotation, when the feature is itself an empirical-bridge annotation identifying an admissible bridge claim (Definitions~\ref{prop:honest-bookkeeping} and~\ref{prop:empirical-bridge}) whose \(\Audit{D}\) entry carries the five items of Definition~\ref{prop:empirical-bridge}, with no fields beyond its typing, targets and that identification;
+  \item an outside-domain structure, when a proposed irreducible intentional
+    or teleological predicate has no recorded extension in \(D\), the asserted property is true in some expansion of \(D\) and false in another, and every other assertion field of that record either also meets the outside-scope condition or is required for \(W_i\) at a cluster aligned with \(P_i\), an input to its check at such a cluster, or named in a seed clause that the record carries;
+  \item unabsorbed role-aligned content, label~(v) of
+    Definition~\ref{def:residual-scheme}, when it has \(P_i\)-form but
+    criterion (i) does not hold for it, for instance because the cluster lacks
+    the attachment data of Definition~\ref{def:threshold-attachment}.
+\end{itemize}
+A content record targeted by such an empirical-bridge annotation is not thereby classified; it is classified by its own fields and is licensed label (ix-c) exactly when either branch of that criterion holds.
+An update map receives (i) when it lies in a named active \(W_1\) cluster and
+its assertion fields meet criterion (i); otherwise it receives (v) when it
+carries a covered \Pone{} seed whose clause names each of its predicate,
+comparison, invariant, law or claim fields, or belongs to a failed \(W_1\)
+offer each of whose such fields is an input to the recorded check; and (ix-c)
+when it supplies no witness field and has no such field; an update map of none of these three forms must be tested against the other recognized forms of this proposition; only when none applies is it not classified here and left to the recognition hypothesis. Each case licenses a label among (i)--(ix) of
+Definition~\ref{def:residual-scheme}, so neither (x) nor (xi) is licensed for
+the feature. For these recognized forms, the
+covered content requires no seventh role; the outside-domain case receives
+label (viii) without a claim about roles beyond the covered scope. None of
+these classifications uses the recognition hypothesis
+(Definition~\ref{def:recognition-hypothesis}); content of none of these forms
+is governed by it.
+\end{proposition}
+
+\begin{proof}
+Let \(r\) be a residual-agency feature (a kind residual) of
+\(D \in \FATCD{}\), agency being taken in the planning sense
+of~\citet{Bratman1987}, and pass it through the residual scheme of
+Definition~\ref{def:residual-scheme} under
+Proposition~\ref{prop:alignment-rules}. An agency feature in admissible
+form presents an objective pursued through selection and recorded for
+later inspection; we case on whether that content reduces to role
+witnesses or asserts more. Role-aligned and composite forms are labelled as in the paragraph
+\emph{The \(P_i\)-form} before Proposition~\ref{prop:probability-closure}: each
+record receives (i) or (v), and (ii) under the two-cluster condition stated
+there.
+
+If \(r\) has just one of the stated \(P_2\)-, \(P_4\)- or \(P_6\)-forms and
+receives (i), criterion (i) supplies its named active cluster, \(W_i\)
+witness and attachments; hence it is the corresponding single-role
+projection. In the composite case, take the finite record set \(R_f\) carrying
+the objective or specification, staged selection, and decision
+provenance. By the stated \(P_2\)-, \(P_4\)- and \(P_6\)-form
+hypotheses, each member receives (i), (ii) or (v) individually.
+Together those records have the asserted composite reading. If instead \(r\) is an empirical-bridge annotation whose bridge claim is admissible and has an
+audit entry with the five items of Definition~\ref{prop:empirical-bridge}, and with
+no fields beyond its typing, targets and that identification, it
+receives (vii). A content record targeted by such an annotation is not thereby classified; it is classified by its own fields and is licensed label (ix-c) exactly when either branch of that criterion holds. If \(r\) records a
+proposed irreducible intentional or teleological predicate whose extension
+\(D\) does not record, its truth cannot be checked over \(D\). In the outside-domain case, the asserted property is true in some
+expansion of \(D\) and false in another. Together with the stated
+condition on the remaining assertion fields, this satisfies
+criterion (viii). A finite audited intentional-content claim with a recorded
+predicate extension and no recognized six-role disposition remains subject to
+the recognition hypothesis.
+
+Classification as a \Pone{} projection is not available here merely
+because agency selects an update: by
+Proposition~\ref{prop:alignment-rules} a \Pone{} projection requires a
+selected update together with source and target relation records of declared use quotient and an
+explicit descent-compatibility, descent-obstruction, or
+update-vs-quotient mismatch witness. A selection event carrying no such
+witness supplies no \Pone{} witness. Its update map receives (i) when it lies
+in a named active \(W_1\) cluster and its assertion fields meet criterion (i);
+otherwise it receives (v) when it carries a covered \Pone{} seed whose clause
+names each of its predicate, comparison, invariant, law or claim fields, or
+belongs to a failed \(W_1\) offer each of whose such fields is an input to the
+recorded check; and (ix-c) when it supplies no witness field and has no such
+field. It has \(P_4\)-form only when recorded as a
+law-bearing transition record. This is the stated \Pone{} caveat. The cases
+above are the recognized forms of residual-agency content; content of none of
+these forms falls under the recognition hypothesis
+(Definition~\ref{def:recognition-hypothesis}). The closure is scoped and asserts
+nothing beyond it.
+\end{proof}
+
+\begin{remark}[Scope of the closures]\label{rem:threat-closures-scope}
+Propositions~\ref{prop:probability-closure}--\ref{prop:agency-closure}
+close the three threats within the covered scope; they do not make
+scope-free claims. A feature that falls outside the covered scope is
+classified as an outside-domain structure via
+Definition~\ref{def:residual-scheme}, not absorbed into a primitive role
+by default. Each named form is checked against its label criterion directly, without
+requiring recognition of every feature of \(D\); the propositions give the
+applicable label criterion for each named form and state when \Pfive{} and
+\Pone{} projections are unavailable. Each recognized form in
+Propositions~\ref{prop:probability-closure}--\ref{prop:agency-closure} is
+alternative (R1), (R2), (R3) or (R5) of Definition~\ref{def:recognition-hypothesis}:
+each individual record in a recognized form satisfies (R1), (R2), (R3) or (R5), and
+composite forms are assessed member by member; the propositions verify those alternatives for
+the listed forms, and add that a \Pfive{} reading (causality) or a \Pone{}
+reading (agency) is unavailable without quotient-packaging or descent data.
+\end{remark}
+
+\subsection{The recognition hypothesis and the classification theorem}\label{subsec:classification-theorem}
+
+Each alternative of Definition~\ref{def:recognition-hypothesis} is the
+decomposition-independent form of label criteria of
+Definition~\ref{def:residual-scheme}: (R1) of (i) or (v); (R2) of (v), (vi),
+(vii), (ix-a) and (ix-b); (R3) of (ix-c); (R4) of (iii) and (iv); and (R5) of
+(viii). Theorem~\ref{thm:upper-bound-classification} verifies that this
+matching does not depend on the chosen decomposition record.
+
+The hypothesis below is imposed on three sets: the kind residuals of Definition~\ref{def:residual-scheme} (content records and structural annotations, whose role reading is not fixed by their kind), all bookkeeping annotations, and the set \(\Residual{D}\) of each well-formed decomposition record (Definition~\ref{def:decomposition-record}). Stated for every record, it
+does not depend on a choice among them. Since \(\Residual{D}\) consists of kind
+residuals and bookkeeping annotations, the third clause below follows from the first two: \(D\) satisfies the recognition
+hypothesis if and only if every kind residual and every bookkeeping annotation of
+\(D\) is recognized, a condition that refers to no decomposition
+record.
+
+\begin{definition}[Recognition hypothesis]\label{def:recognition-hypothesis}
+Terms used below: \emph{aligned}, \emph{contributes a required field},
+\emph{required for}, \emph{input to the check}, \emph{declared operation},
+\emph{independent assertion} and \emph{outside the covered scope} are defined in
+the paragraph \emph{Terms used in the label criteria} after
+Definition~\ref{def:residual-scheme}; \emph{covered seed}, \emph{named seed
+field} and \emph{failed offer} in Definition~\ref{def:channel-status};
+\emph{honestly recorded} (of an offer: its audit is honest,
+Definition~\ref{def:audited}(b),(d)).
+The \emph{closure content} of a feature \(r\) is the finite induced
+subdescription consisting of \(r\), its fields, and all declared records
+reached by following its references in \(D\) or read by its formula-valued fields; it is used in
+Remark~\ref{rem:recognition-open} (paragraph \emph{Verification}). The alternatives below are evaluated in the
+whole of \(D\), and a reference makes data available for checking without by
+itself certifying a role witness. A description \(D \in \FATCD{}\)
+satisfies the \emph{recognition hypothesis} when every kind residual \(r\)
+of \(D\) (Definition~\ref{def:residual-scheme}), every bookkeeping annotation \(r\) of \(D\) (whether or not a decomposition record assigns it to a channel), and every
+element \(r\) of \(\Residual{D}\) for every well-formed decomposition record
+of \(D\) (Definition~\ref{def:decomposition-record}), is \emph{recognized}, that is,
+satisfies at least one of the following:
+\begin{enumerate}[label=(R\arabic*),topsep=2pt,itemsep=1pt]
+  \item (first branch) \(r\) itself contributes a required field to a finite cluster aligned
+    with one of the six witness types of the \emph{Witness types} table of Section~\ref{sec:primitive-role-architecture},
+    or itself carries a covered seed for one of them
+    (Definition~\ref{def:channel-status}), and every predicate, comparison, invariant, law or claim field \(\varphi\) of \(r\) is, for some index \(i_\varphi\) and some finite cluster \(C_\varphi\ni r\) aligned with \(P_{i_\varphi}\), required for \(W_{i_\varphi}\) at \(C_\varphi\) or an input to its check, or is named in a seed clause that \(r\) carries (so \(r\) carries no assertion beyond these fields; content beyond them must be recorded in a separate declared content record, which is classified on its own); or (failed-offer branch)
+    \(r\) is a member of the cluster of an honestly recorded failed offer for
+    some \(P_i\), and each of its predicate, comparison, invariant, law or claim
+    fields is an input to the recorded check of \(W_i\) on that cluster; merely
+    referencing a witness cluster does not suffice;
+  \item \emph{Structural annotations.} \(r\) is one of the six structural annotations of
+    Definition~\ref{def:annotations}; its fields contain only its declared
+    operation, targets, and the finite typing, checking, preserved or
+    suppressed data, losses and nonclaims required for that operation, and it
+    makes no independent assertion (both terms as defined after
+    Definition~\ref{def:residual-scheme}); in particular an instrument-visibility
+    annotation whose fields other than its typing and target fields are those
+    required by Definition~\ref{prop:visibility}, a lift annotation whose fields are those
+    required by Definition~\ref{prop:forgetting-lifts}, and an
+    empirical-bridge annotation meeting criterion (vii), whose fields are only
+    its typing, targets and the identification of its bridge claim and five
+    items, satisfy this
+    alternative, provided each of their formula-valued fields meets the
+    condition of the next sentence. A formula-valued field of a structural annotation (a threshold predicate, a preserved or lost invariant) is part of its declared operation only when it reads at least one record, every record whose values it reads is listed in the annotation's target field, and each such record satisfies (R1); otherwise it is an independent assertion, and this alternative fails.
+    \emph{Bookkeeping annotations.} The alternative is also met when \(r\) is one of the seven bookkeeping annotations (for \(D\in\FATCD{}\) every condition below except the last, on field roles, holds automatically by Definitions~\ref{def:finite}--\ref{def:fatcd}) of
+    Definition~\ref{def:annotations}, it is finitely represented, has finite typed fields, and every reference it carries resolves to a declared finite record of \(D\) (Definitions~\ref{def:finite} and~\ref{def:closed}), it is honest if it is an audit annotation, it carries the fields Definition~\ref{def:audited}(g) requires of its kind, and, if it is a claim annotation, it is referred to by an honest audit annotation and satisfies the representation condition (Definition~\ref{def:audited}(e)), and every field of
+    \(r\) other than the statement and hypothesis fields of a claim annotation,
+    the certificate field of an audit annotation and its conclusion field when its conclusion is true in every well-typed interpretation or is represented, in the sense of Definition~\ref{def:annotations}, by fields of the content records named by the claim it audits, and the
+    formula schema of a witness-schema annotation has field role datum or
+    reference; a substantive assertion in a claim statement is represented by
+    content records (Definition~\ref{def:annotations}), which are assessed
+    under (R1)--(R5);
+  \item \(r\) is role-neutral data without an assertion of its own: \(r\)
+    supplies no witness field and has no predicate, comparison, invariant,
+    law or claim field. Typical instances are the inputs that a specified field
+    of a feature satisfying (R1) uses in checking a required or seed field, and
+    declared objects or states that no role datum uses; also a predicate record supplying no witness field whose only assertion field is a formula with at least one free variable whose truth value is not the same under all assignments respecting the declared sorts of its free variables, using only predicates whose extensions \(D\) records, and quantifying only over sorts whose carriers \(D\) records, each free variable ranging over a record kind or the rational sort, referenced by no claim annotation, and referenced by certificates only through the abbreviation \(s(t)\) of the paragraph \emph{Check language} (a definition, which has no truth value over \(D\));
+  \item \(r\) begins a finite chain \(r=r_0,\ldots,r_n\) of distinct
+    declared records, with \(n\geq1\), such that, for each \(j<n\), a field of \(r_j\) records a checked
+    equality or isomorphism of presentation data with specified fields of
+    \(r_{j+1}\), or a checked level translation to \(r_{j+1}\); and, for each \(j<n\), apart from one comparison field recording the equality, isomorphism or level translation with \(r_{j+1}\), and the datum and reference fields it compares, \(r_j\) has no predicate, comparison, invariant, law or claim field. The terminal \(r_n\) satisfies (R1), (R2), (R3) or
+    (R5). An equality or isomorphism of presentation data (a value-preserving
+    relabelling of datum fields; no structural isomorphism is meant) is a finite
+    bijection \(\beta\), recorded in the comparison field, from specified datum fields that are not term-valued
+    (or the member list of an object record, a reference field) of \(r_j\) to datum fields that are not term-valued (or the member list of an object record, a reference field) of \(r_{j+1}\), with a
+    correct certificate, recorded true, that each recorded value equals that of its \(\beta\)-image;
+    its formula is a conjunction of equalities between record identifiers,
+    recorded field values and entries of recorded lists (written with indexing,
+    as in the running example of Section~\ref{sec:fatcd-domain}). A checked level translation from \(r_j\) to \(r_{j+1}\) is a
+    comparison field of \(r_j\) referencing a translation annotation carried
+    in \(\Audit{D}\) whose source and target contexts are levels recorded by level annotations whose target fields list \(r_j\) and \(r_{j+1}\), respectively, together with a finite
+    bijection \(\beta\) of specified datum fields as above and a correct certificate, recorded true,
+    that is such a conjunction of equalities,
+    that each value equals its \(\beta\)-image;
+  \item \(r\) lies outside the covered scope
+    (Definition~\ref{def:residual-scheme}): a field of \(r\) asserts a property whose check is not finite over the records of \(D\): it quantifies over a declared domain for which \(D\) supplies no finite checking range, or uses a declared predicate whose extension \(D\) does not record, and its truth value is not fixed by the recorded values of \(D\) (it is true in some expansion of \(D\) and false in another, in the sense of the paragraph \emph{Certificates, assertion language and laws} of Section~\ref{sec:primitive-role-architecture}; for a formula with free variables: for some assignment \(\alpha\) of its free variables and two expansions of \(D\) whose carriers contain the values \(\alpha\) gives to variables of unlisted sorts, it is true under \(\alpha\) in one and false under \(\alpha\) in the other). In addition, every other predicate, comparison, invariant, law or claim field of \(r\) either has this property or is required for \(W_i\) at a cluster \(C\) aligned with \(P_i\), an input to the check of \(W_i\) at such a cluster, or named in a seed clause that \(r\) carries; \(r\) is then
+    recognized as outside-domain structure.
+\end{enumerate}
+For \(D\in\FATCD{}\), every bookkeeping annotation whose fields other than the
+exempt fields listed in the second clause of (R2) are datum or reference fields
+satisfies the
+second clause of (R2); hence, when all bookkeeping annotations of \(D\) have this
+form, \(D\) satisfies the recognition hypothesis if and only if every
+kind residual of \(D\) is recognized.
+A feature satisfying (R1) is absorbed under label (i) when a decomposition record
+places it in an active projection under
+Proposition~\ref{prop:alignment-rules}, and is covered under (v) when it
+remains unabsorbed. Remark~\ref{rem:recognition-open} shows that some
+descriptions in \FATCD{} do not satisfy this hypothesis.
+\end{definition}
+
+Alternatives (R1)--(R5) are record-independent forms of label criteria: (R1)
+of (i) or (v); (R2) of (v), (vi), (vii), (ix-a) or (ix-b); (R3) of (ix-c);
+(R4) of (iii) or (iv); and (R5) of (viii) (the table in the proof of
+Theorem~\ref{thm:upper-bound-classification}).
+
+\begin{remark}[The recognition hypothesis is a genuine restriction]\label{rem:recognition-open}
+The recognition hypothesis is an explicit assumption on \(D\), not a consequence
+of the \FATCD{} definitions, and some descriptions in \FATCD{} do not satisfy
+it. The remark establishes five facts, each under the paragraph named:
+\(D_{\mathrm{norm}}\in\FATCD{}\setminus\FATCD_{\mathrm{RH}}\), so
+\(\ScopedExactSix{\FATCD{}}\) fails (\emph{The counterexample},
+\emph{Verification}); a transition-row presentation of the same weights lies
+in \(\FATCD_{\mathrm{RH}}\) (\emph{Repair by a transition row}); every closed
+check-language formula without atomic \(W_j\) formulas has a covered
+\Ptwo{}-seed presentation, given two distinct declared records of one kind (or after adjoining them), whenever the completed description is again in \FATCD{} (\emph{Wrapping a closed formula as a \Ptwo{} seed}; membership can fail when a correct certificate, or a realization relation's target formula, quantifies over all declared records of an adjoined kind);
+membership in \(\FATCD_{\mathrm{RH}}\) depends on presentation (\emph{Scope
+depends on presentation}); and label (xi) is realized by \(D_{\mathrm{scr}}\)
+(\emph{A description passing the screen}). The paragraphs \emph{One record suffices for recognition}, \emph{Other unrecognized assertions} and \emph{Open question} add a one-record failed-offer presentation, further unrecognized forms with the (R2) and (R3) presentation devices, and the open question. A record without an assertion of its own --- one with no witness field and
+no predicate, comparison, invariant, law or claim field, such as a declared
+object record --- is recognized by (R3). The normalization predicate in the
+following description is not recognized.
+\par\emph{The counterexample \(D_{\mathrm{norm}}\).} Let \(D_{\mathrm{norm}}\), the description of Remark~\ref{rem:fatcd-minimality}, consist of state records \(w_1,\dots,w_n\)
+(\(n\ge1\)), each with a nonnegative rational value field \(v(w_k)\), the values
+summing to one (for instance \(n=2\) and \(v(w_1)=v(w_2)=1/2\)); a predicate
+record \(N\), declared as a macro-specification, whose formula asserts
+\(\bigwedge_k v(w_k)\ge0\wedge\sum_k v(w_k)=1\); a claim annotation naming \(N\) whose statement is the
+formula of \(N\); and an honest audit annotation listing the certificate
+\((\bigwedge_k v(w_k)\ge0\wedge\sum_k v(w_k)=1,\mathrm{true})\) and certifying that formula.
+
+\emph{Verification.} \(D_{\mathrm{norm}}\) is finite, closed and
+audited, so \(D_{\mathrm{norm}}\in\FATCD{}\). It contains no map, relation,
+comparison, path, derivation, order, transition, refinement, event,
+provenance, trace, replay or check record; in particular the closure content
+of \(N\), namely \(N\) with \(w_1,\dots,w_n\), contains none. So no cluster
+satisfies any \(W_i\)
+and no record is a covered seed (Definition~\ref{def:channel-status}). Hence
+\(N\) does not satisfy (R1); being a content record, not an annotation, it does not satisfy (R2); its predicate field contains a closed formula and it is referenced by a claim annotation, so neither branch of (R3) applies;
+it records no presentation or level translation, so not (R4); and \(N\) gives
+its predicate by the explicit formula \(\bigwedge_k v(w_k)\ge0\wedge\sum_k v(w_k)=1\) over recorded field
+values; this formula uses no declared predicate symbol and quantifies over no
+sort, so its check is finite over \(D_{\mathrm{norm}}\) and (R5) fails.
+Although \(N\) is declared a macro-specification, it is not a covered seed:
+\(D_{\mathrm{norm}}\) has no realization relation to a declared nonempty
+candidate class, and no realization relation can target \(N\), since
+Definition~\ref{def:raw-record} requires its target formula to have exactly one
+free variable. For the same reasons no
+criterion (i)--(ix) of Definition~\ref{def:residual-scheme} holds for \(N\):
+it is not in any cluster or composite, re-presents or restates nothing, is not
+an annotation, relates no instrument or substrate observable, is inside the
+covered scope, and carries an assertion. With no failed offer and no outside-scope declaration,
+every channel of \(D_{\mathrm{norm}}\) is \(\absentrec\), so no active projection absorbs \(N\), and \(N\) receives
+label (x) in every well-formed decomposition record. So \(\ScopedExactSix{\FATCD{}}\)
+fails, and the six roles are not \emph{recognition-complete} for \FATCD{}: some in-scope
+feature of some description in \FATCD{} is placed by none of (i)--(ix).
+Label (x) records an unresolved candidate, not a seventh role: (xi) would
+further require the recorded witness of category (xi), itself a recorded
+screen rather than the identification of a new closure role.
+
+\emph{Repair by a transition row.} For distribution-valued weights the hypothesis constrains presentation, not content. For nonnegative
+rational weights summing to one, replace \(N\) by a transition record
+\(K:\{*\}\to\mathrm{Dist}(\{w_1,\ldots,w_n\})\) whose unique row is the list
+of terms \(v(w_1),\dots,v(w_n)\), so that \(K\) reads the value fields of the
+\(w_k\) and records no copies. Declare a state record \(*\), a one-point object record \(\{*\}\) listing it, and an
+object record \(X\) listing \(w_1,\dots,w_n\), give \(K\) a codomain reference to
+\(X\) and a datum field marking it distribution-valued, and take as the law certificate
+of \(K\) the pair \((\bigwedge_k v(w_k)\ge0\wedge\sum_k v(w_k)=1,\mathrm{true})\),
+which expresses that the row lies in \(\mathrm{Dist}(X)\). Retarget the claim and its audit to \(K\), replacing every reference
+to \(N\) by a reference to \(K\). Set the claim's statement and the
+audit's conclusion to the law-certificate formula, and replace the
+audit's certificate list by that certificate, recomputed true,
+naming \(K\) and its declared inputs. Thus \(K\) represents the
+statement (Definition~\ref{def:annotations}), and the audit is honest. Then \(K\) is a covered \Pfour{} seed
+satisfying (R1); \(*\), \(\{*\}\), \(X\) and the \(w_k\) carry no assertion field and
+satisfy (R1) or (R3); the claim and audit annotations satisfy (R2); and the
+resulting description lies in \(\FATCD_{\mathrm{RH}}\).
+
+\emph{Wrapping a closed formula as a \Ptwo{} seed.} In outline: the construction adjoins a predicate record \(s\) with one free variable over two records \(c\ne c'\), a realization relation recording \(s(c)=\mathrm{true}\) and \(s(c')=\mathrm{false}\), and a one-class packaging map \(q\) with a comparison record; it chooses between two formulas for \(s\) according to the value of \(\varphi\) in the completed description \(D'\). More generally, let \(\varphi\) be any closed check-language formula containing
+no atomic \(W_j\) formula and
+\(c\ne c'\) declared records of one kind. Let \(D'\) be the final description, obtained once every record of this construction (including the records \(X_c,*,Q,q\) and the comparison record introduced under \emph{Activation} below, the \Ptwo{} claim and its audit, all attachment annotations and any fresh candidate records, when used) is adjoined and any removal below is made. The predicate record is \(s(r):\equiv\varphi\wedge r=c\) if \(\varphi\) holds in \(D'\), and \(s(r):\equiv\varphi\vee r=c\) otherwise. \par\emph{Choice of branch.} Fix all additions, removals and retargetings, and all non-formula field values, before choosing the branch. The two branches differ only in the formula field of \(s\), the retargeted claim's statement and its audit's conclusion. A check-language formula never reads a statement or conclusion (formula-valued fields are not terms) and reads a predicate record's formula only through an abbreviation \(s(t)\) naming it; \(s\) is adjoined, so \(\varphi\) contains none. Hence \(\varphi\) has the same value in both candidates for \(D'\). Its value agrees with its value in \(D\) provided every field it reads is unchanged and every quantifier has the same checking range. The construction applies when \(D'\) is again in \FATCD{}. Adjoining records can falsify a correct certificate of \(D\) whose quantifier ranges over all declared records or over the declared records of an adjoined kind (for instance \((\forall x\in\mathrm{State}\,(x=w_1\vee x=w_2),\mathrm{true})\), which the adjoined state record \(*\) falsifies). A sufficient condition is that every retained realization relation still lists exactly its satisfying members and records correct evaluations, every retained certificate and law remains correct, every retained audit remains honest, and all additions, removals and retargetings preserve typing, reference closure, representation and the required annotation fields. \par\emph{Seed and claim.} This predicate record, declared a macro-specification whose variable \(r\) is declared to range over the common kind of \(c\) and \(c'\), with
+a realization relation declaring \(K=\{c,c'\}\), listing exactly \(c\) as
+satisfying, and recording both evaluations, is a covered \Ptwo{} seed. Let the
+realization relation carry the evaluations as certificates
+\((s(c),\mathrm{true})\) and \((s(c'),\mathrm{false})\). The record that carried \(\varphi\) as an assertion field, if any (such as
+\(N\)), may be removed only if neither \(\varphi\) nor its named inputs
+reference it, it is neither \(c\) nor \(c'\), and every incoming reference is a
+bookkeeping reference that can be retargeted to \(s\) and the realization
+relation while preserving typing, representation and audit honesty; otherwise
+that record is retained and classified separately; a claim whose statement
+is \(\varphi\) is retargeted to \(s\) and the realization relation, with statement
+\(\varphi\) in the first branch and \(\neg\varphi\) in the second; its audit lists
+both certificates and concludes that statement. The statement is entailed by
+the signed certificates, so the claim satisfies the representation condition
+of Definition~\ref{def:annotations} and the audit is honest. Its
+predicate field is a named seed field, so it satisfies (R1). It receives (i)
+when criterion (i) holds and (v) otherwise. \par\emph{Activation.} Adjoining an object record \(X_c\)
+listing \(c,c'\), a state record \(*\) with a quotient object record \(Q\)
+listing it, a map record \(q:X_c\to Q\) of declared use packaging with
+\(q(c)=q(c')=*\), and a comparison record carrying
+\((q(c)=q(c')\wedge s(c)\wedge\neg s(c'),\mathrm{true})\) gives the following. Let \(C\) contain \(c,c',s\), the realization
+relation, \(X_c\), \(*\), \(Q\), \(q\) and the comparison record. Then
+\(W_2(C)\) holds: the realization relation records both evaluations on
+\(K=\{c,c'\}\), and the single kernel class of \(q\) meets the realizer set
+\(\{c\}\) and its complement \(\{c'\}\). Record a claim naming \Ptwo{} and \(C\)
+with statement \(W_2(C)\), and an honest audit listing the row's content
+certificates and \((W_2(C),\mathrm{true})\) and concluding \(W_2(C)\), and
+supply all attachments and level and lift conditions of
+Definition~\ref{def:role-projection}; fresh candidate records may be used to
+avoid pre-existing level, lift or forgetting annotations meeting \(C\). The
+resulting projection is active. Since \(q\) is a covered \Pfive{} seed, in \(D'\) channel \Ptwo{} is active and channel \Pfive{} is not \(\absentrec\); the transition-row repair likewise makes \Pfour{} at least \(\belowthr\). Removing \(s\) from this cluster falsifies
+\(W_2\), and its sole predicate field is required for that witness, so
+criterion (i) applies in a decomposition record naming this projection. \par\emph{What is recorded.} This construction records the truth value of \(\varphi\) in \(D'\) in recognized
+seed content: in the first branch the recorded evaluation \(s(c)=\mathrm{true}\)
+entails \(\varphi\), while in the second branch \(s(c')=\mathrm{false}\) entails
+\(\neg\varphi\). Thus an assertion true in \(D'\) is recorded with its checked content; an assertion false in \(D'\) is represented by its checked negation. Agreement with its truth value in \(D\) requires the preservation conditions above. The transition-row
+presentation above likewise preserves the checked normalization content for
+nonnegative weights of pairwise distinct records.
+
+\emph{One record suffices for recognition.} Let \(c\) be a declared record, \(s(r):\equiv\varphi\wedge r=c\), and let a realization relation with candidate class \(K=\{c\}\) and target \(s\) carry \((s(c),\mathrm{true})\) if \(\varphi\) holds in the completed description and \((\neg s(c),\mathrm{true})\) otherwise. Fix all additions and fields other than that certificate's formula and the relation's list of satisfying members before selecting the branch. Assume \(\varphi\) reads neither changing field in either completion, including through quantified field lookups or predicate abbreviations. Then \(\varphi\) has the same value in both completions, so the branch choice is well defined. The construction applies when the completed description, with \(s\), the relation, the claim and its audit adjoined, is again in \FATCD{}. Record a claim naming \Ptwo{} and \(C=\{c,s,\mathrm{Real}\}\) with an honest audit listing that certificate and \((W_2(C),\mathrm{false})\). Since \(K=\{c\}\), no kernel class can meet both the realizer set and its complement in \(K\), and no evaluation outside \(K\) is recorded in \(C\); hence \(W_2(C)\) is false in every well-typed interpretation; the formula of \(s\) and the certificate are inputs to the recorded check, so \(s\) and the relation satisfy the failed-offer branch of (R1) and receive (v-c), and the certificate entails \(\varphi\) or \(\neg\varphi\). Channel \Ptwo{} is then \(\collapsedbc\) unless active. The two-record proviso is needed only for the covered-seed and active presentations.
+
+\emph{Scope depends on presentation.} The covered scope also depends on presentation. Replace the formula of \(N\)
+by \(\mathrm{IsDist}(v(w_1),\ldots,v(w_n))\), declare \(\mathrm{IsDist}\) by a
+predicate record of arity \(n\), each argument place declared rational-sorted, with no formula field and give no relation
+record for it, so that \(D\) does not record its extension (the declaring
+record has no assertion field and satisfies (R3); had the declaring record
+given an explicit formula in its \(n\) rational argument variables, such as \(\bigwedge_k x_k\ge0\wedge x_1+\dots+x_n=1\), \(D\) would record the extension and \(N\) would
+again receive (x)), set the claim's statement
+to \(\mathrm{IsDist}(v(w_1),\ldots,v(w_n))\), and let the audit list no certificate, conclude the valid formula
+\(v(w_1)=v(w_1)\), and list the \(\mathrm{IsDist}\) field of \(N\) in its
+non-certification field. This description remains honestly
+audited. Its records \(w_k\) and the declaring record of \(\mathrm{IsDist}\)
+satisfy (R3), its claim and audit annotations satisfy the second clause of
+(R2), and \(N\) satisfies (R5) and receives (viii) rather than (x); so the
+description lies in \(\FATCD_{\mathrm{RH}}\) while \(D_{\mathrm{norm}}\) does
+not, and no role is certified for \(N\). Hence membership in \(\FATCD_{\mathrm{RH}}\) is not
+invariant under replacing an explicit formula by a declared predicate name whose extension \(D\) does not record,
+and Theorem~\ref{thm:scoped-exact-six} asserts nothing about content presented
+that way. More generally, replace at least one assertion field of an unrecognized
+kind residual by a declared predicate name whose extension the resulting
+description does not record. The changed record satisfies (R5) provided every
+other assertion field, evaluated in the resulting description, also lies
+outside the covered scope, is required for or an input to \(W_i\) at an
+aligned cluster containing the record, or is named in a seed clause the record
+carries. Unchanged records must be recognized separately. The result lies in
+\(\FATCD_{\mathrm{RH}}\) if it is again in \FATCD{} (in particular, no replaced field is the formula of a realization relation's target),
+every remaining kind residual is recognized, and every bookkeeping annotation
+has only datum and reference fields besides the exempt fields of (R2).
+Theorem~\ref{thm:scoped-exact-six} certifies no role for the replaced
+fields.
+
+\emph{Other unrecognized assertions.} A standalone predicate record stating a conservation or balance law, or an
+assembled obstruction or holonomy, by a closed check-language formula over
+recorded inputs is not recognized as presented if it carries no covered seed,
+contributes no required witness field, is not an input to a prescribed witness
+check, and records no checked presentation or level translation. Under these
+conditions (R1)--(R5) fail as for \(N\).
+An in-scope content record that contributes a required field to an aligned
+cluster or carries a covered seed, and whose assertion fields are each required
+at, or inputs to the check at, some aligned cluster containing it, possibly
+different clusters for different fields, satisfies (R1); one with no assertion
+field and no witness field satisfies (R3).
+Label (x) is also licensed for an unclaimed predicate record whose closed
+formula is true or false in \(D\), such as \(0+0=0\) or \(0+0=1\) between rational constants: label (x) marks an assertion placed
+by none of (i)--(ix), which need be neither true nor a candidate role. By contrast, the same record
+with formula \(\theta\wedge r=r\) for a fresh variable \(r\), still unclaimed and
+referenced by no certificate, does not satisfy the second branch of (R3), since its value does not depend on
+\(r\), and still receives (x). Conversely, if \(c\) is a declared record of the kind over which \(r\) ranges and that kind has a second declared record, the unclaimed record with formula \(\theta\wedge r=c\) (for \(\theta\) true in \(D\)) or \(\theta\vee r=c\) (for \(\theta\) false in \(D\)), referenced by no certificate, satisfies the second branch of (R3), since its value at \(c\) differs from its value at the other records of that kind; for unclaimed closed assertions this branch constrains presentation, not content. The same holds for the structural-annotation branch of (R2): for a closed check-language formula \(\theta\) that reads no record values outside a binary relation record \(E\) satisfying (R1), and a fixed declared record identifier \(u\), a threshold annotation targeting \(\{E\}\) with predicate \(\theta\wedge(E(u,u)\vee\neg E(u,u))\) satisfies (R2) and receives (ix-b) (no cluster \(\{E\}\) satisfies any \(W_i\), so (v-b) cannot apply), whether or not \(\Audit{D}\) records the predicate checked true, provided the description with this annotation adjoined is again in \FATCD{}. Since the
+\(W_6\) certificate states a replay or provenance property of its trace, an
+arbitrary assertion about recorded values does not become a required
+\(W_6\) field by adjoining a trace.
+
+\emph{A description passing the screen.} Let \(D_{\mathrm{scr}}\) consist of
+index records \(0,1\), an object record \(X\) listing them, an order record \(o\) for
+\(0<1\) with its law certificate, a relation record \(r\) (the feature to be screened; not the free variable \(r\) of a macro-specification) of declared use
+other carrying a finite table field \(c\) with \(c(0)=c(1)=1\) and a datum field
+holding the list \((\mathrm{id}_X)\), with
+certificates of extensivity, monotonicity, \(c\circ c=c\), closure of the list
+under composition and \(c\ne\mathrm{id}_X\) (the prescribed conditions of criterion (xi)(d)--(e), with \(o\) as the order record and \((\mathrm{id}_X)\) as \(L\)), a witness-schema annotation naming a
+candidate outside \(P_1,\dots,P_6\) with \(\psi(C):\equiv r\in C\wedge o\notin
+C\), where \(r\in C\) abbreviates the finite disjunction \(\bigvee_{d\in C}r=d\)
+over the listed identifiers of \(C\) and \(o\notin C\) the conjunction
+\(\bigwedge_{d\in C}o\neq d\), so that each instance \(\psi(C')\) is a closed
+check-language formula, a check record carrying \(\psi(\{r\})\), \(\neg W_1(\{r\}),\dots,\neg
+W_6(\{r\})\), \(\neg\psi(\{o\})\) and the finite conjunction over all
+\(C'\subseteq\Raw{D_{\mathrm{scr}}}\) of \((W_1(C')\vee\dots\vee
+W_6(C'))\rightarrow\neg\psi(C')\), a claim referencing \(r\) and that check
+record whose statement is these conditions, and an honest audit certifying
+it. The \(W_j\) atoms in these certificates are evaluated by the witness rows,
+which read no certificate containing a \(W_j\) atom and, for \(W_6\), only
+\(\mathrm{Audit}_0(D_{\mathrm{scr}})\), which excludes this audit; so the
+certificates are well defined although the check record belongs to some
+clusters \(C'\). Only \(o\) is law-bearing and no record supplies data for
+\(W_1,W_2,W_3,W_5,W_6\), so \(W_i(C')\) holds only if \(o\in C'\), where
+\(\psi(C')\) is false; no map, partial-map, transition or refinement record is
+present, so the generated monoid is \(\{\mathrm{id}_X\}\). Recording \(c\) by
+a map record would place it in the list of criterion (xi)(e), and \(r\) would
+fail the screen. The assertion fields
+of \(r\) are required for no witness, \(r\) carries no seed, begins no (R4)
+chain and lies in the covered scope, so \(r\) satisfies (x) and (xi); the check record, which serves no witness and carries no seed, also receives (x) but not (xi), since it records no closure operation. Thus
+(xi) is realizable in \FATCD{}, and its emptiness in
+Theorem~\ref{thm:upper-bound-classification} comes from the hypothesis.
+
+\emph{Open question.} Which assertion-bearing records admit a reduction in which the assertion is
+itself a required field of an active cluster (label (i)), without
+adjoining wrapper records such as the realization relation and one-class
+packaging map above, or a trace reference, is left open and is
+recorded with the endogenous-instrument meta-limit of
+Sections~\ref{subsec:meta-limit} and~\ref{subsec:future-meta-limit}. The three
+threat closures of
+Propositions~\ref{prop:probability-closure}--\ref{prop:agency-closure} label
+features of their recognized forms without the hypothesis; the classification
+theorem below assumes it in general.
+\end{remark}
+
+Here and in the entry \emph{Closed unconditionally} of the working vocabulary in Section~\ref{subsec:objects-at-a-glance}, the phrase means that the stated recognized forms of Propositions~\ref{prop:probability-closure}--\ref{prop:agency-closure} receive labels without assuming the recognition hypothesis. It does not assert that hypothesis for every feature in those three threat classes; Theorems~\ref{thm:upper-bound-classification} and~\ref{thm:scoped-exact-six} retain it for general residual exhaustion.
+
+Three ingredients combine in the next theorem. The alignment rules of
+Proposition~\ref{prop:alignment-rules} fix which features each role can
+claim. The threat closures of
+Propositions~\ref{prop:probability-closure}--\ref{prop:agency-closure}
+classify the recognized forms of probability, causality and agency. The residual scheme of
+Definition~\ref{def:residual-scheme} supplies the labels. Under the
+recognition hypothesis, the theorem assigns every residual feature a
+label other than an unresolved threat or a seventh role: its proof
+matches each recognized disposition to one of labels (i)--(ix). The
+three preceding propositions classify their stated recognized forms
+without that hypothesis.
+
+The proof sorts a recognized feature by its disposition, following the
+label table after Definition~\ref{def:residual-scheme}; a feature of any
+raw-grammar or annotation kind receives the label of the disposition its
+content has. The alternatives (R1)--(R5) of the recognition hypothesis are
+written to correspond to the label criteria, so the proof matches each
+alternative to a criterion and uses no substantive property of the particular
+witness rows (Remark~\ref{rem:classification-scope}); which features the
+hypothesis admits and which it excludes is described in
+Remark~\ref{rem:recognition-open}.
+Label~(viii) and the channel status \(\outsidescope\) of
+Definition~\ref{def:channel-status} both concern content outside the
+covered scope: the label sorts a single feature, and the status marks a
+channel whose role content lies there.
+
+\begin{theorem}[Upper-bound classification]\label{thm:upper-bound-classification}
+Let \(D \in \FATCD{}\) satisfy the recognition hypothesis
+(Definition~\ref{def:recognition-hypothesis}), let \(\Dec{D}\) be a
+well-formed decomposition record of \(D\)
+(Definition~\ref{def:decomposition-record}), and let \(r\) be a kind residual
+of \(D\) (Definition~\ref{def:residual-scheme}: any content record or structural
+annotation, including members of active clusters), a bookkeeping annotation of \(D\) (whether or not \(\Dec{D}\) assigns it to a channel), or a record residual, an
+element of \(\Residual{D}\). Then some criterion among (i)--(ix) holds for \(r\) relative to \(\Dec{D}\); hence neither (x) nor (xi) is licensed for \(r\), and
+every label that the label criteria after Definition~\ref{def:residual-scheme}
+license for \(r\) relative to \(\Dec{D}\) is one of
+\begin{enumerate}[label=(\roman*),topsep=2pt,itemsep=1pt]
+  \item a declared constituent of the cluster that \(\Dec{D}\) names for an
+    active \Pone{}, \Ptwo{}, \Pthree{}, \Pfour{}, \Pfive{}, or \Psix{}
+    projection, in the sense of criterion (i) of Definition~\ref{def:residual-scheme};
+  \item a shared constituent of two such projections;
+  \item a presentation variant of an already classified feature;
+  \item a level shift of an already classified feature;
+  \item unabsorbed role-aligned content, covered-seed content with no
+    certified witness \(W_i\), content checked in an honestly failed offer, or an activation-threshold refinement;
+  \item an instrument-visibility artifact;
+  \item an empirical-bridge annotation;
+  \item an outside-domain structure;
+  \item already-covered bookkeeping or annotation data, or role-neutral data
+    without an assertion of its own.
+\end{enumerate}
+In particular, categories (x) and (xi) of
+Definition~\ref{def:residual-scheme}, namely the unresolved-threat category and the recorded seventh-role
+screen, are empty: no candidate
+seventh-role feature in the covered scope remains as an unresolved threat, and
+no feature in the covered scope passes the recorded seventh-role screen of
+criterion (xi); here ``no unresolved threat'' means that some criterion among
+(i)--(ix) holds for \(r\). Since seed clause (2) of
+Definition~\ref{def:channel-status} accepts any one-variable macro-specification with a realization relation
+whose recorded evaluations take both truth values, this certifies the form in
+which \(r\) is recorded, not that its assertion concerns the role whose seed it
+carries (Remark~\ref{rem:classification-scope}). \emph{Record residuals.} If \(r\) is an element of \(\Residual{D}\), every label licensed for it
+lies in (iii)--(ix). \emph{Pointwise form.} The conclusion also holds pointwise, without the
+recognition hypothesis for the rest of \(D\): for every \(D\in\FATCD{}\), every
+well-formed \(\Dec{D}\) and every \(r\) as above that satisfies one of
+(R1)--(R5), every label licensed for \(r\) lies in (i)--(ix), and in
+(iii)--(ix) if \(r\in\Residual{D}\). For each fixed well-formed decomposition
+record, alternatives (R1)--(R5) supply, respectively, a criterion among
+(i)/(v), (v)/(vi)/(vii)/(ix-a)/(ix-b), (ix-c), (iii)/(iv), and (viii), as the
+proof below establishes.
+\end{theorem}
+
+\begin{proof}
+Alternatives (R1)--(R5) of Definition~\ref{def:recognition-hypothesis} were
+written as record-independent forms of label criteria (i)--(ix) (paragraph
+before Definition~\ref{def:recognition-hypothesis}); the proof checks, for a
+fixed well-formed record, that each alternative meets one of those criteria.
+Let \(D\in\FATCD{}\), fix a well-formed decomposition record
+\(\Dec{D}\), and let \(r\) be a kind residual of \(D\)
+(Definition~\ref{def:residual-scheme}), a bookkeeping annotation of \(D\), or an element of
+\(\Residual{D}\) for that record. Fix any label
+\(L\) that the label criteria after Definition~\ref{def:residual-scheme}
+license for \(r\) relative to \(\Dec{D}\). The label \(L\) is drawn from
+(i)--(xi); we show that, under the recognition hypothesis, it lies in
+(i)--(ix), so that (x) and (xi) are empty.
+
+By the label table, \(L\) is (x) only if no criterion (i)--(ix) holds for
+\(r\), and \(L\) is (xi) only if \(r\) has the property in (x).
+
+\emph{Conclusion.} Each recognition alternative of
+Definition~\ref{def:recognition-hypothesis} supplies a label criterion among
+(i)--(ix):
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{@{}l>{\raggedright\arraybackslash}X@{}}
+\toprule
+Alternative & Label criterion supplied \\
+\midrule
+(R1) & (i) if criterion (i) holds; otherwise (v-a) for the first branch of (R1) and (v-c) for its failed-offer branch \\
+(R2) & (vi) for visibility; (vii) for an admissible bridge claim (Definition~\ref{prop:honest-bookkeeping}) whose associated audit carries the five items of Definition~\ref{prop:empirical-bridge}; \\
+     & (v-b) for a threshold annotation targeting a cluster named for an active projection and carrying only a threshold predicate besides typing, target and label fields, which reads at least one record, every record it reads being listed in its target field and satisfying (R1); \\
+     & (ix-b) for remaining structural annotations satisfying (R2); (ix-a) for bookkeeping annotations satisfying the second clause of (R2) \\
+(R3) & (ix-c) \\
+(R4) & (iii) or (iv), the criterion of the terminal record being supplied by the rows for (R1), (R2), (R3) and (R5); no recursion occurs, since the terminal record satisfies (R1), (R2), (R3) or (R5) \\
+(R5) & (viii) \\
+\bottomrule
+\end{tabularx}
+\end{center}
+Under the recognition hypothesis
+(Definition~\ref{def:recognition-hypothesis}), every kind residual of \(D\), every bookkeeping annotation of \(D\) and every element of \(\Residual{D}\) for every well-formed decomposition record of \(D\), in particular \(r\), satisfies one of (R1)--(R5), so by the table a criterion among (i)--(ix)
+holds for it; for (R4) the terminal record of the chain supplies it, and
+chains are finite. This uses recognition of \(r\) alone and, for (R4), the
+criterion that (R4) requires of the chain's terminal record, so it holds
+pointwise in any \(D\in\FATCD{}\). Thus the criterion of (x), which requires that no
+criterion (i)--(ix) hold, fails; since (xi) requires (x), it fails as well.
+Hence \(L\) lies in (i)--(ix), and categories (x), the
+unresolved-threat category, and (xi), the recorded seventh-role screen, are
+empty. If \(r\in\Residual{D}\) for a decomposition record, \(L\) is neither (i)
+nor (ii): by Definition~\ref{def:decomposition-record}, that set omits the
+features already accounted for by an active projection, and (ii) requires
+\(r\in C_i\cap C_j\subseteq A(\Dec{D})\); so every label licensed for a record
+residual, relative to that record, lies in (iii)--(ix). The
+emptiness of (x) and (xi) is the content of the recognition hypothesis, not a
+consequence of the \FATCD{} definitions: by Remark~\ref{rem:recognition-open}
+a finite audited conservation law or an emergent composite obstruction, if
+unrecognized, would fall under (x), and under (xi) only if it also passes the recorded
+seventh-role screen; Remark~\ref{rem:recognition-open} separately
+exhibits an unrecognized normalization predicate in \FATCD{}.
+\end{proof}
+
+\begin{remark}[Scope of the theorem]\label{rem:classification-scope}
+Theorem~\ref{thm:upper-bound-classification} is conditional on the recognition
+hypothesis (Definition~\ref{def:recognition-hypothesis}) and scoped to \FATCD{}.
+Alternative (R1) yields criterion (i) or (v); (R2) yields (v), (vi),
+(vii), (ix-a) or (ix-b); (R3) yields (ix-c); (R4) yields (iii) or (iv); and
+(R5) yields (viii). The alternatives are stated without reference to a
+decomposition record; the theorem records that these
+record-independent forms exclude (x). It does not derive that no finite audited feature requires a seventh role; its general conclusion assumes the recognition hypothesis. Propositions~\ref{prop:probability-closure}--\ref{prop:agency-closure} classify only their stated recognized forms without that hypothesis. It does
+not claim that no seventh role can arise outside \FATCD{}, that the alignment
+rules are exhaustive for richer domains, or that the recognition hypothesis holds
+in general. Nor does it prove exact-six on its own: the decomposition/exhaustion
+theorem of Section~\ref{sec:decomposition-exhaustion} remains necessary. Which further
+classes of assertion-bearing records are recognized, and broader questions, are deferred to
+Sections~\ref{subsec:meta-limit} and~\ref{sec:future-work}.
+For each fixed well-formed \(\Dec{D}\), the proof matches alternatives
+(R1)--(R5) to criteria (i)--(ix). This matching uses no substantive
+property of the particular witness rows or seed clauses. It remains
+valid for any finite family of check-language witness predicates and
+seed clauses, provided the recognition alternatives, label criteria,
+named seed fields, alignment and required-field conventions, and
+active-cluster assignments are changed consistently. The number six enters
+Theorem~\ref{thm:scoped-exact-six} through
+Definition~\ref{def:decomposition-record}, and the particular predicates
+through Theorem~\ref{thm:six-role-lower-bounds} and
+Propositions~\ref{prop:probability-closure}--\ref{prop:agency-closure}. The (R1) and (R4) cases use that record's
+active-cluster assignments and checked chains. The theorem proves that recognition excludes (x), using the table in its
+proof. The converse does not follow from the label criteria: bookkeeping fields
+may receive (ix) while substantive assertions require separate recognition,
+and criteria (iii) and (iv) accept a chain whose terminal record lies in \(A(\Dec{D})\cup S(\Dec{D})\), for instance a member of an active or failed-offer cluster with an assertion field serving no witness check, which need not satisfy (R1)--(R5). Criteria (vi) and (ix-b)
+impose the (R2) requirement that every record whose values a formula-valued prescribed field reads satisfy (R1), and each implies the structural-annotation branch of
+(R2). The upper bound therefore depends on the stated
+recognition hypothesis. Recognition is not necessary for the condition of Definition~\ref{def:scoped-exact-six-question}: adding to the nonclaim annotation of \(D_5\) a claim field with formula \(0+0=1\) gives \(D\in\FATCD{}\setminus\FATCD_{\mathrm{RH}}\) in which every well-formed record places that annotation (the only nonclaim annotation targeting \(C_5\), which the active \Pfive{} entry must assign) in \(A(\Dec{D})\), so no kind or record residual is licensed (x) or (xi). The proof uses recognition of kind residuals, bookkeeping annotations and record residuals. Since seed clause (2) accepts any one-variable
+macro-specification with a realization relation whose recorded evaluations take both truth values, (R1)
+certifies the form of a record, not that its assertion concerns the role
+whose seed it carries.
+\end{remark}

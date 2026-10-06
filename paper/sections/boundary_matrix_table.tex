@@ -1,0 +1,35 @@
+\begingroup\footnotesize
+\setlength{\LTleft}{0pt}\setlength{\LTright}{0pt}
+\renewcommand{\arraystretch}{1.15}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{1.2cm}>{\raggedright\arraybackslash}p{4.3cm}>{\raggedright\arraybackslash}p{3.0cm}>{\raggedright\arraybackslash}p{3.0cm}>{\raggedright\arraybackslash}p{2.9cm}@{}}
+\caption{Local boundary distinctions. Each row records the distinction
+rule between two roles, a permitted interaction, the collapse that
+is forbidden under scoped bookkeeping, and the bare partner datum \(X_b\)
+on which that collapse would credit a role.}\label{tab:boundary-matrix}\\
+\toprule
+pair & distinction rule & permitted interaction & forbidden collapse & bare datum \(X_b\) \\
+\midrule
+\endfirsthead
+\toprule
+pair & distinction rule & permitted interaction & forbidden collapse & bare datum \(X_b\) \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\Pone{}/\Pfive{} & \Pfive{} supplies quotient packaging; \Pone{} tests selected update compatibility with quotient packaging & \Pone{} uses \Pfive{} when checking descent or obstruction & packaging alone is not \Pone{} & the \Pfive{} packaging map record alone \\
+\Pone{}/\Pfour{} & \Pfour{} supplies stage/refinement structure; \Pone{} may vary by stage & stage-indexed descent or obstruction & stage index alone is not \Pone{} & the \Pfour{} stage-index record alone \\
+\Pone{}/\Ptwo{} & \Pone{} is update compatibility; \Ptwo{} is macro-specification representability & representability may be studied over quotient structures affected by descent & representability failure is not automatically descent obstruction & the \Ptwo{} non-representability certificate alone \\
+\Pone{}/\Pthree{} & \Pone{} concerns update maps, possibly partial, whose undefined values leave a route undefined; \Pthree{} compares already-defined routes & \Pone{} may block a route before \Pthree{} comparison & route undefinedness is not route mismatch & the partial update map and the undefined route alone \\
+\Pone{}/\Psix{} & \Psix{} audits a \Pone{} event; \Pone{} is the event content & audited descent success or obstruction & audit record is not descent obstruction & the \Psix{} audit record alone \\
+\Ptwo{}/\Pfive{} & \Pfive{} is quotient packaging; \Ptwo{} requires a macro-specification, a realization relation and a finite existence or nonexistence certificate, plus a comparison with quotient classes when a realizer exists & a specification representable over \(E\) supplies no \Ptwo{} witness in the satisfying branch; a separately witnessed \Ptwo{} projection may accompany \Pfive{} packaging & packaging alone is not \Ptwo{} & the \Pfive{} packaging map record alone \\
+\Ptwo{}/\Pfour{} & \Pfour{} supplies stages; \Ptwo{} representability may vary by stage & stage-indexed representability & stage variation alone is not \Ptwo{} & the \Pfour{} stage records alone \\
+\Ptwo{}/\Pthree{} & \Ptwo{} concerns representability of specifications; \Pthree{} concerns route disagreement & route grammar may be built over represented macro structure & non-representability is not route mismatch & the \Ptwo{} non-representability record alone \\
+\Ptwo{}/\Psix{} & \Psix{} audits representability claims; \Ptwo{} is the representability content & audited representability or non-representability & audit trail is not representability & the \Psix{} audit-trail records alone \\
+\Pthree{}/\Pfour{} & \Pfour{} supplies stage/regime structure; \Pthree{} route mismatch may be stage-indexed & route systems vary over valid stages & stage-indexed route mismatch is not \Pfour{} itself & the \Pthree{} route-disagreement certificate alone \\
+\Pthree{}/\Pfive{} & \Pfive{} supplies quotient objects; \Pthree{} compares defined routes over objects & routes over quotient objects & quotient object is not route mismatch & the \Pfive{} quotient-object record alone \\
+\Pthree{}/\Psix{} & \Psix{} audits route comparisons; \Pthree{} is the route mismatch content & audited route mismatch & audit record is not route mismatch & the \Psix{} audit record alone \\
+\Pfour{}/\Pfive{} & \Pfour{} supplies stage/refinement structure; \Pfive{} supplies packaging at a stage & stage-indexed packaging & packaging is not stage structure & the \Pfive{} packaging map record alone \\
+\Pfour{}/\Psix{} & \Pfour{} supplies staged structure; \Psix{} audits staged histories or transitions & audited stage transitions & audit record is not staging & the \Psix{} audit record of staged histories alone \\
+\Pfive{}/\Psix{} & \Pfive{} supplies packaging; \Psix{} audits packaging events & audited packaging & audit record is not packaging map & the \Psix{} audit record of packaging events alone \\
+\end{longtable}
+\endgroup

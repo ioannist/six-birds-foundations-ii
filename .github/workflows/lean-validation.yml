@@ -1,0 +1,48 @@
+name: Lean validation
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate-recovered-lean:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install Lean toolchain
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain leanprover/lean4:v4.28.0
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Validate recovered Lean track
+        run: ./scripts/validate_lean.sh --tier recovered --json lean-validation.json
+
+      - name: Upload validation summary
+        uses: actions/upload-artifact@v4
+        with:
+          name: lean-recovered-validation
+          path: lean-validation.json
+
+  validate-full-lean:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install Lean toolchain
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain leanprover/lean4:v4.28.0
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Validate full Lean track
+        run: ./scripts/validate_lean.sh --tier full --require-full --json lean-full-validation.json
+
+      - name: Upload full validation summary
+        uses: actions/upload-artifact@v4
+        with:
+          name: lean-full-validation
+          path: lean-full-validation.json

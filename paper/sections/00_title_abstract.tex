@@ -1,0 +1,58 @@
+\title{Six Birds Foundations II:\\[4pt]
+Admissibility, Meta-Theory, and the Exact-Six Program}
+\author{Ioannis Tsiokos\,\orcidlink{0009-0009-7659-5964}}
+\date{Version 3: October 2, 2026\\[2pt] \footnotesize (Version 1: April 20, 2026)}
+
+\maketitle
+\thispagestyle{firstpage}
+
+\begin{abstract}
+\noindent
+Six Birds Foundations I~\citep{Tsiokos2026SixBirdsFoundations}
+described how a layer of description closes over what it tracks, and
+identified six roles that such closure uses: descent (whether an update
+respects a quotient), representability of a macro-level specification,
+enriched route and coherence mismatch, staged order and refinement, packaging into
+quotients, and audit. This paper gives the six roles precise meanings
+and asks whether exactly six are needed. For each role it fixes what
+counts as evidence for it, the level at which it acts, and where it
+meets the other roles, and it states the bookkeeping rules a
+description must follow before any role claim counts.
+
+The question is posed on a precisely delimited domain, \FATCD{}, of finite
+audited typed closure descriptions: finite collections of typed records in
+which every claim carries an honest audit. Without further hypotheses the paper
+proves three things. Each of the six roles occurs in some description of the
+domain. Every description has a decomposition record with one channel per role,
+each channel in one of five statuses (active, collapsed, below threshold,
+outside scope, absent), and every feature is accounted for by an active
+channel, an inactive channel-status entry, or one of eleven residual labels;
+the last two, \emph{unresolved candidate} and \emph{recorded seventh-role
+screen}, apply only when none of the first nine places the feature. The six channels are part of the record's definition, so the
+count is of channels, not of active roles, and the record need not be unique.
+Probability, causality and agency, the most natural candidates for a seventh
+role, are placed without a seventh role in the forms the paper specifies.
+
+The upper bound is conditional. Its recognition hypothesis is assumed, not
+derived, and asks, without reference to any decomposition record, that every
+feature be content of one of the six roles, an annotation, data that asserts
+nothing, a checked restatement of such content, or content whose check is not
+finite over the description (placed as outside-domain structure); the
+upper-bound theorem shows that each of these ways yields one of the first nine
+labels. Under the hypothesis a feature that no channel accounts for receives
+one of labels (iii)--(ix), and no content record, annotation or leftover record
+is licensed the last two. The hypothesis is a genuine restriction and depends
+on presentation. A standalone formula stating that finitely many recorded
+weights are nonnegative and sum to one fails it, while the same weights
+recorded as the single row of a transition kernel, with a certificate that the
+row is a probability distribution, satisfy it. On the other hand, any closed formula
+of the paper's finite check language that does not mention the six witness
+predicates can be recorded, provided the completed description lies in \FATCD{}, with its truth value, as a one-variable
+specification over two records of the same kind, which the hypothesis accepts;
+a false formula is recorded through its checked negation, and the rest of the
+description must still satisfy the hypothesis. The paper does not claim six roles
+for all of emergence, a full algebra of the six roles, their independence in
+every setting, or an empirical realization.
+Appendix~\ref{app:mechanization} describes the accompanying Lean
+development and what it covers.
+\end{abstract}

@@ -1,0 +1,429 @@
+\section{Admissibility and meta-theory}\label{sec:admissibility-meta-theory}
+
+
+This section states when a claim about a description counts. In
+Definitions~\ref{prop:honest-bookkeeping}--\ref{prop:empirical-bridge} and
+Propositions~\ref{prop:typed-non-collapse} and~\ref{prop:nonclaim-closure}, a
+claim is a claim annotation of some \(D\in\FATCD{}\), and ``inadmissible''
+means that condition (a) or (b) of Definition~\ref{prop:honest-bookkeeping}
+fails, or that a record required by Definition~\ref{prop:level-profile},
+\ref{prop:forgetting-lifts}, \ref{prop:visibility} or~\ref{prop:empirical-bridge}
+is missing; in particular a claim other than an offer that no honest audit annotation of
+\(D\) certifies is inadmissible; an offer satisfies condition (a) of Definition~\ref{prop:honest-bookkeeping} when an honest audit
+records the value of \(W_i(C)\), even when that value is false. The central
+rule is honest bookkeeping (Definition~\ref{prop:honest-bookkeeping}):
+every claim, and every change of level, translation, visibility
+assumption or empirical bridge it relies on, must be explicitly
+recorded. Together with the role meanings and boundary distinctions of
+Section~\ref{sec:primitive-role-architecture}, that rule governs the
+claims developed below.
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item The six roles are kept apart as types (typed non-collapse); the
+    paper does not claim that they are independent generators.
+  \item A claim moves between levels only through recorded forgetting,
+    which loses data, and recorded selected lifts, which add it.
+  \item A role counts as active only with the required threshold,
+    witness, level, collapse, nonclaim and audit data.
+  \item An instrument decides what is visible and what is suppressed.
+  \item An empirical claim enters only through a recorded bridge.
+\end{itemize}
+The section uses the domain \FATCD{}, the audit part \(\Audit{D}\) and
+threshold attachment, which are defined in
+Section~\ref{sec:fatcd-domain}; a reader checking proofs can follow the reading order at the end of
+Section~\ref{subsec:organization}, keeping Definition~\ref{def:audited} at
+hand while reading Definition~\ref{prop:honest-bookkeeping}. Several claim-level rules
+below use records and annotations defined in
+Section~\ref{sec:fatcd-domain}. The main correspondences are:
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item Definition~\ref{prop:honest-bookkeeping} and
+    Definition~\ref{def:audited}: Definition~\ref{def:audited} requires every
+    claim of a description to be referred to by an honest audit;
+    Definition~\ref{prop:honest-bookkeeping} further requires that audit to
+    certify the claim's recorded statement (for an offer, the value of
+    \(W_i(C)\));
+  \item Remark~\ref{prop:activation-thresholds} and
+    Definition~\ref{def:threshold-attachment}: when a role reading of a
+    cluster is licensed;
+  \item Definition~\ref{prop:forgetting-lifts} and the lift and forgetting
+    annotations of Definition~\ref{def:annotations}: how a claim changes
+    level;
+  \item Definition~\ref{prop:visibility} and the visibility annotations:
+    what an instrument shows and suppresses;
+  \item Definition~\ref{prop:empirical-bridge} and the empirical-bridge
+    annotations: how an empirical claim enters.
+\end{itemize} The rules keep the global
+nonclaims of Remark~\ref{rem:atlas-global-nonclaims} in force. Of this section, only
+Definitions~\ref{prop:honest-bookkeeping}, \ref{prop:level-profile},
+\ref{prop:forgetting-lifts}, \ref{prop:visibility}
+and~\ref{prop:empirical-bridge} and Proposition~\ref{prop:nonclaim-closure}
+are cited in Sections~\ref{sec:fatcd-domain}--\ref{sec:scoped-exact-six}, the
+last only in Section~\ref{sec:integrated-stress}. The other results of this section
+fix how claims are stated; several return in
+Sections~\ref{sec:discussion}--\ref{sec:future-work}.
+
+\subsection{Honest bookkeeping as an admissibility regime}\label{subsec:honest-bookkeeping}
+
+The audit condition of Definition~\ref{def:audited} records enough
+data for each claim, promotion, translation, lift, forgetting,
+visibility, and empirical-bridge assertion to be interrogated on its
+own terms. The following definition stipulates that these record
+requirements jointly constitute the admissibility regime, in a spirit
+analogous to the axiomatic specification discipline of Hoare
+logic~\citep{Hoare1969}.
+
+\begin{definition}[Admissible claim under honest bookkeeping]\label{prop:honest-bookkeeping}
+Honest bookkeeping is the admissibility regime for the claim annotations
+carried by a description \(D \in \FATCD{}\). A claim annotation of \(D\) is
+\emph{admissible} if and only if (a) some honest audit annotation of
+\(D\) refers to it and certifies the formula recorded as its statement (for an offer, \(W_i(C)\) or
+\(\neg W_i(C)\) according to the recorded result, Definition~\ref{def:audited}),
+and (b) every assertion below has an explicit record carried in \(\Audit{D}\)
+in the sense of Definition~\ref{def:annotations}:
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item the claim itself, with its statement, hypotheses, and scope;
+  \item every promotion, with its source level, target level, added data,
+    losses, and preserved nonclaims;
+  \item every translation, with its source context, target context,
+    preserved data, suppressed data, and claim strength;
+  \item every selected lift, marked selected and non-unique unless uniqueness for its specified source data and target class is proved and recorded;
+  \item every forgetting map, with its record of losses, empty only when
+    losslessness is proved and recorded;
+  \item every visibility claim, with both its visible and its suppressed
+    data;
+  \item every empirical-bridge assertion, with its substrate, observable,
+    instrument, level map, threshold-witness relation, and
+    suppressed-structure nonclaims;
+  \item every cross-level claim, with a level annotation targeting it and
+    translation annotations for each pair of levels recorded on the records it
+    names, as in Definition~\ref{prop:level-profile}.
+\end{itemize}
+Accordingly, unrecorded claims, implicit promotions, silent translations,
+asserted-but-unselected lifts, lossless forgetting without proof,
+visibility overreads, and bare empirical-realization assertions are all
+inadmissible.
+\end{definition}
+
+\begin{remark}[Why the regime is necessary]\label{rem:why-honest-bookkeeping}
+The bookkeeping requirement is a structural check, not a stylistic
+one. Without explicit records, passive observation can be misread as
+\Psix{}, mere packaging as \Pone{} descent, and route failure as
+\Pthree{} mismatch. The regime prevents those misreadings from
+entering the theorem chain.
+\end{remark}
+
+
+\subsection{Typed non-collapse}\label{subsec:typed-non-collapse}
+
+The regime does not include flat primitive independence --- the claim
+that \Pone{}, \ldots, \Psix{} are independent generators of a global
+algebra. Its meta-theoretic counterpart here is typed non-collapse.
+Proposition~\ref{prop:boundary-distinctions} excludes each forbidden collapse
+of Table~\ref{tab:boundary-matrix}; Proposition~\ref{prop:typed-non-collapse}
+states the same exclusion as a rule of the admissibility regime of
+Definition~\ref{prop:honest-bookkeeping} and adds that each row's permitted
+interaction is not thereby excluded. Each row is checked in one direction, for the role it credits (listed in the
+table after the proof of Proposition~\ref{prop:boundary-distinctions}); the
+row label names the pair without order.
+
+\begin{proposition}[Typed non-collapse]\label{prop:typed-non-collapse}
+Under honest bookkeeping (Definition~\ref{prop:honest-bookkeeping}) and
+the alignments of Remark~\ref{rem:repaired-alignments}, consider each
+forbidden-collapse row of Table~\ref{tab:boundary-matrix}. Write \(P_c\)
+for the role that row would credit and \(X_b\) for the bare partner datum
+it borrows, as listed in the last column of Table~\ref{tab:boundary-matrix}
+and presented as a boundary record in the sense of
+Definition~\ref{def:annotations}.
+For every \(D\in\FATCD{}\), no honest audit annotation of \(D\)
+certifies \(W_c(C)\) for a cluster \(C\) formed only from \(X_b\); the ``permitted interaction'' of the same row is
+not excluded by this proposition. More generally, for each \(k\le6\), no
+honest audit annotation of \(D\) certifies \(W_k(C)\) for a cluster \(C\)
+lacking any record that the \(W_k\) row requires a witness cluster to contain (among them, for \(k=1\): a map or partial-map record of declared use update, or a relation record of declared use quotient; \(k=2\): a macro-specification predicate record or a realization relation; \(k=3\): two defined path or derivation records; \(k=4\): a law-bearing stage, order, transition or refinement record; \(k=5\): a relation record of declared use quotient, a packaging map record or a check record; \(k=6\): an event record, a trace record or a replay or check record); in particular each row's exclusion holds with its two
+roles exchanged whenever the exchanged datum lacks that record.
+\end{proposition}
+
+\begin{proof}
+Fix a forbidden-collapse row and its credited role \(P_c\) and borrowed datum \(X_b\). The row records a ``forbidden collapse'': an
+identification asserting that the content of its two roles is the same
+closure role, so that one
+projection may be read off the other without further data. To be
+admissible under Definition~\ref{prop:honest-bookkeeping}, such an
+identification would have to enter the theorem chain as a claim with a
+recorded statement and scope. The role meanings are distinct, and
+Proposition~\ref{prop:boundary-distinctions} checks, for each
+forbidden-collapse row, a field required by the credited witness that the
+named partner datum alone does not supply. An audit certifying the credited
+projection solely from that datum would therefore certify a conclusion
+unsupported by its recorded check and would not be honest under
+Definition~\ref{def:audited}: by that definition the check-language conclusion
+\(W_c(C)\) of an honest audit would be true in \(D\), whereas \(W_c(C)\) is false by
+Proposition~\ref{prop:boundary-distinctions}. Independently supplied data may satisfy both
+witness conditions; the proposition excludes the claimed automatic
+identification, not that joint occurrence. Hence the collapse is
+inadmissible. More generally, if \(C\) lacks a record required by the \(W_k\) row, that row gives \(W_k(C)=\mathrm{false}\). Definition~\ref{def:audited}(c3) therefore excludes an honest audit certifying \(W_k(C)\); this also proves the stated exchanged-role exclusions.
+
+It remains to check that ruling out the collapse does not also rule out
+the row's ``permitted interaction''. The permitted interaction does not
+identify \(P_i\) with \(P_j\); it records a legitimate joint occurrence
+of the two distinct roles in a single description --- for instance,
+\Pone{} descent audited by \Psix{}, or \Pthree{} route terms indexed by
+\Pfour{} stages, as in Remark~\ref{rem:not-global-independence}. Such
+an interaction carries its own honest-bookkeeping record for each role
+separately and asserts no identification. Nothing in the argument above
+touches it: the inadmissibility derived for the collapse rests on the unsupported
+inference from the bare partner datum to the credited witness, which the
+permitted interaction never makes. Therefore the permitted interaction remains admissible
+whenever its own bookkeeping conditions are met.
+\end{proof}
+
+\begin{remark}[Typed non-collapse versus global independence]\label{rem:typed-non-collapse-vs-independence}
+Typed non-collapse is not a global primitive-independence statement. It does not assert that the six roles are logically or
+categorically independent in a global algebra; it asserts only that
+the pairwise identifications listed as forbidden collapses in
+Table~\ref{tab:boundary-matrix} are inadmissible under honest
+bookkeeping, leaving the corresponding typed interactions available.
+\end{remark}
+
+
+\subsection{Level-profile architecture}\label{subsec:level-profile-architecture}
+
+Typed non-collapse fixes which identifications are inadmissible; cross-level
+claims also require recorded levels and translations. The level trichotomy of
+Definition~\ref{def:level-trichotomy} therefore supplies the profile for such
+claims.
+
+\begin{definition}[Level profile of an admissible claim]\label{prop:level-profile}
+A claim annotation is \emph{cross-level} when records it names are listed in the target fields of level annotations recording different levels; it is a \emph{direct comparison} when
+its statement contains an equality or order atom, or an implication, whose two sides read records listed under different recorded levels.
+Its \emph{level profile} is a level annotation targeting the claim, together
+with, for each such pair of levels, a translation annotation carried in
+\(\Audit{D}\) whose source and target contexts are those levels.
+Every admissible cross-level claim about a description \(D \in \FATCD{}\) carries a
+\emph{level profile}: it locates the claim on the behavioral,
+verification, or structural-categorical level, and each cross-level
+assertion is accompanied by a translation record in the sense of
+Definition~\ref{prop:honest-bookkeeping}. Direct comparison of claims at
+different levels without a translation record is inadmissible.
+\end{definition}
+
+\subsection{Forgetting and selected lifts}\label{subsec:forgetting-lifts}
+
+Level transitions are controlled by forgetting and selected lifts.
+
+\begin{definition}[Admissible forgetting and selected lifts]\label{prop:forgetting-lifts}
+Forgetting from a higher to a lower level (structural-categorical to
+verification, verification to behavioral, or structural-categorical directly to
+behavioral) is admissible if and only if it carries a record of
+its losses carried in \(\Audit{D}\); the loss record may be empty only when
+losslessness is proved and recorded. Lifting from a lower level to a higher level is
+admissible only when accompanied by
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item the added data required to support the higher-level statement;
+  \item the mark that the lift is selected and non-unique unless uniqueness for its specified source data and target class is proved and recorded;
+  \item explicit preservation of lower-level invariants and explicit
+    losses where the lift is partial.
+\end{itemize}
+Lossless forgetting and unique lifts are inadmissible unless the losslessness
+or uniqueness is itself proved and recorded.
+\end{definition}
+
+\begin{remark}[Lower-to-higher non-determinacy]\label{rem:lower-to-higher-non-determinacy}
+Definition~\ref{prop:forgetting-lifts} formalizes the non-determinacy of
+lower-level data: given behavioral or verification content alone, the admissibility regime
+forces no choice of structural-categorical content, and any asserted choice
+must be marked as a selected lift. Where the lower-level data do determine the
+higher-level datum, as the descended map of a descending update is determined,
+that determinacy is admissible with its recorded proof.
+\end{remark}
+
+\subsection{Activation thresholds}\label{subsec:activation-thresholds}
+
+The regime must also state when a projected role is active. The
+attachment protocol of Definition~\ref{def:threshold-attachment} is
+lifted to a regime-level principle.
+
+\begin{remark}[Activation thresholds]\label{prop:activation-thresholds}
+At the regime level, the threshold-attachment discipline of
+Definition~\ref{def:threshold-attachment} reads as follows. An
+admissible active derived role projection \(\pi_i(D)\) exists only when
+\(D\) carries the threshold, witness, level, collapse, nonclaim and audit data
+required by Definition~\ref{def:threshold-attachment}. A channel with no
+admissible projection receives \(\collapsedbc\) if a failed offer is
+recorded, and otherwise \(\belowthr\) if a covered seed is present
+(Definition~\ref{def:channel-status}); these are statuses of channels, not of
+clusters, and a channel with an admissible projection is \(\activeproj\)
+whatever other clusters do. Arbitrary enrichment, adding structure
+solely to force a role projection, is inadmissible unless the additions
+are themselves honestly bookkept as raw features or annotations. This
+restates the attachment protocol at regime level: the sentences before the
+enrichment sentence restate Definitions~\ref{def:threshold-attachment}
+and~\ref{def:channel-status}, and the enrichment sentence
+follows from Definition~\ref{def:fatcd}, since every added record of a member of
+\FATCD{} is subject to Definitions~\ref{def:finite}--\ref{def:audited}.
+\end{remark}
+
+\subsection{Instrument-relative visibility and suppression}\label{subsec:visibility-suppression}
+
+Threshold-governed activation still leaves open what an instrument makes
+visible or suppresses. Admissibility of visibility claims is therefore
+instrument-relative.
+
+\begin{definition}[Admissible visibility record]\label{prop:visibility}
+Every admissible visibility claim carries an explicit \emph{visibility record}
+comprising its visible content, its suppressed content, the instruments
+under which the visibility and suppression are asserted, and the
+resulting instrument-relative claim strength. Overreading a suppressed
+claim as visible under a different instrument is inadmissible. Partial
+visibility, in which a claim is visible only up to some coarsening or
+translation, is admitted when the visibility record itself makes the
+partiality explicit. An \emph{instrument} is a declared record of the
+description named in an instrument-visibility annotation's instruments field
+or as the measuring instrument of an empirical-bridge claim carried in
+\(\Audit{D}\); the \emph{claim strength} is a value of a declared finite ordered
+set recorded in that annotation; a visibility claim \emph{asserts
+instrument-free truth} when it asserts visible content without naming an
+instrument. The \emph{instrument family} of a description is the set of its
+instrument records.
+\end{definition}
+
+\begin{remark}[No instrument-free truth]\label{rem:no-instrument-free}
+Definition~\ref{prop:visibility} does not claim that instruments are
+free of distortion or that any single instrument is canonical. It asserts only that admissible visibility claims carry an instrument-relative
+visibility record. Instrument completeness is deferred to
+Section~\ref{sec:future-work}.
+\end{remark}
+
+\subsection{Empirical-bridge admissibility}\label{subsec:empirical-bridge}
+
+Any claim crossing from the closure-algebraic side of the framework
+to a substrate-level observable must pass through the
+empirical-bridge discipline, related to but narrower than
+the empirical-adequacy view of theories~\citep{vanFraassen1980}.
+
+\begin{definition}[Admissible empirical-bridge claim]\label{prop:empirical-bridge}
+An empirical-bridge claim about \(D \in \FATCD{}\) is admissible only when
+it has, carried in \(\Audit{D}\),
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item the substrate and observable to which the bridge relates;
+  \item the instrument under which the observable is measured;
+  \item the level map between the closure-algebraic content and the
+    substrate-level content;
+  \item a threshold-witness relation recording when the bridge is
+    crossed;
+  \item the nonclaims suppressed by the bridge record, in particular any
+    structural content of \(D\) that is not tracked by the substrate or
+    instrument.
+\end{itemize}
+Empirical realization --- the claim that \(D\) is itself a substrate
+observation --- is stronger than empirical-bridge admissibility and is
+not asserted by any empirical-bridge claim.
+\end{definition}
+
+
+\subsection{Nonclaim closure across the admissibility regime}\label{subsec:nonclaim-closure}
+
+The rules of this section, from honest bookkeeping
+(Definition~\ref{prop:honest-bookkeeping}) to admissible empirical-bridge
+claims (Definition~\ref{prop:empirical-bridge}), keep the global
+nonclaims of Remark~\ref{rem:atlas-global-nonclaims} in force. The next
+proposition lists the overclaims they block.
+
+\begin{proposition}[Admissibility-regime nonclaim closure]\label{prop:nonclaim-closure}
+Under the admissibility regime, each of the following claims is
+inadmissible; the second kind of claim in the first item cannot occur, since
+no member of \FATCD{} carries it:
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item a claim identifying two of the six roles along a forbidden collapse
+    of Table~\ref{tab:boundary-matrix}, or a claim annotation whose statement applies
+    a recorded finite map with domain the role names \(P_1,\dots,P_6\) (or
+    tuples of them), or an independence predicate on them, whose referenced
+    records are only boundary and witness records, and whose statement is not
+    represented by their fields in the sense of
+    Definition~\ref{def:annotations} (by Definition~\ref{def:audited}(e));
+  \item an unconditional empirical-realization claim, that \(D\) is itself a
+    substrate observation, where \(D\) records no extension of that
+    predicate (criterion after Definition~\ref{def:residual-scheme}), whether
+    or not an empirical-bridge record is present;
+  \item a lift asserted to be unique without a recorded proof of uniqueness;
+  \item a claim that lower-level content determines higher-level content,
+    without a recorded proof of that determinacy;
+  \item a visibility claim asserting instrument-free truth;
+  \item a direct cross-level comparison without a translation record;
+  \item a forgetting asserted to be lossless without a recorded proof of
+    losslessness;
+  \item an empirical-bridge claim lacking any of: a threshold-witness
+    relation, a level map, the instrument under which the observable is
+    measured, or suppressed-structure nonclaims.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+Each requirement of the regime blocks a specific class of overclaims;
+we check that it blocks the listed claims.
+
+Honest bookkeeping (Definition~\ref{prop:honest-bookkeeping}) declares
+inadmissible every unrecorded claim, implicit promotion, silent
+translation, asserted-but-unselected lift, lossless forgetting without
+proof, visibility overread, and bare empirical-realization assertion;
+these are requirements of Definition~\ref{prop:honest-bookkeeping},
+beyond the description-level audit condition of Definition~\ref{def:audited}.
+
+Typed non-collapse (Proposition~\ref{prop:typed-non-collapse}) blocks the
+forbidden identifications of Table~\ref{tab:boundary-matrix}. A claim
+annotation asserting a full algebra (a map applied to role names) or a global
+independence theorem (an independence predicate on role names) must represent
+that substantive assertion in fields of its referenced records
+(Definition~\ref{def:annotations}). Boundary and \(W_i\)-witness records carry
+exactly the fields of their declared checks, and those checks supply neither a
+map on role names nor a global-independence certificate. An assertion not represented by the fields of the cited boundary and witness
+records requires an additional declared content record. A claim citing only
+those records and failing the representation condition cannot be carried by a member of
+\FATCD{}. This does not prove that no full
+algebra or global independence theorem can exist. Both broader statements remain nonclaims of
+Remark~\ref{rem:atlas-global-nonclaims}.
+
+Level-profile architecture (Definition~\ref{prop:level-profile}) blocks
+direct cross-level comparison without a translation record, which is
+exactly the non-claim that cross-level comparison remains inadmissible
+without translation.
+
+Admissible forgetting and selected lifts
+(Definition~\ref{prop:forgetting-lifts}) block lossless forgetting,
+unique lifts, and lower-to-higher determinacy: forgetting is lossy
+unless losslessness is proved and recorded, no lift is admitted as
+unique unless uniqueness is proved and recorded, and, by
+Remark~\ref{rem:lower-to-higher-non-determinacy}, no structural-categorical
+content is asserted to be forced by behavioral or verification content without
+a recorded proof. These are
+the non-claims that forgetting remains lossy, that no unique-lift
+theorem is claimed, and that no lower-to-higher determinacy is claimed.
+
+Activation thresholds (Remark~\ref{prop:activation-thresholds}) block
+arbitrary enrichment and threshold-free nontriviality claims, since an
+active projection is admissible only with the threshold, witness, level,
+collapse, nonclaim and audit data of Definition~\ref{def:threshold-attachment}.
+
+Instrument-relative visibility (Definition~\ref{prop:visibility}) blocks
+instrument-free visibility claims and visible-to-suppressed overreads; it does
+not impose instrument indexing on every claim kind.
+
+Empirical-bridge admissibility (Definition~\ref{prop:empirical-bridge})
+blocks empirical-realization overclaims and any bridge claim lacking a
+threshold-witness relation, a level map, the instrument under which the
+observable is measured, or suppressed-structure nonclaims. An
+empirical-realization claim asserts a predicate, being a substrate
+observation, whose extension \(D\) does not record; its truth does not follow
+from any finite check of \(D\), so by Definition~\ref{def:audited} no honest
+audit certifies it outright, and it is inadmissible whether or not a bridge
+record is present. An unrecorded realization predicate may occur as a
+hypothesis of an audited conditional consequence; no audit certifies
+realization outright or as a consequent. This yields the non-claim that no empirical realization
+is claimed and that empirical-bridge claims carry the required data.
+
+Collecting these residues gives each of the listed non-claims. Those that
+restate a global nonclaim of Remark~\ref{rem:atlas-global-nonclaims} are
+thereby carried forward into the regime; the two further items --- that
+forgetting remains lossy absent a recorded proof of losslessness, and that
+empirical-bridge claims carry their threshold-witness relation, level map,
+instrument and suppressed-structure nonclaims --- are additional disciplines the regime imposes
+at this level.
+\end{proof}

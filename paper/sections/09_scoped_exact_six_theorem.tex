@@ -1,0 +1,217 @@
+\section{The scoped exact-six theorem}\label{sec:scoped-exact-six}
+
+
+
+The proof assembles Theorems~\ref{thm:six-role-lower-bounds},
+\ref{thm:upper-bound-classification},
+\ref{thm:decomposition-existence} and~\ref{thm:six-channel-exactness}
+over the descriptions in \FATCD{} that satisfy the recognition hypothesis,
+together with Propositions~\ref{prop:probability-closure}--\ref{prop:agency-closure}
+and an inventory of the records of the lower-bound descriptions.
+The theorem statement also records the three threat closures
+of Propositions~\ref{prop:probability-closure}--\ref{prop:agency-closure},
+and its last clause, from Theorem~\ref{thm:six-role-lower-bounds}, says that
+none of the six channels is idle on that class.
+
+In brief: for every \(D\in\FATCD_{\mathrm{RH}}\) a well-formed \(\Dec{D}\) exists; every well-formed \(\Dec{D}\) has the channels \(P_1,\ldots,P_6\), each with the status of Definition~\ref{def:channel-status}; every label licensed for a kind residual or a bookkeeping annotation lies in (i)--(ix), and every label licensed for \(r\in\Residual{D}\) in (iii)--(ix); and \(P_i\) is active for \(D_i\) (\(i=1,\ldots,6\)).
+
+\begin{theorem}[Scoped exact-six]\label{thm:scoped-exact-six}
+Let \(\FATCD_{\mathrm{RH}}\) be the class of descriptions \(D \in \FATCD{}\)
+that satisfy the recognition hypothesis
+(Definition~\ref{def:recognition-hypothesis}), and let
+\(D\in\FATCD_{\mathrm{RH}}\). \textup{(a)} Then \(D\) admits a well-formed
+decomposition/exhaustion record (Theorem~\ref{thm:decomposition-existence}),
+and every well-formed record \(\Dec{D}\) of \(D\) has exactly six typed
+closure-role channels:
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item \Pone{}: update-vs-quotient compatibility / descent obstruction;
+  \item \Ptwo{}: macro-specification representability (when active, witnessed by a certified absence
+    of realizers in a candidate class that is the full declared domain of a
+    packaging or update map, with a recorded true evaluation at a declared
+    same-kind record outside that class, or a realizer set such that some class of a declared
+    packaging kernel whose domain contains the candidate class meets both
+    it and its complement in the candidate class);
+  \item \Pthree{}: enriched route/coherence mismatch;
+  \item \Pfour{}: stage/order/transition/refinement structure;
+  \item \Pfive{}: quotient packaging / quotienting;
+  \item \Psix{}: audit/bookkeeping/provenance/replay/checkability.
+\end{itemize}
+
+\par\noindent\textup{(b)} Each channel carries exactly one recorded status from the five statuses \activeproj{}, \collapsedbc{}, \belowthr{},
+\outsidescope{} and \absentrec{}: the first of these, in the order listed, whose case in
+Definition~\ref{def:channel-status} applies. Every active projection on a cluster \(C\) carries
+threshold, witness-schema, collapse-case, level and nonclaim annotations
+targeting exactly \(C\), and an honest audit certifying \(W_i(C)\)
+(Definition~\ref{def:role-projection}).
+\par\noindent\textup{(c)} Let \(\Dec{D}\) be any well-formed record of \(D\). Every label that the criteria license for a kind residual of \(D\)
+(Definition~\ref{def:residual-scheme}) or a bookkeeping annotation of \(D\) relative to \(\Dec{D}\) lies among
+(i)--(ix). Every element of \(\Residual{D}\) for that record is
+classified, under the upper-bound classification of
+Section~\ref{sec:upper-bound-classification}, as one of:
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item (iii) presentation variant;
+  \item (iv) level shift;
+  \item (v) unabsorbed role-aligned content, covered-seed content with no
+    certified witness \(W_i\), content checked in an honestly failed offer, or activation-threshold refinement;
+  \item (vi) instrument-visibility artifact;
+  \item (vii) empirical-bridge annotation;
+  \item (viii) outside-domain structure;
+  \item (ix) already-covered bookkeeping or annotation data, or role-neutral data
+    without an assertion of its own.
+\end{itemize}
+Under the recognition hypothesis, no kind residual and no element of \(\Residual{D}\) remains as an unresolved candidate
+seventh role or passes the recorded seventh-role screen. Since seed clause (2)
+of Definition~\ref{def:channel-status} accepts any one-variable macro-specification with a realization relation
+whose recorded evaluations take both truth values, this clause certifies the
+form in which each feature is recorded, not that its content concerns the role
+whose seed or witness it carries (Remark~\ref{rem:classification-scope}).
+\par\noindent\textup{(d)} Moreover, for
+every \(D'\in\FATCD{}\), whether or not it satisfies the recognition
+hypothesis, any kind residual of \(D'\)
+whose content takes one of the recognized forms of
+Propositions~\ref{prop:probability-closure}--\ref{prop:agency-closure}
+is licensed, relative to every well-formed \(\Dec{D'}\), at least one of the
+labels those propositions list, and neither (x) nor (xi).
+
+\par\noindent\textup{(e)} The conclusions stated for \(D\in\FATCD_{\mathrm{RH}}\) hold for every
+such \(D\); that is, the statement \(\ScopedExactSix{\FATCD_{\mathrm{RH}}}\) holds. Moreover, for each
+\(i\in\{1,\dots,6\}\) the description \(D_i\) of
+Theorem~\ref{thm:six-role-lower-bounds} lies in \(\FATCD_{\mathrm{RH}}\) and has
+a well-formed record, and in every well-formed record of \(D_i\) the channel
+\(P_i\) is \activeproj{} (Theorem~\ref{thm:six-channel-exactness}(iv)); so each of the six
+channels is active somewhere in \(\FATCD_{\mathrm{RH}}\).
+\end{theorem}
+
+The recognition hypothesis restricts how assertions are presented. An
+explicit finite normalization formula can fail it; replacing an assertion by a declared predicate
+whose extension \(D\) does not record places the feature outside the covered scope when the resulting record meets criterion (viii), while presenting
+nonnegative weights as the row of a transition kernel makes them a covered \Pfour{} seed
+(Remark~\ref{rem:recognition-open}, paragraphs \emph{Scope depends on presentation} and \emph{Repair by a transition row}). Every closed check-language formula \(\varphi\) containing no atomic \(W_j\)
+formula can be wrapped, provided the completed description lies in \FATCD{}, given two
+distinct declared records of one kind, in the covered \Ptwo{} seed described in
+Remark~\ref{rem:recognition-open} (paragraph \emph{Wrapping a closed formula as a \Ptwo{} seed}). This recognizes the
+predicate and realization-relation records and records \(\varphi\)'s truth
+value in the resulting description; a false formula is represented by its checked negation. If the wrapped description is again in \FATCD{}, it satisfies the recognition hypothesis exactly when all its other kind residuals, all its bookkeeping annotations and all its record residuals are recognized; for the bookkeeping annotations this holds in particular when each has only datum and reference fields besides its exempt fields (paragraph after Definition~\ref{def:recognition-hypothesis}).
+
+The proof assembles the earlier results. Proposition~\ref{thm:integrated-stress}
+checks separately that they combine without the misreadings of
+Section~\ref{sec:integrated-stress}; the proof does not use it.
+
+\begin{proof}
+Fix \(D \in \FATCD{}\) satisfying the recognition hypothesis. By
+Theorem~\ref{thm:decomposition-existence},
+\(D\) admits a well-formed decomposition/exhaustion record. Let \(\Dec{D}\) be
+any well-formed record of \(D\) in the sense of
+Definition~\ref{def:decomposition-record}. By
+Theorem~\ref{thm:six-channel-exactness}, the channel sequence of
+\(\Dec{D}\) has length six, each channel carries one of the five
+statuses of Definition~\ref{def:channel-status}, and every raw feature lies
+in \(A(\Dec{D})\), \(S(\Dec{D})\) or \(\Residual{D}\); features in the last
+set receive a residual classification, and \(\mathcal L\) and \(\mathcal V\)
+annotate this coverage rather than forming a fourth coverage case. By
+Theorem~\ref{thm:upper-bound-classification}, which applies because \(D\)
+satisfies the recognition hypothesis, every label licensed for a kind residual or a bookkeeping annotation of
+\(D\) lies among (i)--(ix) and every label licensed for an element of
+\(\Residual{D}\) among (iii)--(ix) (both clauses of Theorem~\ref{thm:upper-bound-classification}), so
+categories (x) and (xi) are empty, which is the condition of
+Definition~\ref{def:scoped-exact-six-question}. Hence \(\ScopedExactSix{\FATCD_{\mathrm{RH}}}\).
+The clause on active projections is the admissibility clause of
+Definition~\ref{def:role-projection}, which Definition~\ref{def:decomposition-record}
+requires of every active channel of a well-formed record. The clause on \(D'\) is
+Propositions~\ref{prop:probability-closure}--\ref{prop:agency-closure}, which hold
+for every \(D'\in\FATCD{}\) and every well-formed \(\Dec{D'}\) without the
+recognition hypothesis.
+
+For the last clause, fix \(i\) and \(D_i\). Its content records satisfy (R1)
+or (R3). In \(D_1\), the update, relation and comparison records supply the
+descent-obstruction witness; the four state records and the object record
+\(S\) are named inputs or declared-domain records of those checks and carry no assertion field. In \(D_2\), the specification and realization
+records supply the representability data, the comparison record supplies the
+required comparison in its satisfying-realizer instance, and candidate and \(S_2\) records are direct checking
+inputs; the packaging map
+\(q\) carries a covered \Pfive{} seed with no assertion field, so it satisfies
+(R1), and the object record \(\{A,B\}\), the codomain of \(q\), supplies no
+witness field and has no assertion field, so it satisfies (R3). In \(D_3\), the route and
+comparison records supply the generated-route and separation data; their
+endpoints, and the object record \(U\) listing them, are direct inputs, and the move records \(a,b\) contribute required
+fields (their graphs make \(\rho_1,\rho_2\) defined) and, having only datum
+fields, satisfy (R1). The rewrite rule \(aa\to a\) is a datum field of the comparison record,
+which its monoid certificate reads by quantifying over the listed rules; it
+carries no assertion, and the comparison record satisfies (R1). In \(D_4\), each certified order, transition and
+refinement record is a covered \Pfour{} seed, while its declared indices and
+the object records listing them are inputs to its law check. In \(D_5\), the quotient relation, packaging map and
+validity check supply the quotient witness; the micro-objects and quotient
+object are declared inputs to those checks. In \(D_6\), the event, trace,
+provenance and check records supply required witness data or covered
+\Psix{} seeds. Every declared input carries no predicate, comparison,
+invariant, law or claim field, so the assertion-field condition of (R1) holds
+vacuously for it; it therefore satisfies (R1) if it supplies a witness field,
+as the micro-object records \(x,y\) of \(D_5\) do, and (R3) otherwise. The
+related-pair comparison in \(D_1\) belongs to its (R1) comparison record. The
+structural and bookkeeping annotations satisfy (R2); their recorded assertion
+\(W_i(C_i)\) is represented by the content records. These alternatives cover
+every kind residual and every possible element of \(\Residual{D_i}\), so
+\(D_i\in\FATCD_{\mathrm{RH}}\). Finally \(W_i(C_i)\) and its recorded
+attachments give \(P_i\) status \activeproj{} by
+Definition~\ref{def:channel-status}.
+\end{proof}
+
+For the running example, the record of Section~\ref{sec:decomposition-exhaustion}
+illustrates the six-channel and status clauses of the theorem: six channels,
+each with one status (three \activeproj{}, one \belowthr{}, two
+\absentrec{}), with the index record classified as a presentation variant.
+
+The following table traces the clauses of the theorem to their sources.
+Residual exhaustion uses the recognition hypothesis; the integrated-stress check
+carries that assumption through its upper-bound residual case.
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{0.36\linewidth}@{}}
+\toprule
+Clause & Source \\
+\midrule
+a well-formed record \(\Dec{D}\) exists & Theorem~\ref{thm:decomposition-existence} \\
+six channels, one status each, every raw feature accounted for & Definition~\ref{def:decomposition-record}, Theorem~\ref{thm:six-channel-exactness} \\
+each active projection has threshold, witness, level and bookkeeping data & Definition~\ref{def:decomposition-record} \\
+record residuals receive labels in (iii)--(ix), kind residuals in (i)--(ix); (x) and (xi) are empty & Theorem~\ref{thm:upper-bound-classification}, under the recognition hypothesis \\
+probability, causality and agency, in their recognized forms & Propositions~\ref{prop:probability-closure}--\ref{prop:agency-closure} \\
+each channel is active for some description in \(\FATCD_{\mathrm{RH}}\) & Theorem~\ref{thm:six-role-lower-bounds} \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{What scoped exact-six means and does not mean}\label{subsec:exact-six-meaning}
+
+Theorem~\ref{thm:scoped-exact-six} has a reading that should be
+preserved throughout what follows.
+
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item \emph{Six channels, not six active witnesses.}
+    Theorems~\ref{thm:decomposition-existence}
+    and~\ref{thm:six-channel-exactness} give six role channels in \(\Dec{D}\)
+    for every \(D \in \FATCD{}\), and the theorem restates this for
+    \(D\in\FATCD_{\mathrm{RH}}\). It does not assert that every \(D\) activates
+    all six roles, that every \(D\) carries six active projections
+    \(\pi_1(D), \ldots, \pi_6(D)\), or that a single \(D\) realizes
+    all six witness schemas of Section~\ref{sec:lower-bounds}; such a
+    description exists in \(\FATCD_{\mathrm{RH}}\) (the case \(k=6\) of
+    Proposition~\ref{prop:channel-vs-activation}), but it is not a clause of
+    the theorem.
+  \item \emph{Existential, not unique, decomposition.} The theorem
+    asserts existence of \(\Dec{D}\); it does not assert uniqueness or
+    canonicity. Distinct well-formed records of the same \(D\) may
+    exist (Proposition~\ref{prop:non-uniqueness}).
+  \item \emph{Conditional residual exhaustion.} The residual
+    exhaustion clause is conditional on the recognition hypothesis
+    (Definition~\ref{def:recognition-hypothesis}) and restricted to the
+    covered scope: the probability, causality and agency threats are
+    closed without that hypothesis, in the recognized forms of
+    Propositions~\ref{prop:probability-closure}--\ref{prop:agency-closure},
+    while not every finite audited feature is recognized: the
+    normalization description of Remark~\ref{rem:recognition-open} has a
+    residual feature labelled (x). Features whose assertions use a predicate whose extension \(D\) does not record, or quantify over a sort whose carrier \(D\) does not record, are classified as outside-domain structures under category~(viii) of Definition~\ref{def:residual-scheme}, not absorbed into primitive roles, when each such assertion is true in some expansion of \(D\) and false in another and the other assertion fields meet that criterion; an assertion of this kind with the same truth value in every expansion, such as \(Q(o)\vee\neg Q(o)\) for an unrecorded \(Q\), lies in the covered scope and is subject to the recognition hypothesis.
+  \item \emph{No broader claim.} Theorem~\ref{thm:scoped-exact-six}
+    is a statement about \FATCD{}; the claims it does not make are
+    listed in Section~\ref{sec:limitations-nonclaims}.
+\end{itemize}
+

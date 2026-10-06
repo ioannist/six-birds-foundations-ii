@@ -1,0 +1,885 @@
+\section{Primitive role architecture}\label{sec:primitive-role-architecture}
+
+
+This section fixes the meanings of the six typed closure roles
+\Pone{}, \ldots, \Psix{}, the behavioral, verification, and
+structural-categorical level pattern they share, the local boundary
+distinctions between them, and the selected-lift atlas vocabulary.
+These meanings are fixed for the remainder of the paper and govern
+every subsequent definition, lower bound, and upper-bound
+classification. Sections~\ref{sec:primitive-role-architecture}
+and~\ref{sec:admissibility-meta-theory} use only the following from later
+sections: a description is a finite set of typed records and annotations
+(Definitions~\ref{def:raw-record} and~\ref{def:annotations}); a claim counts
+when an honest audit certifies it (Definition~\ref{def:audited}); an
+annotation is attached to a cluster when its target field lists exactly the
+cluster's members (Definition~\ref{def:threshold-attachment}); and a channel's
+status is the first of five cases that applies
+(Definition~\ref{def:channel-status}). The paragraph \emph{Symbols used before
+their definition} (Section~\ref{subsec:objects-at-a-glance}) lists the rest. A reader checking
+proofs may read the paragraphs \emph{Witness types} to \emph{Route
+certificates} below, then Section~\ref{sec:fatcd-domain} and
+Definition~\ref{def:channel-status}, before the rest of this section.
+The proofs of Sections~\ref{sec:fatcd-domain}--\ref{sec:decomposition-exhaustion}
+and~\ref{sec:scoped-exact-six} use from this section only the role names of
+Definition~\ref{def:primitive-roles}, the \emph{Witness types} table with the
+check-language, certificate and law conventions before it and the paragraph
+\emph{Route certificates} and the prescribed verification conditions after it,
+Remark~\ref{rem:repaired-alignments}, the level values of
+Definition~\ref{def:level-trichotomy} and Table~\ref{tab:boundary-matrix};
+Proposition~\ref{prop:boundary-distinctions} is used by
+Proposition~\ref{prop:typed-non-collapse}, and the other remarks and
+Definition~\ref{def:selected-lift-atlas} fix vocabulary.
+
+\subsection{Role meanings}\label{subsec:role-meanings}
+
+\begin{definition}[Primitive closure roles]\label{def:primitive-roles}
+The six primitive closure roles are
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item \Pone{} --- update-vs-quotient compatibility / descent
+    obstruction~\citep{GrothendieckSGA1,JanelidzeTholen1994};
+  \item \Ptwo{} --- macro-specification
+    representability~\citep{MacLane1998}; when a satisfying realizer exists,
+    the witness also requires a comparison with the classes of the kernel of
+    a declared packaging map, whose declared domain contains the declared
+    candidate class, certifying that some class of that kernel meets both
+    the realizer set and its complement in the candidate class;
+  \item \Pthree{} --- enriched route/coherence
+    mismatch~\citep{BaaderNipkow1998,Nakahara2003}; here ``enriched'' and
+    ``coherence'' name only the recorded rewrite rules (and, in certificate
+    (b), the move weights), not enriched-category or coherence-theorem
+    structure; \Pthree{} is not a directionality certificate;
+  \item \Pfour{} --- stage/order/transition/refinement
+    structure~\citep{Milner1989,BackVonWright1998};
+  \item \Pfive{} --- quotient packaging /
+    quotienting~\citep{KemenySnell1960};
+  \item \Psix{} --- audit/bookkeeping/provenance/replay/%
+    checkability~\citep{GreenKarvounarakisTannen2007,Merkle1987}.
+\end{itemize}
+The operative content of role \(P_i\) is the witness predicate \(W_i\) fixed by
+the \emph{Witness types} table below (the table in the paragraph \emph{Witness predicates},
+p.~\pageref{tab:witness-types}, read with the paragraphs that paragraph lists); its record kinds and declared uses are those
+of Definition~\ref{def:raw-record}, and \(\Audit{D}\) and \(\mathrm{Audit}_0(D)\)
+are those of Definition~\ref{def:audited}. The phrases above name the roles.
+\end{definition}
+
+\paragraph{Reading the roles.} In plain terms, and with the lower-bound
+witnesses of Section~\ref{sec:lower-bounds} as instances:
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item \Pone{} asks whether an update respects a grouping of states. For
+    an update \(F\) and a grouping \(q\), \(F\) \emph{descends} when
+    \(q(x)=q(y)\) implies \(q(Fx)=q(Fy)\); two grouped states of the declared carrier obstruct descent when their defined images lie in different target classes, or when exactly one lies in the domain of a partial \(F\). A \(W_1\) witness of descent (alternative (a)) further requires the domain of \(F\) to be saturated under \(q\) (every \(q\)-class meeting it lies inside it; elements in no listed class are allowed) and some class to contain two of its elements. Trivial descent is not excluded: if some class of \(q\) has two elements, source and target are both the relation of \(q\), that relation lists every class of \(q\), and the update's declared domain is the domain of \(q\), then the identity update satisfies (a), as does every constant update.
+  \item \Ptwo{} asks whether a macro-level specification, a predicate
+    \(s\), has a realizer through a declared realization relation. In short, \(W_2\)
+    holds in two cases: no candidate in a declared class \(K\), the full
+    declared domain of a packaging or update map, satisfies \(s\), although \(s\)
+    is true at a declared record of the same kind outside \(K\); or some
+    candidates satisfy \(s\) and some class of a declared packaging kernel whose
+    domain contains the candidate class contains both a satisfying and a
+    non-satisfying candidate. The
+    specification \(s\) is, relative to a declared finite nonempty candidate
+    class, \emph{realizable} when some candidate satisfies it and
+    \emph{unrealizable} when none does, and \emph{representable over \(E\)} when
+    its realizer set is a union of the sets \([x]_E\cap K\) for the candidate
+    class \(K\), that is, when no class of \(E\) meets both the realizer set and
+    its complement in \(K\). The empty realizer set of an
+    unrealizable \(s\) is such a union; unrealizability is counted
+    as a separate witness, not as a failure of representability over \(E\). The role is named for the question it settles; its witnesses are the two answers the packaging does not already supply: no candidate realizes \(s\) although \(s\) is satisfiable outside the candidate class, or some packaging class splits the realizers. A \(W_2\) assertion of
+    unrealizability requires the recorded finite absence certificate, and a
+    satisfying realizer yields a \(W_2\) witness only when the comparison
+    certifies that the realizer set is not a union
+    of \(E\)-classes. If it is such a union, as for the pullback of a
+    predicate on packaged states, the comparison fails and there is no \(W_2\)
+    witness; the pullback alone does not establish a \(W_5\) witness.
+    ``Macro'' refers to the declared status of \(s\), not to definability over
+    the quotient: in the satisfying branch the witness certifies that
+    realizability of \(s\) is not already decided by the packaging, so the
+    \Ptwo{} content is not \Pfive{} content. For example, with the states \(0,1,2,3\) and the packaging \(q\) of the
+    running example, the specification \(s(r)\equiv(r=0\lor r=2)\) has realizer
+    set \(\{0,2\}\); the \(q\)-class \(\{0,1\}\) meets both \(\{0,2\}\) and its
+    complement, so realizability of \(s\) is not decided by \(q\)
+    (Proposition~\ref{prop:p2-witness}).
+  \item \Pthree{} compares two routes with the same start and end. A route
+    grammar has generating moves and rewrite rules, each rule relating two
+    words with the same source and target; two routes from \(u\)
+    to \(v\) mismatch when they are distinct in the category presented by the
+    moves and rules (a monoid when all moves are endomorphisms of one object), that is, when no chain of rule applications, in either
+    direction and in any context, connects them,
+    and a certificate of this, of one of the two types in the \(W_3\) row, is a
+    \Pthree{} witness. For example, let
+    \(a,b:u\to u\) be generating moves; if a certificate shows that no
+    chain of rule applications, in either direction and in any context,
+    connects the routes \(ab\) and
+    \(ba\), they give a \Pthree{} mismatch. With the single rule
+    \(aa\to a\), the monoid \(\{e,\bar a,\bar b\}\), with \(\varphi(a)=\bar a\) and
+    \(\varphi(b)=\bar b\), in which \(e\) is the identity and \(xy=x\) for
+    \(x\ne e\), records the first move: it identifies \(aa\) with \(a\) and
+    separates \(ab\) from \(ba\).
+  \item \Pfour{} is ordered structure: stages \(i_0<i_1<i_2\), transitions
+    between them, and refinements with stated laws. The \(W_4\) row requires no order: one transition record with a certified law suffices, including the identity transition \(T(z)=z\) on a one-point set (\(D_T\), proof of Proposition~\ref{prop:channel-vs-activation}).
+  \item \Pfive{} packages distinct states into one object, for example
+    \(x\ne y\) with \(\mathrm{pack}(x)=\mathrm{pack}(y)\), together with
+    evidence that the resulting quotient is valid.
+  \item \Psix{} is checkable record-keeping: events, a trace, their
+    provenance, and a replay or check of the trace.
+\end{itemize}
+
+\paragraph{A running example.} Throughout the paper we follow one small
+description. Its states are \(0,1,2,3\), its update \(F\) sends
+\(0\mapsto2\), \(1\mapsto0\), \(2\mapsto3\) and \(3\mapsto1\), and its lens
+\(q\) groups the states into the classes \(A=\{0,1\}\) and \(B=\{2,3\}\); the
+grouping is recorded as a relation record \(E\) of declared use quotient whose
+classes are \(A\) and \(B\), so \(E=\ker q\). It
+also records a trace \(0\to2\to3\) of the update, together with a replay and a
+check of that trace. The lens packages the states into a quotient object
+\(\{A,B\}\) with packaging map \(q\); this is \Pfive{} content. Descent of
+\(F\) through that quotient fails: \(q(0)=q(1)=A\), while \(q(F0)=q(2)=B\) and
+\(q(F1)=q(0)=A\). This split pair is \Pone{} content, and the example shows the
+permitted interaction of the row \Pone{}/\Pfive{} of
+Table~\ref{tab:boundary-matrix}: \Pone{} uses the \Pfive{} packaging when it
+checks descent, and neither is the other. The recorded trace, with its replay
+and check, is \Psix{} content. The description also records \(F\) as a
+transition record with a certified law and an index record naming \(A\) and
+\(B\). Its full record list is the table in the paragraph \emph{The running example as a description} (Section~\ref{sec:fatcd-domain}), and its decomposition record is the paragraph \emph{The running example, decomposed} (Section~\ref{sec:decomposition-exhaustion}); both use these two records.
+
+\subsection*{Witness predicates and the check language}\addcontentsline{toc}{subsection}{Witness predicates and the check language}\label{subsec:witness-predicates}
+\paragraph{Witness types.} Here a description is a finite set of typed
+records (Definition~\ref{def:raw-record}); map and relation records declare a
+use (update, packaging, quotient, realization or other); \(\Audit{D}\) is the
+set of honest audit annotations (Definition~\ref{def:audited}); and a cluster
+is a finite set of records. The table below fixes, for each role, when a
+finite cluster \(C\) of records \emph{supplies the witness type} of \(P_i\),
+that is, when \(W_i(C)\) holds; this table, with the paragraphs listed under \emph{Witness predicates}, is the definition of \(W_i\) that Definition~\ref{def:role-projection} uses. ``Recorded'' means
+given by finite typed fields of, or references to, declared records of the
+description. For \(W_i(C)\), witness fields must be carried by members of
+\(C\). A reference to a declared record outside \(C\) establishes its identity
+and type but does not import its fields as witness data. A certificate
+carried by a member of \(C\) is evaluated over the recorded values of \(D\). A formula \emph{reads the values of} a record \(d\) when \(d\)'s identifier occurs in it as the record argument of a field-value term, as the record whose graph, table or relation an application or relation atom uses, in \(t\in\mathrm{dom}\,d\) or \(t<_d t'\), as the record whose field a list operation or a quantifier bound uses, or as the predicate record of an abbreviation \(d(t)\); it also reads \(d\) when a variable or an indexed list entry occurring as the record argument of a field-value term can denote \(d\) under the formula's quantifier bounds and recorded lists (for a variable bounded by all declared records, or by those of one kind, every such record). This is a syntactic condition, met even when the truth value does not depend on those values. A
+record whose values a certificate reads is an input to it and, when the row names that
+record, must belong to \(C\). A row names the records it lists as
+constituents, together with the declared endpoint or index records of a
+\(W_4\) law-bearing record; the map, partial-map or transition record of a \(W_6\) replay certificate is named by the row and belongs to \(C\); other records a certificate reads, such as that map's
+declared domain, need not belong to
+\(C\). The \Psix{} audit
+entry is checked separately in \(\mathrm{Audit}_0(D)\subseteq\Audit{D}\) and need not be a content member
+of \(C\).
+
+\paragraph{Check language.} Checks are written in a fixed language: in summary, terms are record identifiers, rational constants, recorded field values, list lengths, entries and concatenations, applications of recorded maps and tables, finite sums and products, and word products \(\varphi^{m,e}(w)\); atoms are equality, order, \(t<_o t'\), \(t\in\mathrm{dom}\,F\), list membership and subword occurrence, relation atoms and \(W_i(C)\) (defined at the end of the paragraph \emph{Sorts}); formulas close atoms under \(\neg,\wedge,\vee,\to\) and bounded quantifiers. In detail: terms are record identifiers,
+rational constants, recorded field values and applications of recorded finite
+maps, that is, of the graphs listed by map, partial-map and transition records, combined by finite sums and products; a recorded field value is written \(f(d)\), with \(f\) the name of a datum or reference field and \(d\) a record-sorted term, its record argument (for instance \(v(w_k)\), \(A(E)\)), and \(f(d)_k\) is entry \(k\) of a list-valued field; the record argument may be an identifier, a variable or an indexed list entry, provided the denoted record carries that field, and a field name is not a record identifier, so \(f(d)\) is never read as an application \(F(t)\) of a map, partial-map, transition or table record; formulas are built from equality
+and order by \(\neg,\wedge,\vee,\to\) (with \(\leftrightarrow\) as an abbreviation,
+expanded before polarity is counted) and by quantifiers bounded by declared finite
+records or by the finite set of all declared records or of the declared records of one kind. An object record listing no members is not a declared finite record in this sense: a quantifier over it is a sort quantifier of the assertion language, and no certificate contains one.
+\par\emph{Lists and maps.} For every recorded finite list (a word in generating moves, the entry list
+of a trace, a list held in a datum field, or the identifier list of a
+reference field, such as the records an event or provenance record references
+or the members an object record lists) the language also has list
+length, indexing (\(\tau_k\) for the entry of a trace \(\tau\) at position \(k\), positions counted from \(0\)),
+membership, concatenation and contiguous-subword occurrence, with their
+standard finite-list meanings; the rewrite rules recorded in \(D\), taken in a
+fixed order of their rule fields, form a finite list \(R\) whose \(k\)-th entry is a
+pair \((\lambda_k,\mu_k)\), and \(\lambda_k\), \(\mu_k\) and \(\lambda_{k,p}\) (the entry of
+\(\lambda_k\) at position \(p\)) are terms; an entry of a recorded finite list that is itself a
+finite list is again a recorded finite list, so indexing and the other list
+operations apply to it at every finite depth (\(L_{k,p}\), \(L_{k,p,q}\), as for
+\(\lambda_{k,p}\)); for a recorded finite list \(w\) and a term
+\(u(x)\), \(\sum_{k<|w|}u(w_k)\) is a term; and for a finite table field \(m\)
+recording a binary operation on a recorded list \(N\) of rational constants,
+an element \(e\) of \(N\) and a recorded finite map \(\varphi\) into \(N\), the
+term \(\varphi^{m,e}(w)\) is the left-to-right \(m\)-product of
+\(\varphi(w_0),\dots,\varphi(w_{|w|-1})\), with \(\varphi^{m,e}(())=e\). In route
+certificate (a) the extension of \(\varphi\) to words is \(\varphi^{m,e}\), and in
+(b) the weight of a word \(w\) is \(\sum_{k<|w|}\mathrm{wt}(w_k)\); quantifiers over rules, positions and list
+entries are bounded by declared finite lists. Applications of recorded finite
+maps include the graphs of refinement records and finite tables recorded in a
+field; for a datum field \(L\) holding a finite list of finite tables on a
+declared finite record \(X\), \(L_k(t)\) is the value at \(t\) of the \(k\)-th
+listed table, so that closure of \(L\) under composition is
+\(\forall k,l<|L|\,\exists j<|L|\,\forall x\in X\,(L_j(x)=L_k(L_l(x)))\) and ``\(c\)
+differs from every listed map'' is
+\(\forall k<|L|\,\exists x\in X\,(c(x)\neq L_k(x))\). \par\emph{Domains, rows and orders.} For a map, partial-map or transition record \(F\) the language has the atom
+\(t\in\mathrm{dom}\,F\), true exactly when \(t\) is defined and its value
+occurs as the first coordinate of a pair in the graph of \(F\) (an
+interpretation assigns a map or transition record a graph defined at every
+member of its declared domain), and an atomic formula containing an undefined
+map or table application is false; for a transition record \(t\) with
+codomain \(\mathrm{Dist}(S)\), \(t(x)(s)\) is the entry of the row \(t(x)\)
+at the position of \(s\) in the member list of \(S\); for a declared finite record \(X\) and a term \(u(x)\),
+\(\sum_{x\in X}u(x)\) is a term; for each order record \(o\) it has the atom
+\(t<_o t'\).
+\par\emph{Relations and predicates.} For a recorded finite relation record \(R\)
+of arity \(k\), the language also has atoms \(R(t_1,\dots,t_k)\), true exactly
+when the tuple of values of \(t_1,\dots,t_k\) is among the tuples \(R\) lists
+(for a relation of declared use quotient, when the values lie in one listed
+class); \(x\sim y\) denotes such an atom. For a predicate record \(s\) given by
+an explicit check-language formula with one free variable, \(s(t)\) in a
+certificate abbreviates that formula with \(t\) substituted for the variable; the abbreviation is unfolded at each recomputation using the formula then recorded in \(s\), so a certificate containing \(s(t)\) reads the formula field of \(s\) and every record the unfolded formula reads.
+
+\paragraph{Certificates, assertion language and laws.} A \emph{certificate} is a record of a closed formula \(\varphi\) of
+this language, the inputs it names, and a truth value \(b\); it is correct
+when \(\varphi\) evaluates to \(b\) over the recorded values of the
+description, and \emph{recomputation} is this evaluation. For an atom \(W_j(C)\) the evaluation is classical: its value is fixed by its row over the description, but the free-form conjuncts allowed in \(W_3\)(b) need only express their conditions in every well-typed interpretation, so recomputing a certificate that contains \(W_3\) atoms is not in general an effective procedure; ``finite'' in the outside-scope criterion refers only to recorded extensions and carriers. Predicate,
+invariant and claim fields hold formulas of the \emph{assertion language}, and
+a comparison or law field holds such a formula or a certificate, whose formula
+is in the check language. The assertion language is the check language extended by the predicate
+symbols declared by predicate records of the description, each with a declared
+arity, and by quantifiers over sorts declared by object records that list no
+members. Given an assignment to any free variables, such a formula has a truth value over \(D\) when every predicate extension it
+uses and every quantified sort's carrier are recorded
+(Section~\ref{sec:fatcd-domain}); otherwise it is evaluated in \emph{expansions} of \(D\): an expansion keeps every recorded value, extension and carrier of \(D\), assigns to each sort declared by an object record listing no members an arbitrary set (possibly empty), and assigns to each declared predicate whose extension \(D\) does not record an arbitrary relation of its declared arity on the carriers of its argument sorts (\(\mathbb Q\) for a rational-sorted argument). Certificates,
+the rows of the table below and the seed clauses use the check language only;
+in particular the formula of a macro-specification in the \(W_2\) row and in
+seed clause (2) of Definition~\ref{def:channel-status} is a check-language formula containing no atomic \(W_j\)
+formula.
+\par\emph{Sorts.} Record identifiers and rational constants are distinct sorts. The declared
+types of fields, list entries and map or table arguments determine their
+sorts. A numeral or rational constant in record-sorted position (a record-typed argument of a
+recorded map, an argument of \(W_j\), a term substituted for a record-sorted
+variable, as in \(s(t)\), or compared with a record-valued term)
+denotes the record, with \(=\) as identity of records and \(<\) between record-sorted terms as the atom \(t<_o t'\) of the order
+record \(o\) the formula names (in an order law, the order record carrying it; in a refinement law for
+\(\rho:I\to I'\), \(<\) and \(<'\) are the atoms of the declared order records on
+\(I\) and on \(I'\)); a numeral in rational-sorted position (an argument of
+\(+\) or \(\cdot\), a rational-typed argument of a map or table, or compared
+with a value field) denotes the rational constant. In particular, monoid-table
+elements and arguments are rational-sorted, while the lists supplied to
+\(W_j\) contain record identifiers; equality compares terms of the same sort. The language also
+contains, for each \(i\le 6\) and each finite set \(C\) of declared record
+identifiers (written as a list of its members), an atomic formula \(W_i(C)\); its value is determined by the \(P_i\)
+row of the table below, with the \(\Audit{D}\) conjunct of the \(W_6\) row
+evaluated as in Definition~\ref{def:audited}. This is not circular: every certificate a row, law or seed clause reads contains no atom \(W_j\) (paragraph \emph{Failure and placement}), and the \(\Audit{D}\) conjunct of \(W_6\) ranges over \(\mathrm{Audit}_0(D)\), whose certificates and conclusions contain no such atoms (Definition~\ref{def:audited}(f)); so the rows are evaluated before any \(W_j\) atom is. Record kinds, declared uses and
+field roles are recorded field values. These tag values, and elements of declared finite sets whose declared type is neither record-valued nor rational-valued, form a third sort, compared only by equality; record identifiers and rational values retain their respective sorts. Recorded field values are the values of datum and reference fields together with these; formula-valued fields and the formula of a certificate field are not terms, and a term-valued field enters only through its recorded term.
+\par\emph{What a required certificate must express.} Whenever a row of
+the table below, a law, or a covered seed requires a certificate of a
+property, the certificate's formula must express that property: over the named inputs
+it must be equivalent, in every well-typed interpretation of
+Definition~\ref{def:audited}, to the verification condition prescribed for
+that certificate by its row, law or seed clause. In addition, its formula must be
+obtained from that condition, with the named inputs substituted, using only the
+following steps: omitting conjuncts true in every well-typed interpretation (as
+described below), expanding a quantifier or sum bounded by a reference-field
+list into the finite conjunction, disjunction or sum over its members, and
+replacing an application of a term-valued field by its recorded term. No other
+conjunct may be added, even one true in every well-typed interpretation. \par\emph{Exceptions.} Two rows adjust this rule where they are displayed: the \(W_6\) certificate has one of two fixed forms, and for \(W_3\)(b) only the displayed conjuncts and the step checks are fixed in form, the other conjuncts needing only to express their conditions. \par\emph{Further conventions.} A well-typed interpretation is an interpretation in the sense of Definition~\ref{def:audited}(c1); in particular it
+keeps the records of \(D\), their kinds, declared uses, field roles, references
+and formula- and term-valued fields, and lets every other datum field, such as
+a map graph or a multiplication table, take any value of its declared type.
+The prescribed conditions are displayed after the table: for \(W_6\) the exact
+forms, and for the other rows and for laws the formulas in the list beginning
+``For the other rows and for laws''. The certificate's truth value must be
+true, and it must be correct; an evaluation certificate \((s(t),b)\) recorded
+under the \(W_2\) row or seed clause (2) records a value, not a required
+property, and may have \(b=\mathrm{false}\). \par\emph{Named elements.} When a row, law or seed clause prescribes that some element, pair or class has a property, the prescribed
+verification condition is that property for the element, pair or class the
+certificate names among its inputs, as in alternative (b) of the \(W_1\) row, except where the displayed condition states the existence by a quantifier (the second conjunct of \(W_1\)(a), the coverage conjunct \(\forall z\in Q\,\exists u\in X\,(q(u)=z)\) of \(W_5\), the last conjunct of the order law, the formula \(\mathrm{Step}\) in the step checks of \(W_3\)(b), and the conditions of criterion (xi)(e)). \par\emph{Omitted conjuncts.} A conjunct that is true in every well-typed interpretation, such as \(x\in X\) for a declared domain \(X\) or \(k_0\in K\) for a declared candidate class \(K\) (reference-field lists being fixed by Definition~\ref{def:audited}(c1)), may be omitted without affecting equivalence. The \(W_1\)(b) certificates of \(D_{\mathrm{ex}}\) and \(D_1\), the \(W_2\) certificates of \(D_2\), and the comparison and realization-relation certificates of Remark~\ref{rem:recognition-open} omit exactly these conjuncts. The certificate \((\neg s(c),\mathrm{true})\) of the paragraph \emph{One record suffices for recognition} instead expands \(\forall k\in K\) over \(K=\{c\}\). These conditions must imply the
+asserted property; for \(W_3\) they are the monoid or rewriting checks, not an
+equivalence to route non-reducibility itself. \par\emph{Failure and placement.} A certificate that fails recomputation supplies no
+evidence for a witness, law or seed clause requiring that certificate; the
+record's other fields are assessed independently. A certificate used to
+establish a witness-table row, law or covered seed has a formula containing no
+atomic \(W_j(C)\); such atoms may instead be certified in an audit after the
+witness predicates have been determined. A certificate may be
+carried in a comparison or check record, or in the fields of the relevant
+relation, map, order, transition or refinement record.
+\par\emph{Laws.} A \emph{law} is an
+order, transition or refinement record (a binary relation record whose declared source and target are one object record \(I\) listing its members carries an order when it carries a certificate whose formula is the order law displayed after the table on the declared indices \(I\), with \(<\) read as its relation atom; it then counts as an order record in the \(W_4\) row, in seed
+clause (4) of Definition~\ref{def:channel-status} and for the atom
+\(t<_o t'\), read as its relation atom) together with a certificate of a stated property of it: that an order relation on the
+declared indices is irreflexive and transitive and relates at least one pair, that a transition map is
+defined on its declared domain (for a transition record this holds in every well-typed interpretation, so that conjunct may be omitted) with values in its declared codomain, where the
+codomain is a declared record listing finitely many members, or the set
+\(\mathrm{Dist}(X)\) of probability distributions on such a listed set \(X\), recorded by a codomain
+reference to \(X\) together with a datum field marking the codomain as
+distribution-valued (this marker, like a declared use, is kept fixed by every
+well-typed interpretation of Definition~\ref{def:audited}(c1)),
+membership in \(\mathrm{Dist}(X)\) being checked by nonnegativity and sum one,
+or that a
+refinement map between declared orders sends its declared source into its declared target and preserves the order.
+
+\paragraph{Witness predicates.}\label{par:witness-predicates} A role witness does not by
+itself supply the separate threshold, level, collapse-case and audit
+attachments of Definition~\ref{def:threshold-attachment}. Operationally, \(W_i(C)\) holds exactly when \(C\) records the data and relationships required by row \(P_i\) and its defining paragraphs: named constituent records belong to \(C\); certificates of required properties are carried by members of \(C\), recorded true, recompute true over \(D\), and satisfy the prescribed form requirements; for \(W_2\), recorded evaluations of \(s\), including false evaluation certificates, are correct; and the \(W_6\) audit entry satisfies that row's reference and conclusion requirements in \(\mathrm{Audit}_0(D)\). The predicates \(W_i\) are
+defined by the table together with the paragraphs \emph{Check language} and \emph{Certificates, assertion language and laws} before it (the latter fixes the laws of the \(W_4\) row), the paragraph \emph{Route certificates} (for \(W_3\)), the paragraph \emph{What a required
+certificate must express} with its continuations \emph{Exceptions} and \emph{Failure and placement}, the verification conditions displayed after the
+table, the membership convention of the paragraph \emph{Witness types}, and, for the \(\Audit{D}\) conjunct of \(W_6\), Definition~\ref{def:audited}(f); Proposition~\ref{prop:alignment-rules}
+derives from it which candidate features can support each role.
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{@{}l>{\raggedright\arraybackslash}X@{}}
+\toprule
+Role & \(W_i(C)\) holds exactly when \(C\) records \\
+\midrule
+\Pone{} & a map or partial-map record \(F\) whose declared use is \emph{update} (Definition~\ref{def:raw-record}), source and target relation records of declared use quotient (the two may be the same record; they are the relation records that the row's certificate names as its source relation \(\sim\) and target relation \(\sim'\)), and either (a) a finite certificate that the domain of \(F\) is saturated under the source relation, that some class of the source relation contains at least two elements of that domain, and that every related pair in that domain has related images, or (b) a comparison or check record of \(C\) naming a pair \((x,y)\) of members of the declared domain of \(F\) and carrying a certificate that \(x\) and \(y\) are related by the source relation and that either exactly one of them lies in the domain of \(F\) or \(F(x)\), \(F(y)\) are defined, each lies in a class of the target relation, and they are not related by the target relation; in either case the certificate identifies its inputs and the update \\
+\Ptwo{} & (1)~a macro-specification predicate \(s\) whose formula has exactly one free variable \(r\), occurring in it and ranging over records of the candidates' kind; (2)~a relation record \(\mathrm{Real}(r,s)\) of declared use realization and, in fields of that realization relation or of comparison or check records of \(C\), the evaluation of the formula of \(s\) at each member of the declared finite, nonempty class \(K\) of candidate realizers, every evaluation of \(s\) recorded in \(C\) being correct (equal to the value of the formula of \(s\) at that record in \(D\)); (3)~a certificate either exhibiting a satisfying realizer or checking that none in that class exists.\newline \emph{No-realizer branch}: also (a) an evaluation, recorded in a field of the realization relation or of a comparison or check record of \(C\), at which the formula of \(s\) is true at a declared same-kind record outside that class and (b) a candidate class that is the full declared domain of a map record of \(C\) of declared use packaging or update.\newline \emph{Satisfying branch}: also a comparison with the classes of the kernel \(E\) of a map record of \(C\) whose declared use is \emph{packaging} and whose declared domain contains the declared candidate class, certifying that some class of \(E\) meets both the realizer set and its complement in the candidate class, that is, that the realizer set is not a union of the sets \([x]_E\cap K\), so that in the satisfying branch realizability is not reducible to quotient-class equality \\
+\Pthree{} & two defined (paragraph \emph{Route certificates}, \emph{Definedness}) path or derivation records with the same declared source and target, written as words in the generating moves (map or partial-map records; since definedness reads their graphs, they belong to \(C\)), the finite rewrite rules \(\lambda\to\mu\) recorded with those routes or in referenced records that are members of \(C\), these being all rewrite rules recorded in \(D\), with the images \(\varphi(m)\) in (a) and the weights in (b) given for every move occurring in the two routes or in those rules, and a comparison certificate that the two routes are not related by those rules, in one of the two forms of the paragraph \emph{Route certificates} below \\
+\Pfour{} & at least one stage, order, transition or refinement record with declared endpoints or indices and a law for it in the sense above; an index label without such a law does not suffice \\
+\Pfive{} & distinct declared object or state records \(x,y\) (the micro-elements), a relation record \(E\) whose declared use is \emph{quotient}, a map record \(q\) whose declared use is \emph{packaging} to a declared quotient-object record \(Q\) (named by the row, so it belongs to \(C\)), and a check record of \(C\) carrying a certificate of quotient validity: \(E\) is the declared equivalence, \(q\) identifies \(x\) and \(y\), and the fibers of \(q\) agree with \(E\), with the quotient object covered by \(q\); a \Pone{} split-pair certificate alone does not suffice \\
+\Psix{} & a declared event \(e\), a trace record \(\tau\), a record tied to \(e\) (one of the two references the other) that is \(\tau\) itself or a provenance record also tied to \(\tau\), a replay or check record tied to \(\tau\) carrying a certificate, in the sense above, whose formula states a replay property of the trace (each successive trace entry is the image of the preceding one under a declared map, partial-map or transition record whose codomain is not of the form \(\mathrm{Dist}(S)\)) or a provenance property of it (each trace entry is a record referenced by a provenance record \(p\) of \(C\) tied to \(\tau\), and the trace begins at a record the event references), and an entry \(a\in\mathrm{Audit}_0(D)\) that refers to a claim annotation, to the event and trace records of \(C\) and to that replay or check record, and whose conclusion is the formula of that record's certificate \\
+\bottomrule
+\end{tabularx}
+\captionof*{table}{Witness types table. Witness predicates \(W_1,\dots,W_6\): for a fixed description \(D\), \(W_i(C)\) holds exactly when the finite cluster \(C\) records the data in row \(P_i\); the \(W_3\) row also refers to all rewrite rules recorded in \(D\), and the \(W_6\) row to \(\mathrm{Audit}_0(D)\). Every certificate a row requires must also meet the form requirements displayed after the table and in the paragraph \emph{What a required certificate must express}.}\phantomsection\label{tab:witness-types}
+\end{center}
+
+\paragraph{Route certificates.} (a)~\emph{Monoid certificate}: a finite monoid \(N\) given by its multiplication table (its elements recorded as rational constants in a list field and its multiplication as a finite table field) and the images \(\varphi(m)\in N\) of the moves, such that the extension \(\varphi\) of these images to words satisfies \(\varphi(\lambda)=\varphi(\mu)\) for every rule and \(\varphi(\rho_1)\neq\varphi(\rho_2)\), together with the checks that \(e\in N\), that \(N\) is closed under the recorded multiplication, and that \(N\) is associative with identity \(e\).
+(b)~\emph{Rewriting certificate}: a certificate that, for a recorded rational weight at least \(1\) of each move (finitely many such weights generate a discrete set of word weights, so strict decrease terminates) extended additively to words, each rule strictly decreases the weight. It also records the list of all critical pairs (every overlap of left-hand sides, as in the prescribed condition below, including proper overlaps of a left-hand side with itself or with another, and inclusion overlaps of left-hand sides; non-equivalence in the free monoid on the moves implies non-equivalence under rule applications restricted to composable routes), with a check that the list is complete. For each critical pair and for each of \(\rho_1,\rho_2\) it records a finite rewrite sequence, each step checked to replace one occurrence of some \(\lambda\) by its \(\mu\), words being recorded as finite lists of moves; the two sequences of each critical pair end in one word, and those from \(\rho_1,\rho_2\) end in distinct words containing no left-hand side. By the critical-pair lemma the rewrite system on all words is locally confluent, and by Newman's lemma confluent. The distinct normal forms therefore exclude any sequence of applications of the recorded rules, in either direction, relating the two routes, even when intermediate words need not be composable.
+\emph{Definedness}: a path or derivation record is \emph{defined} when it lists the successive records it passes through and each move's map or partial-map record is recorded as defined at the preceding record, with value the next one.
+A record is \emph{tied to} another when one of the two references the other.
+The recorded rule list may be empty; a \(W_3\) witness then certifies only that
+two parallel words are distinct, as for two distinct moves \(a,b:u\to v\), and
+in \(D_3\) the rule \(aa\to a\), applied in either direction, never identifies \(ab\) with \(ba\), since it changes only the lengths of runs of \(a\). Because the \(W_3\) row and both certificates range over all rewrite rules recorded in \(D\), a \(W_3\) witness is in general not preserved when records carrying further rewrite rules are adjoined; Proposition~\ref{prop:channel-vs-activation} therefore forms disjoint unions in which \(D_3\) alone records rules.
+
+For \(W_6\), the certificate formula is exactly \(\bigwedge_{k+1<|\tau|}\tau_{k+1}=F(\tau_k)\), for \(|\tau|\ge2\) and a map, partial-map or transition record \(F\) whose codomain is not of the form \(\mathrm{Dist}(S)\), or exactly \(\bigwedge_{k<|\tau|}\tau_k\in P\wedge\tau_0\in R_e\), with \(P\) and \(R_e\) the concatenations of the reference-field identifier lists of \(p\) and of \(e\), expanded over the entry list of \(\tau\); it contains no additional assertion. The row admits degenerate instances: a trace \((s,s)\)
+replayed by an identity map, and, since the provenance branch imposes no
+length condition, a one-entry trace whose entry the event and provenance record
+reference. In the provenance branch, the provenance record \(p\) and every
+record whose fields the check reads belong to \(C\).
+
+For the other rows and for laws, the prescribed verification condition is the
+following formula over the named inputs (\(\sim,\sim'\) the source and target
+relations, \(X\) the declared domain, and \(|{\sim}|\), \(|E|\) the lists of
+members of the listed classes of the relation records \(\sim\), \(E\); \(\forall u\in|E|\,\chi\) abbreviates \(\forall u\,(E(u,u)\to\chi)\), \(u\) ranging over all declared records).
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item \(W_1\)(a):
+\(\forall x\in X\,\forall y\in|{\sim}|\,((x\sim y\wedge x\in\mathrm{dom}F)\to y\in\mathrm{dom}F)
+\wedge\exists x,y\in X\,(x\in\mathrm{dom}F\wedge y\in\mathrm{dom}F\wedge x\ne y\wedge x\sim y)
+\wedge\forall x,y\in X\,((x\in\mathrm{dom}F\wedge y\in\mathrm{dom}F\wedge x\sim y)\to F(x)\sim'F(y))\);
+  \item \(W_1\)(b), for the named pair:
+\(x\in X\wedge y\in X\wedge x\sim y\wedge((x\in\mathrm{dom}F\leftrightarrow y\notin\mathrm{dom}F)\vee
+(x\in\mathrm{dom}F\wedge y\in\mathrm{dom}F\wedge F(x)\sim'F(x)\wedge F(y)\sim'F(y)\wedge\neg F(x)\sim'F(y)))\);
+  \item \(W_2\), no-realizer branch: \(\forall k\in K\,\neg s(k)\) for the
+non-realizer certificate, together with a separately recorded true evaluation
+\(s(t)\) for a named same-kind record \(t\notin K\); satisfying branch:
+\(k_0\in K\wedge s(k_0)\) for the named \(k_0\) and, for the comparison,
+\(x\in K\wedge y\in K\wedge q(x)=q(y)\wedge s(x)\wedge\neg s(y)\) for the named
+\(x,y\);
+  \item \(W_5\): \(\forall u,v\in X\,(E(u,v)
+\leftrightarrow q(u)=q(v))\wedge x\ne y\wedge q(x)=q(y)\wedge\forall z\in Q\,\exists
+u\in X\,(q(u)=z)\wedge\forall u\in|E|\,(u\in X)\wedge\forall u\in X\,(q(u)\in Q)\);
+  \item order law, on declared indices \(I\): \(\forall i\in I\,\neg(i<i)\wedge\forall
+i,j,k\in I\,((i<j\wedge j<k)\to i<k)\wedge\exists i,j\in I\,(i<j)\);
+  \item transition law, with declared source
+\(X\) and codomain \(Y\): \(\forall x\in X\,(x\in\mathrm{dom}\,t)\wedge\forall x\in X\,(t(x)\in
+Y)\), where, when \(Y=\mathrm{Dist}(S)\) for a declared finite carrier \(S\),
+membership means \(\forall s\in S\,t(x)(s)\ge0\) and
+\(\sum_{s\in S}t(x)(s)=1\) (a transition law imposes no nontriviality; the
+identity transition \(T\) of \(D_T\) in the proof of
+Proposition~\ref{prop:channel-vs-activation} satisfies it);
+  \item refinement law, for a declared map
+\(\rho:I\to I'\): \(\forall i\in I\,(\rho(i)\in I')\wedge\forall i,j\in I\,(i<j\to\rho(i)<'\rho(j))\) (the
+order-preservation conjunct is vacuous when the order on \(I\) relates no pair;
+the range conjunct remains required; like the transition law it imposes no
+nontriviality). \end{itemize}
+The \(W_3\) certificates are those of the paragraph \emph{Route
+certificates}. For \(W_3\)(a), with \(R\) the recorded rule list, \(M\) a list field of the comparison record, and \(w_1,w_2\) the recorded words of
+\(\rho_1,\rho_2\), the prescribed condition is
+\(e\in N\wedge\forall x,y\in N\,(m(x,y)\in N)\wedge\forall x,y,z\in N\,(m(m(x,y),z)=m(x,m(y,z)))\wedge\forall x\in N\,(m(e,x)=x\wedge m(x,e)=x)\wedge\forall a\in M\,(\varphi(a)\in N)\wedge\forall k<|R|\,(\varphi^{m,e}(\lambda_k)=\varphi^{m,e}(\mu_k))\wedge\neg\,\varphi^{m,e}(w_1)=\varphi^{m,e}(w_2)\wedge\forall k<|R|\,\forall p<|\lambda_k|\,(\lambda_{k,p}\in M)\wedge\forall k<|R|\,\forall p<|\mu_k|\,(\mu_{k,p}\in M)\wedge\forall p<|w_1|\,(w_{1,p}\in M)\wedge\forall p<|w_2|\,(w_{2,p}\in M)\).
+For \(W_3\)(b) it is the conjunction of the positivity of the weight of every move occurring in \(R\), \(w_1\) or \(w_2\), written \(\forall k<|R|\,\forall p<|\lambda_k|\,(\mathrm{wt}(\lambda_{k,p})\ge1)\wedge\forall k<|R|\,\forall p<|\mu_k|\,(\mathrm{wt}(\mu_{k,p})\ge1)\wedge\forall p<|w_1|\,(\mathrm{wt}(w_{1,p})\ge1)\wedge\forall p<|w_2|\,(\mathrm{wt}(w_{2,p})\ge1)\),
+\(\forall k<|R|\,(\mathrm{wt}(\lambda_k)>\mathrm{wt}(\mu_k))\), completeness and
+correctness of the critical-pair list (for all rule indices \(k,l<|R|\), including \(k=l\), and every overlap of \(\lambda_k\) with \(\lambda_l\), whether an inclusion overlap (an occurrence of \(\lambda_k\) as a contiguous subword of \(\lambda_l\) for \(k\ne l\), including one at position \(0\) even if \(\lambda_k=\lambda_l\); for \(k=l\) there is no inclusion overlap) found by contiguous-subword occurrence or a proper overlap (a nonempty proper suffix of \(\lambda_k\) equal to a prefix of \(\lambda_l\)) found by indexing, the list has an entry consisting
+of the overlap word and the two words obtained from it by the two overlapping
+rule applications, and every entry has this form), the step check of each
+recorded rewrite sequence, the condition that the two sequences of each entry
+start at its two words and end in one word, and that the sequences for
+\(\rho_1,\rho_2\) start at \(w_1,w_2\), and irreducibility and
+distinctness of the normal forms of \(w_1,w_2\), each written with the list
+operations of the check language. The step check of a recorded sequence \(L\) is
+\(\forall j<|L|\,(j+1<|L|\to\mathrm{Step}(L_j,L_{j+1}))\), where
+\(\mathrm{Step}(u,v)\) abbreviates
+\(\exists k<|R|\,\exists p<|u|\,(p+|\lambda_k|\le|u|\wedge|v|+|\lambda_k|=|u|+|\mu_k|\wedge\forall q<|u|\,(q<p\to v_q=u_q)\wedge\forall q<|\lambda_k|\,(u_{p+q}=\lambda_{k,q})\wedge\forall q<|\mu_k|\,(v_{p+q}=\mu_{k,q})\wedge\forall q<|u|\,(p+|\lambda_k|+q<|u|\to v_{p+|\mu_k|+q}=u_{p+|\lambda_k|+q}))\).
+For \(W_3\)(b) the exact-form requirement of the paragraph \emph{What a required certificate must express} applies to the displayed conjuncts and to the step checks; each remaining conjunct (critical-pair completeness and correctness, the endpoint conditions, irreducibility and distinctness) may be any check-language formula that expresses its condition in every well-typed interpretation. Equivalence in every well-typed interpretation is not decidable in general (datum lists may change length across interpretations and the language has \(+\) and \(\cdot\) on list lengths, so solvability of Diophantine equations over \(\mathbb N\) reduces to it), and neither are \(W_3\), the entailment requirement (c2) or criterion (viii); the paper uses these predicates classically and claims no decision procedure.
+
+In the no-realizer branch of the \(W_2\) row, condition (a) supplies a true
+evaluation of \(s\) outside the candidate class, so that the recorded
+evaluations of \(s\) take both truth values, as seed clause (2) of
+Definition~\ref{def:channel-status} requires; condition (b) fixes the candidate
+class as the full declared domain of a packaging or update map, so that it is
+not chosen ad hoc. These conditions restrict the recorded evaluations of \(s\).
+Given the map required by (b) and the evaluations and certificates of the row, \(s(r)\equiv(r=t)\), for any
+declared same-kind record \(t\notin K\), satisfies the no-realizer
+requirements on \(s\). In the satisfying branch, given a packaging map \(q\) of the cluster whose declared domain contains \(K\) and the evaluations and certificates of the row, \(s(r)\equiv(r=x)\)
+suffices whenever \(x\in K\) and its \(q\)-class contains a
+second member of \(K\). A \(W_2\) witness thus certifies the recorded form of a
+specification relative to the declared class
+(Remark~\ref{rem:classification-scope}).
+
+The three levels of Definition~\ref{def:level-trichotomy} separate what
+happens (behavior), the certificate that it happens (verification), and
+the structure that explains it, such as a quotient object with its
+universal property (structure). The running example above shows \Pone{}, \Pfive{} and \Psix{}
+in one small description.
+
+\begin{remark}[Excluded alignments]\label{rem:repaired-alignments}
+Three alignments that Definition~\ref{def:primitive-roles} and the
+\emph{Witness types} table rule out
+are used throughout later classification: generic transition data is
+not \Pthree{}; generic path or derivation data is not \Pfive{}; and
+generic semantic or interpretation data is not \Pone{}. These
+constraints determine which feature clusters can later be interpreted
+as active projections of each role. Precisely: a cluster without two defined
+path or derivation records, or without a comparison certificate of the
+\(W_3\) row, fails \(W_3\); a cluster without a relation record of declared use quotient,
+or without a map record of declared use packaging, fails \(W_5\); and a cluster without
+a map or partial-map record of declared use update fails \(W_1\). Each is read
+off its row of the \emph{Witness types} table, so these alignments add no
+hypothesis beyond that table.
+\end{remark}
+
+\begin{remark}[Drive face of \Psix{}]\label{rem:p6-drive}
+Foundations I uses a specialization \(\mathrm{P6}_{\mathrm{drive}}\) of
+\Psix{} for arguments about affinities and detailed
+balance~\citep{Seifert2012}. This paper assigns it no witness type and no
+result uses it; the point retained here is that a \Pthree{}
+route/coherence-mismatch witness does not by itself establish directionality
+(Definition~\ref{def:primitive-roles}).
+\end{remark}
+
+No proof in this paper uses the drive face; the terms of the remark are as
+follows. For a Markov chain with stationary law \(\pi\), \emph{detailed balance}
+means \(\pi_x P_{xy}=\pi_y P_{yx}\) for every pair of states. For a
+cycle of states with positive stationary mass and positive transition
+probabilities in both directions,
+its \emph{affinity} is the logarithm of the product of the forward
+probabilities divided by the product of the reverse ones; a nonzero
+affinity witnesses a failure of detailed balance. The remark records that a \Pthree{} mismatch alone does
+not establish a direction, the distinction also recorded in
+Definition~\ref{def:primitive-roles}.
+
+\subsection{Behavioral, verification, and structural-categorical levels}\label{subsec:levels}
+
+Each role admits a common three-level pattern.
+
+\begin{definition}[Level trichotomy]\label{def:level-trichotomy}
+For each role \Pone{}, \ldots, \Psix{}, we distinguish
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item the \emph{behavioral level}: status, occurrence, or observed
+    behavior of the role in a description;
+  \item the \emph{verification level}: proof, witness, certificate, or
+    checkable record supporting a behavioral
+    claim~\citep{MartinLof1984};
+  \item the \emph{structural-categorical level}: reusable structure
+    supporting the primitive role.
+\end{itemize}
+Forgetting proceeds from structural-categorical to verification to
+behavioral and is in general lossy. Lifting proceeds from behavioral to
+verification to structural-categorical only after adding explicitly
+recorded data, and selected lifts are not unique. Formally, a level is one of
+the three values recorded in the level field of a level annotation; the
+proofs of Sections~\ref{sec:lower-bounds}--\ref{sec:scoped-exact-six} require
+that such a value be recorded and use only whether two recorded values coincide
+(for the level crossings of Definition~\ref{def:role-projection}), not which
+value is recorded.
+\end{definition}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>={Stealth[length=2mm]},
+  lv/.style={rectangle,rounded corners,draw,minimum width=4.4cm,minimum height=7mm,font=\small}]
+\node[lv] (st) at (0,2.6) {structural-categorical level};
+\node[lv] (ve) at (0,1.3) {verification level};
+\node[lv] (be) at (0,0) {behavioral level};
+\draw[->] ([xshift=-6mm]st.south) -- node[left,font=\footnotesize] {forget (lossy)} ([xshift=-6mm]ve.north);
+\draw[->] ([xshift=-6mm]ve.south) -- node[left,font=\footnotesize] {forget (lossy)} ([xshift=-6mm]be.north);
+\draw[->,dashed] ([xshift=6mm]be.north) -- node[right,font=\footnotesize] {selected lift, with added data} ([xshift=6mm]ve.south);
+\draw[->,dashed] ([xshift=6mm]ve.north) -- node[right,font=\footnotesize] {selected lift, with added data} ([xshift=6mm]st.south);
+\end{tikzpicture}
+\caption{The three levels of Definition~\ref{def:level-trichotomy}. Forgetting
+moves down and loses data; lifting moves up only with recorded added data, and
+the lift is a selection, not in general unique.}\label{fig:levels}
+\end{figure}
+
+\begin{remark}[Level content per primitive]\label{rem:per-primitive-levels}
+The level trichotomy instantiates as follows.
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item \Pone{}: descent success or descent obstruction status; descent
+    proof or obstruction witness; quotient data equipped with a descended
+    map, or an explicit no-descended-map obstruction record.
+  \item \Ptwo{}: certified unrealizability or failure of representability
+    over the declared packaging kernel; the certificate of that status;
+    macro-specification layer together with a realization relation.
+  \item \Pthree{}: witness behavior of route disagreement; generated route
+    terms and non-reducibility certificates; categorical route grammar or a
+    reduced categorical universe.
+  \item \Pfour{}: stage status, transition occurrence, or refinement
+    behavior; order/preorder, transition, or refinement certificates;
+    stage/refinement architecture.
+  \item \Pfive{}: packaging or identification behavior; equivalence and
+    quotient-validity certificate; quotient object with a packaging map
+    and universal-property or tower/coarsening data.
+  \item \Psix{}: audit-relevant event occurrence or record--event
+    association; checkable audit record; audit schema with provenance,
+    replay, and check relations.
+\end{itemize}
+The meta-theoretic properties of this trichotomy --- lossy forgetting,
+selected non-unique lifts, and the absence of lower-to-higher determinacy
+without added data --- are formalized in
+Section~\ref{sec:admissibility-meta-theory}.
+\end{remark}
+
+\subsection{Local boundary distinctions}\label{subsec:boundary-matrix}
+
+With role meanings and level pattern fixed, we turn to how the six
+roles remain distinct. Table~\ref{tab:boundary-matrix} records the
+pairwise local rules. These are local distinctions under scoped
+bookkeeping, not a global primitive-independence theorem: two roles
+may interact legitimately in a single description, but neither
+collapses into the other. The rules below use the domain \FATCD{} and the
+channel statuses before they are defined; a reader who prefers definitions
+first can read Sections~\ref{subsec:raw-grammar}--\ref{subsec:threshold-attachment}
+and Definition~\ref{def:channel-status} first.
+
+\input{sections/boundary_matrix_table}
+
+\begin{proposition}[Boundary distinctions under scoped bookkeeping]\label{prop:boundary-distinctions}
+In each row of Table~\ref{tab:boundary-matrix}, isolate the bare partner
+datum \(X_b\) listed in its last column, presented as a boundary record in
+the sense of Definition~\ref{def:annotations} (carrying exactly the fields of that
+datum, the typing fields of its kind, the datum and reference fields its certificates read, and reference fields to other members of its cluster). That datum alone lacks a record that the credited role's witness row requires a witness cluster to contain: \(W_i(C)\) is false for a cluster \(C\) formed only from that
+datum, without importing fields of referenced records or adding
+independently supplied credited-role records. Consequently a claim that the credited \(P_i\)
+projection follows from that datum, without the further data required by
+\(W_i\), is inadmissible (in the sense of Section~\ref{sec:admissibility-meta-theory}) under the alignments of
+Remark~\ref{rem:repaired-alignments} together with the honest bookkeeping
+required by a \FATCD{}. A cluster carrying independently supplied witnesses
+for both roles may activate both channels; this is the permitted interaction,
+not their identification.
+\end{proposition}
+
+The proof uses the domain \FATCD{}, the truth of honest audit conclusions and the certification condition for claims (Definitions~\ref{def:fatcd}, \ref{def:audited}(c3) and~\ref{prop:honest-bookkeeping}); the row-by-row verdicts after it use the offers of Definition~\ref{def:audited}(d) and are contrasted there with the statuses of Definition~\ref{def:channel-status}; a first reading can skip it. The idea of
+the proof is short. Each forbidden collapse would credit one
+role with data that only the other role's witness type supplies. The
+borrowed content does not supply the credited role's witness, so the
+attempted identification receives an inactive local verdict and is
+inadmissible; independent data may still activate the description's
+channel. The proof checks this
+row by row; the three rows worked in full show the two shapes the
+argument takes. The local verdicts \emph{no offer} and \emph{failed offer} below describe
+two failures of a local attempt: respectively, no credited-role witness is
+offered, or an offered cluster fails its witness check. They are not channel
+statuses \(\Status{i}{D}\), which Definition~\ref{def:channel-status} assigns
+from the whole description. In the general argument, \(P_i\) is the role the collapse
+would credit and \(P_j\) the role whose content it borrows; in the
+enumeration of the rows, each row is written \(P_i/P_j\) in the order of
+Table~\ref{tab:boundary-matrix}, and each clause names the credited role,
+which may be either member of the pair.
+
+
+\begin{proof}
+In short, each credited row of the witness table requires a record that the
+row's bare datum lacks: an update map or a source relation record of declared use quotient for \(W_1\) (rows P1/P5, P1/P4, P1/P2, P1/P6); a
+macro-specification with a realization relation for \(W_2\) (rows P2/P5,
+P2/P4, P2/P6); two defined path or derivation records for \(W_3\) (rows
+P1/P3, P2/P3, P3/P5, P3/P6); a law-bearing order, transition or refinement
+record for \(W_4\) (rows P3/P4, P4/P5, P4/P6); and a quotient relation with a
+packaging map for \(W_5\) (row P5/P6). Hence \(W_i(C)=\mathrm{false}\). A claim that the credited \(P_i\) projection
+follows from the datum has statement \(W_i(C)\). By
+Definition~\ref{def:audited}(c3), an outright conclusion of an honest audit that
+uses no unrecorded predicate symbol and quantifies only over recorded carriers
+is true in \(D\), and \(W_i(C)\) is such a formula; so no honest audit certifies
+\(W_i(C)\), the certification condition of
+Definition~\ref{prop:honest-bookkeeping} fails, and the claim is inadmissible.
+This proves the proposition.
+\end{proof}
+
+\paragraph{Row-by-row local verdicts.} The local attempt verdicts below
+are illustrative and are not used by later results. The enumeration and
+table also identify each row's credited role and missing witness field,
+used in Proposition~\ref{prop:typed-non-collapse}. A reader may continue
+at Remark~\ref{rem:not-global-independence}
+(p.~\pageref{rem:not-global-independence}). The verdict is not derived
+from the row: in every row it is
+failed offer if the attempt is recorded as an offer and no offer otherwise,
+and only \(W_i(C)=\mathrm{false}\) is proved. No later result uses these
+verdicts. Each row of Table~\ref{tab:boundary-matrix} names an
+ordered pair \((P_i,P_j)\), a permitted interaction, and a forbidden
+collapse. The forbidden collapse always has the same logical form: it would
+license treating witness or structural data carried under the meaning of one
+role as if it were, by itself, witness or structural data for the other role
+--- that is, it would identify the two roles' admissible data types. The following
+enumeration records, row by row, the credited role and the missing witness
+field that the proof of Proposition~\ref{prop:boundary-distinctions}
+summarizes, and maps each row's forbidden collapse to a common schema. The
+enumeration discharges
+all fifteen rows of Table~\ref{tab:boundary-matrix}, mapping each row's
+forbidden collapse to the schema, with the role-specific data types read off
+Definition~\ref{def:primitive-roles} and the per-primitive level content of
+Remark~\ref{rem:per-primitive-levels}. Three rows are then worked in full as
+illustrations.
+
+\emph{Schema.} Fix a row and isolate the particular partner-role datum named
+in its forbidden-collapse entry. Compare that datum with the fields required
+by the credited role's witness row. If a required field is absent, the bare
+datum cannot certify \(W_i\); hence the implication from that datum alone to
+an active \(P_i\) projection is invalid. An offered cluster containing only the
+bare datum may honestly record a failed \(W_i\) check. Adding the missing
+\(P_i\) data may make \(W_i\) true and may activate both channels, without
+identifying their meanings; this is the permitted interaction of the row.
+
+\emph{Application to the rows.} Every entry in the forbidden-collapse column
+has one of two shapes. In the \emph{carried form}, ``\(X\) alone is not
+\(P_i\)'' or ``\(X\) is not \(P_i\)'', the datum \(X\) is content named by the
+distinction-rule column as the meaning of the partner role; the credited-role
+field absent from the bare datum is listed below. In the
+\emph{non-implication form}, ``\(P_j\)-status \(S\) is not automatically
+\(P_i\)-status \(S'\)'', the partner's status or certificate is not the
+credited role's required certificate. These are checks of the stated bare
+datum, not assertions that every \(P_j\)-bearing cluster fails \(W_i\). The
+fifteen clauses record the missing fields.
+
+\emph{Enumeration of all fifteen rows.} We list each row as
+\(P_i/P_j\), name the credited channel, the borrowed content, and the
+distinct witness type the credited channel requires but does not receive, so
+that the schema applies with no residue. Throughout, the local attempt verdict of a clause describes the attempted
+identification; it is not the channel status \(\Status{i}{D}\) that
+Definition~\ref{def:channel-status} assigns from a whole description; a
+description may carry such an attempt and, independently, an active witness
+for the same role. In every clause the attempt may be recorded as an offer, with check result
+\(W_i(C)=\mathrm{false}\) (verdict failed offer), or not recorded (verdict no
+offer); the clauses below illustrate the first case in (3), (4), (8), (10),
+(11) and (13) and the second in the others.
+These stipulations concern the listed attempts, not the status
+\(\Status{i}{D}\) of a full description; the two verdicts describe the
+attempts as listed, and the statement uses only
+\(W_i(C)=\mathrm{false}\), which holds in every clause.
+\begin{enumerate}[topsep=2pt,itemsep=2pt,label=\textup{(\arabic*)}]
+  \item \(\Pone{}/\Pfive{}\), ``packaging alone is not \Pone{}'': credits
+    \Pone{} on the \Pfive{} packaging map record alone; the update or partial-map record and the
+    certificate or related-pair witness required by \(W_1\) are absent; the displayed local attempt verdict for \Pone{}
+    is no offer.
+  \item \(\Pone{}/\Pfour{}\), ``stage index alone is not \Pone{}'': credits
+    \Pone{} on \Pfour{} stage-index content; no descent or obstruction witness
+    is thereby present; the displayed local attempt verdict for \Pone{} is no offer.
+  \item \(\Pone{}/\Ptwo{}\), ``representability failure is not automatically
+    descent obstruction'': credits \Pone{} on a \Ptwo{} non-representability
+    status; a non-representability certificate is not a descended-map
+    obstruction record and does not instantiate the \Pone{} obstruction
+    witness; the displayed local attempt verdict for \Pone{} is failed offer.
+  \item \(\Pone{}/\Pthree{}\), ``route undefinedness is not route mismatch'':
+    credits \Pthree{} on the undefinedness of a route through a partial update
+    map, where the map is undefined at a value the route passes through; a
+    non-reducibility certificate between \emph{already-defined} routes is
+    required, and an undefined route supplies no such certificate, so the candidate cluster does
+    not instantiate the \Pthree{} witness schema; recorded as an offer, the
+    attempt has local verdict failed offer.
+  \item \(\Pone{}/\Psix{}\), ``audit record is not descent obstruction'':
+    credits \Pone{} on a \Psix{} audit record; an audit record is not a
+    descended-map or obstruction witness; the displayed local attempt verdict for \Pone{} is
+    no offer.
+  \item \(\Ptwo{}/\Pfive{}\), ``packaging alone is not \Ptwo{}'':
+    credits \Ptwo{} on \Pfive{} packaging content alone. The packaging map
+    supplies neither the realization relation nor its finite existence
+    or nonexistence certificate; in the satisfying-realizer branch it also
+    supplies no required comparison. The local attempt verdict for \Ptwo{}
+    is no offer. A separately witnessed \Ptwo{} projection may still
+    accompany the packaging.
+  \item \(\Ptwo{}/\Pfour{}\), ``stage variation alone is not \Ptwo{}'':
+    credits \Ptwo{} on \Pfour{} stage content; a representability certificate
+    with realization relation is required, and stage variation supplies none, so
+    the local attempt verdict for \Ptwo{} is no offer.
+  \item \(\Ptwo{}/\Pthree{}\), ``non-representability is not route mismatch'':
+    credits \Pthree{} on a \Ptwo{} non-representability status; a
+    non-representability record is not a non-reducibility certificate between
+    defined routes and does not instantiate the \Pthree{} witness schema, so the
+    local attempt verdict for \Pthree{} is failed offer.
+  \item \(\Ptwo{}/\Psix{}\), ``audit trail is not representability'': credits
+    \Ptwo{} on a \Psix{} audit trail; an audit record is not a representability
+    certificate; the displayed local attempt verdict for \Ptwo{} is no offer.
+  \item \(\Pthree{}/\Pfour{}\), ``stage-indexed route mismatch is not \Pfour{}
+    itself'': credits \Pfour{} on the \Pthree{} route-disagreement certificate
+    alone, without the stage law that indexes it; a non-reducibility
+    certificate carries no order, transition, or
+    refinement structure and does not instantiate the \Pfour{} witness schema;
+    if the certificate is carried in the fields of an order, transition or
+    refinement record, that record still carries no law, since its only
+    certificate expresses non-reducibility of two routes, so \(W_4\) fails and
+    the local attempt verdict for \Pfour{} is failed offer.
+  \item \(\Pthree{}/\Pfive{}\), ``quotient object is not route mismatch'':
+    credits \Pthree{} on a \Pfive{} quotient object; a quotient object is not a
+    non-reducibility certificate between defined routes and does not instantiate
+    the \Pthree{} witness schema; the displayed local attempt verdict for \Pthree{} is
+    failed offer.
+  \item \(\Pthree{}/\Psix{}\), ``audit record is not route mismatch'': credits
+    \Pthree{} on a \Psix{} audit record; an audit record is not a
+    non-reducibility certificate; the displayed local attempt verdict for \Pthree{} is
+    no offer.
+  \item \(\Pfour{}/\Pfive{}\), ``packaging is not stage structure'': credits
+    \Pfour{} on the \Pfive{} packaging map alone; a packaging map is not an
+    order/transition/refinement certificate and does not instantiate the
+    \Pfour{} witness schema; the displayed local attempt verdict for \Pfour{} is failed offer.
+  \item \(\Pfour{}/\Psix{}\), ``audit record is not staging'': credits \Pfour{}
+    on a \Psix{} audit record of staged histories; an audit record is not an
+    order/transition/refinement certificate; the displayed local attempt verdict for \Pfour{} is
+    no offer.
+  \item \(\Pfive{}/\Psix{}\), ``audit record is not packaging map'': credits
+    \Pfive{} on a \Psix{} audit record of packaging events; an audit record is
+    not a quotient object with a packaging map; the displayed local attempt verdict for \Pfive{} is
+    no offer.
+\end{enumerate}
+Clauses (1)--(15) exhaust the rows of Table~\ref{tab:boundary-matrix}: each
+names the credited channel, the borrowed partner-role content, and the
+distinct witness type the credited channel requires and does not receive, and
+each clause shows that the named bare datum lacks a field required by the
+credited witness; the displayed local verdict describes an absent or failed
+offer, not a status of the full description.
+
+We now work three of these rows in full; they illustrate the carried and
+non-implication shapes.
+
+\emph{Row \(\Pone{}/\Pfive{}\) (packaging alone is not \(\Pone{}\)), clause
+(1).} By Definition~\ref{def:primitive-roles}, \Pfive{} is quotient packaging
+and \Pone{} is update-vs-quotient compatibility, i.e.\ descent. By the
+\(W_5\) row of the witness table, a \Pfive{}-witness is a quotient object
+with a packaging map and quotient-validity evidence, whereas a
+\Pone{}-witness (the \(W_1\) row) is an update map or partial map with source
+and target relation data and either its compatibility certificate or a related
+pair witnessing failed domain saturation or separated defined images. Possession of the packaging
+map is precisely the data that says \emph{what} the quotient is; it says nothing
+about \emph{whether} a selected update descends through it. In terms of the
+\emph{Witness types} table, \(W_1\) requires a map record whose declared use is
+\emph{update}, and the \Pfive{} cluster of the packaging datum contains only
+the packaging map, whose declared use is \emph{packaging}; so \(W_1\) fails on
+that cluster. The collapse
+``packaging alone is \Pone{}'' would credit the \Pone{} channel on the strength
+of the packaging map alone, but no descended-map witness and no obstruction
+record is thereby present, so by the schema the verdict on this attempted
+identification is no offer; an independently witnessed \Pone{} channel may
+still be active. The descent question has not been answered by the packaging
+map. The
+permitted interaction --- \Pone{} using \Pfive{} when checking descent or
+obstruction --- is untouched, since there \Pone{} consumes the quotient
+packaging as the object \emph{over which} a descended map or obstruction is then
+exhibited, and the descent witness remains the \Pone{} channel's own content.
+
+\emph{Row \(\Pthree{}/\Pfour{}\) (stage-indexed route mismatch is not
+\(\Pfour{}\) itself), clause (10).} By Definition~\ref{def:primitive-roles},
+\Pfour{} is stage/order/transition/refinement structure and \Pthree{} is
+enriched route/coherence mismatch; by Remark~\ref{rem:repaired-alignments}
+generic transition data is \emph{not} \Pthree{} and, symmetrically, a
+route-mismatch witness is not \Pfour{}. A \Pfour{}-witness is an
+order/transition/refinement certificate or a stage architecture; a
+\Pthree{}-witness is a non-reducibility certificate exhibiting disagreement
+between already-defined routes. When route mismatch is indexed by stages, the
+stage index is \Pfour{}-content and the route disagreement at each index is
+\Pthree{}-content; these are recorded as data of different roles. The collapse
+``stage-indexed route mismatch is \Pfour{}'' would credit the \Pfour{} channel
+on the strength of the route-disagreement certificate considered without its
+stage-law record, but a
+non-reducibility certificate is not an order/transition/refinement certificate
+--- it carries no stage, order, or refinement structure of its own --- so by the
+schema the local attempt verdict for \Pfour{} is failed offer: the candidate
+cluster does not instantiate the required \Pfour{} witness schema. The permitted
+interaction --- route systems varying over valid stages --- is untouched, since
+there the \Pfour{} stage structure is supplied independently and the \Pthree{}
+mismatch is merely indexed by it, each channel keeping its own witness.
+
+\emph{Row \(\Ptwo{}/\Pfive{}\), clause (6).} \Ptwo{} concerns a
+macro-specification and its realization relation; \Pfive{} concerns
+quotient packaging. In the satisfying-realizer branch of \(W_2\), the recorded
+comparison must show that some class of the kernel of the declared packaging
+map meets both the realizer set and its complement in the candidate class. In the no-realizer branch, recorded satisfaction data, a
+finite certificate that no candidate satisfies the specification, and a
+recorded true evaluation at a declared same-kind record outside the class,
+and a candidate class that is the full declared domain of a declared
+packaging or update map, suffice; no quotient comparison is required. A packaging map alone
+supplies neither branch's realization relation and certificate. Thus the
+proposed credit of \Ptwo{} from \Pfive{} packaging alone makes no \(W_2\)
+offer; the local attempt verdict for \Ptwo{} is no offer. A
+\Ptwo{} witness may still be carried alongside \Pfive{} quotient data when its
+own required records and attachments are present.
+
+The enumeration (1)--(15) covers every row of
+Table~\ref{tab:boundary-matrix}, and the three worked rows confirm both shapes
+in detail. The argument is local to each listed pair under the covered scope and
+the audit condition of Definition~\ref{def:audited}; it establishes pairwise
+non-collapse, not global independence of the six roles (cf.\
+Remark~\ref{rem:not-global-independence}).
+
+The clauses of the proof follow the rows of Table~\ref{tab:boundary-matrix};
+the credited role of each, and the verdict its clause illustrates, are as follows; in every row the verdict is \emph{failed offer} if the attempt is recorded as an offer and \emph{no offer} otherwise, and only \(W_i(C)=\mathrm{false}\) is proved:
+\begin{center}
+\footnotesize
+\begin{tabular}{@{}llll@{\qquad}llll@{}}
+\toprule
+& pair & credited & local verdict & & pair & credited & local verdict \\
+\midrule
+(1) & \Pone{}/\Pfive{} & \Pone{} & no offer & (9) & \Ptwo{}/\Psix{} & \Ptwo{} & no offer \\
+(2) & \Pone{}/\Pfour{} & \Pone{} & no offer & (10) & \Pthree{}/\Pfour{} & \Pfour{} & failed offer \\
+(3) & \Pone{}/\Ptwo{} & \Pone{} & failed offer & (11) & \Pthree{}/\Pfive{} & \Pthree{} & failed offer \\
+(4) & \Pone{}/\Pthree{} & \Pthree{} & failed offer & (12) & \Pthree{}/\Psix{} & \Pthree{} & no offer \\
+(5) & \Pone{}/\Psix{} & \Pone{} & no offer & (13) & \Pfour{}/\Pfive{} & \Pfour{} & failed offer \\
+(6) & \Ptwo{}/\Pfive{} & \Ptwo{} & no offer & (14) & \Pfour{}/\Psix{} & \Pfour{} & no offer \\
+(7) & \Ptwo{}/\Pfour{} & \Ptwo{} & no offer & (15) & \Pfive{}/\Psix{} & \Pfive{} & no offer \\
+(8) & \Ptwo{}/\Pthree{} & \Pthree{} & failed offer & & & & \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{remark}[Not a global independence theorem]\label{rem:not-global-independence}
+The boundary matrix asserts local distinctions, not global
+independence. Primitives interact legitimately in a single
+description: \Pone{} descent is audited by \Psix{}; \Pthree{} route
+terms may be indexed by \Pfour{} stages; in the satisfying branch a
+\Ptwo{} witness is carried over \Pfive{} packaging data.
+No claim is made that the six roles are independent generators of a
+global algebra. The typed-non-collapse counterpart of this observation
+appears in Section~\ref{sec:admissibility-meta-theory}.
+\end{remark}
+
+\subsection{Selected-lift atlas and global nonclaims}\label{subsec:lift-atlas}
+
+The remaining architectural data are the selected lifts between levels
+and the nonclaims that accompany them. Upgrading from behavioral or
+verification content to the structural-categorical level requires
+explicitly recorded added data. The resulting lifts are selected, not
+unique, and the atlas carries structural content that is lost under
+forgetting.
+
+\begin{definition}[Selected-lift atlas]\label{def:selected-lift-atlas}
+The \emph{selected-lift atlas} for the six roles records, for each
+\Pone{}, \ldots, \Psix{}:
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item \Pone{}: proof or witness together with quotient structure, carrying
+    either a descended map or an explicit no-map obstruction;
+  \item \Ptwo{}: certificates of unrealizability or of failure of
+    representability over the declared packaging kernel, together with the macro-specification layer and realization relation;
+  \item \Pthree{}: the selected lift data,
+    carrying generated route terms, non-reducibility certificates, and
+    categorical route grammar or a reduced categorical universe;
+  \item \Pfour{}: validity certificates together with structural
+    stage/refinement architecture;
+  \item \Pfive{}: quotient-validity certificates together with the
+    structural quotient data, a packaging map, and universal-property or
+    tower/coarsening data;
+  \item \Psix{}: record-event or check evidence together with the audit
+    schema and its provenance and replay/check relations.
+\end{itemize}
+Each lift is selected, and not unique in general; where uniqueness holds, as
+for the descended map \(\bar F([x])=[F(x)]\) of a descending update, it is
+recorded with its proof. Forgetting from a higher level
+loses structural content that is not recoverable without re-adding data,
+unless, as for the descended map, the higher datum is determined and this is
+recorded with its proof. Formally, the selected-lift atlas of a description
+\(D\) consists of those lift annotations of \(D\) that satisfy
+Definition~\ref{prop:forgetting-lifts}, are attached to a cluster \(C\) such that
+some witness-schema annotation targeting exactly \(C\) names \(P_i\), and carry
+the corresponding added data listed above; such a lift is indexed by each such
+\(P_i\). Other admissible lifts need
+not belong to this role-indexed atlas.
+\end{definition}
+
+\begin{remark}[Global nonclaims for the role architecture]\label{rem:atlas-global-nonclaims}
+The role architecture preserves the following nonclaims, all carried
+forward into the admissibility regime of
+Section~\ref{sec:admissibility-meta-theory} and the theorem chain of
+Sections~\ref{sec:lower-bounds}--\ref{sec:decomposition-exhaustion}:
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item no full six-primitives algebra is claimed;
+  \item no global primitive-independence theorem is claimed;
+  \item no empirical realization is claimed;
+  \item no uniqueness of primitive presentations is claimed;
+  \item no uniqueness of selected lifts is claimed;
+  \item no lower-level-to-higher-level determinacy is claimed;
+  \item no instrument-free formulation is claimed;
+  \item direct cross-level comparison remains inadmissible without
+    translation.
+\end{itemize}
+\end{remark}

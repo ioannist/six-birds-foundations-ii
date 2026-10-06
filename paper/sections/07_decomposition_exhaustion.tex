@@ -1,0 +1,520 @@
+\section{Decomposition and exhaustion}\label{sec:decomposition-exhaustion}
+
+
+
+Under the recognition hypothesis every well-formed decomposition record meets
+the condition of Definition~\ref{def:scoped-exact-six-question}
+(Theorem~\ref{thm:upper-bound-classification}), so the exact-six question
+reduces to the existence of one well-formed record, which the theorem below
+proves for every description. Given \(D \in \FATCD{}\), is there a
+well-formed record that lists the six role channels, gives each a
+status, and accounts for every remaining raw feature through an
+inactive status record or a residual classification? This section shows that there is, and explains why a
+channel is not the same as an active role. The lower bounds show that each
+of the six channels is materially realizable in the domain; the
+upper-bound classification shows that, under the recognition hypothesis, no
+kind residual or record residual is licensed label (x) or (xi).
+
+\subsection{Decomposition records and channel statuses}\label{subsec:dec-records}
+
+\begin{definition}[Channel status]\label{def:channel-status}
+For \(D\in\FATCD{}\), a decomposition record \(\Dec{D}\)
+(Definition~\ref{def:decomposition-record}) and \(i \in \{1,\ldots,6\}\), the
+\emph{role channel} \(\Chan{i}{D}\) is the pair of \(i\) and the status entry a
+record \(\Dec{D}\) chooses for \(i\); the status value \(\Status{i}{D}\) is fixed
+below from \(D\) alone, and the record only chooses the cluster, offer, seed or
+declaration it names; the channel exists whether or not the status is
+active. A \emph{channel status} for
+\(\Chan{i}{D}\) is exactly one of the five values
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item \(\activeproj\) --- an admissible \(\pi_i(D)\) exists with \(W_i(C)\)
+    and all required attachments;
+  \item \(\collapsedbc\) --- no admissible \(\pi_i(D)\) exists, and an
+    honestly recorded offer of a specified cluster has check result
+    \(W_i(C)=\mathrm{false}\);
+  \item \(\belowthr\) --- neither preceding case applies, and a covered seed for
+    \(P_i\) is present;
+  \item \(\outsidescope\) --- none of the preceding cases applies, and an
+    honest outside-scope declaration is present;
+  \item \(\absentrec\) --- none of the preceding cases applies; the
+    decomposition records that absence.
+\end{itemize}
+In prose these are called active, collapsed, below threshold, outside scope and absent. The status name \(\collapsedbc\) refers to a failed offer; it is unrelated to
+the collapse-case annotations of Definition~\ref{def:threshold-attachment} and
+to the forbidden collapses of Table~\ref{tab:boundary-matrix}.
+The status \(\Status{i}{D}\) depends only on \(D\); \(\Chan{i}{D}\) and
+\(\Residual{D}\) are taken relative to a fixed record \(\Dec{D}\), and we write
+\(\Chan{i}{\Dec{D}}\) and \(\Residual{\Dec{D}}\) when the record matters. Since
+\(\Chan{i}{D}\) contains its status entry, the pair
+\((\Chan{i}{D},\Status{i}{D})\) in Definition~\ref{def:decomposition-record}
+repeats the status as a separate component. A \emph{covered seed} for \(P_i\) is, respectively:
+\begin{enumerate}[label=(\arabic*),topsep=2pt,itemsep=1pt]
+  \item a map or partial-map record whose
+declared use is \emph{update}, together with a relation record of declared use quotient that it
+references as its source relation, or with the relation record
+serving as source relation in a cluster satisfying \(W_1\) that contains it;
+  \item a predicate record
+whose predicate field is declared as a macro-specification whose formula has
+exactly one free variable \(r\), occurring in it and ranging over records of
+the candidates' kind, and whose evaluations recorded, as in the \(W_2\) row, in a field of the realization relation or of a comparison or check record of \(D\), at declared records of
+that kind, are correct (each equals the value of the formula at that record in
+\(D\)) and include both truth values, together with a
+realization relation (a relation record of declared use realization) whose target field is this predicate record and whose declared candidate class is a nonempty set of declared records of that kind; the seed consists of these two records, and either may be named as carrying it; the named seed fields are the formula field of the predicate record and, on
+the realization-relation record, its candidate-class and target fields, its
+list of satisfying members, its recorded evaluations of that formula (as datum
+values or as certificates \((s(t),b)\) at declared records \(t\) of the
+candidates' kind), and its certificate exhibiting a satisfying realizer or
+checking that none exists; no other assertion field of either record is a named
+seed field;
+  \item a certificate, of one of the two types in the \(W_3\) row and naming as inputs two path or derivation records with the same declared endpoints, that these are not related by the rewrite rules recorded in \(D\), carried in a field of a content record of \(D\);
+  \item a
+law-bearing stage, order, transition or refinement record;
+  \item a relation record whose
+declared use is \emph{quotient}, or a map record whose declared use is \emph{packaging};
+  \item an event, provenance or trace record with its declared event or trace
+identity and reference fields, or a replay or check record with its declared
+trace reference and a certificate whose formula has exactly one of the two forms prescribed for the \(W_6\) row after the witness table, with that trace as \(\tau\) (annotations are not
+seeds).
+\end{enumerate}
+Unlike the no-realizer branch of the \(W_2\) row, clause (2) does not require
+the candidate class to be the full declared domain of a packaging or update
+map. Every closed check-language formula without \(W_j\) atoms admits the
+seed-(2) presentation of Remark~\ref{rem:recognition-open}, provided the completed wrapped description lies in \FATCD{} and contains two distinct
+declared records of one kind (paragraph \emph{Wrapping a closed formula as a \Ptwo{} seed}). Such a seed
+supplies recognized \Ptwo{} content but does not by itself certify \(W_2(C)\) or
+an active \Ptwo{} projection. In ``covered seed'', ``covered''
+names the seed clauses (1)--(6); it is not a reference to the covered scope.
+\par The named seed fields are: in (1), the graph of the update map, any
+source-relation reference it carries, and the class data of the source
+relation; in (3), the
+fields of the comparison certificate; in (4), the law certificate and the
+endpoint or index fields it checks; in (5), the class data of the relation or
+the graph and quotient-object reference of the map; and in (2) and (6), the
+fields named there.
+\par A record \emph{carries} a seed when it is the map record in
+(1), the predicate or realization-relation record in (2), the record holding
+the certificate in (3), the law-bearing record in (4), the relation or map
+record in (5), or the event, provenance, trace, replay or check record in (6);
+a named seed field lying on another record is an input to that record's
+seed. A comparison or check record whose recorded evaluations of a clause-(2) formula are used to meet that clause does not carry that seed. This does not exclude recognition through other fields or role data. Its classification must be checked against all the criteria of Definition~\ref{def:residual-scheme}; if none of (i)--(ix) holds, it is licensed (x). By the witness table, every cluster satisfying \(W_i\) contains a
+covered seed for \(P_i\) (for \(i=2\) the row, like seed clause (2), requires the recorded evaluations
+to be correct): the update map with its source relation data, the
+macro-specification with its realization relation, the comparison certificate
+of the two routes, the law-bearing record, the quotient relation or packaging
+map, and the event or trace record, respectively. A \emph{failed offer} is an
+honestly recorded attempt to use a specified cluster \(C\) as a \(P_i\)
+witness for which the recorded check gives \(W_i(C)=\mathrm{false}\). An \emph{outside-scope declaration} for \(P_i\) is a claim annotation naming
+\(P_i\) and a record \(r\), with no witness-cluster field (so it is not an offer
+and its audit records no check of \(W_i\)), whose referenced record \(r\) lies outside the covered scope (the
+criterion after Definition~\ref{def:residual-scheme}) and whose kind occurs in
+the \(W_i\) row of the witness table; its honest audit lists the
+outside-scope field of \(r\) in its non-certification field. The status of \(\Chan{i}{D}\) is the
+first that applies in the order: \(\activeproj\) if some cluster supports
+an admissible derived projection \(\pi_i(D)\) in the sense of
+Definition~\ref{def:role-projection}, including \(W_i(C)\) and every
+applicable attachment of Definition~\ref{def:threshold-attachment}; \(\collapsedbc\) if there is a
+failed offer; \(\belowthr\) if a covered seed is present;
+\(\outsidescope\) if there is an outside-scope declaration; and
+\(\absentrec\) otherwise. An inactive status is recorded in \(\Dec{D}\); it
+is not a role witness. We write \(\Status{i}{D}\) for the channel status of
+\(\Chan{i}{D}\).
+\end{definition}
+
+Statuses are assigned only by the ordered rule above. An admissible
+projection takes priority over every failed offer or incomplete seed. In its
+absence, a failed offer gives \(\collapsedbc\); otherwise a covered seed
+lacking a complete admissible projection gives \(\belowthr\). Only then are an
+outside-scope declaration and the absent fallback considered.
+Proposition~\ref{prop:boundary-distinctions} uses the same two labels for
+local attempt verdicts, which need not equal channel statuses. In the running
+example, the \Pfour{} channel is \(\belowthr\): its transition record is
+present, but no threshold annotation targets a cluster containing it.
+
+\begin{definition}[Decomposition/exhaustion record]\label{def:decomposition-record}
+A \emph{decomposition/exhaustion record} for \(D \in \FATCD{}\) is a tuple
+\[
+\Dec{D} = \bigl(\Raw{D},\; (\Chan{i}{D}, \Status{i}{D})_{i=1}^{6},\;
+\Residual{D},\; \mathrm{Classify},\; \mathcal{L},\; \mathcal{V},\;
+\Audit{D},\; \mathcal{N}\bigr)
+\]
+where
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item the six role channels together with their statuses form the
+    six-channel status sequence, each \(\Status{i}{D}\) being the value that the
+    ordered rule of Definition~\ref{def:channel-status} assigns. If \(\Status{i}{D} = \activeproj\), the channel
+    carries an active projection \(\pi_i(D)\) with its full attachment
+    data. If \(\Status{i}{D}\) is inactive, the channel carries the
+    corresponding below-threshold, collapsed-boundary,
+    absent-with-record, or outside-scope status record;
+  \item \(\Residual{D} \subseteq \Raw{D}\) is the residual feature set,
+    defined as follows. Let \(A(\Dec{D})\) be the union of the content
+    clusters of the active projections and the attachment annotations (the
+    threshold, witness-schema, level and collapse-case annotations attached to
+    the cluster, the claim annotation naming \(P_i\) and the cluster, the audit
+    annotations referring to that claim, the nonclaim annotations targeting it, the translation and lift or
+    forgetting annotations that Definition~\ref{def:role-projection} requires for
+    a level crossing of the projection, and,
+    for \(P_6\), the event-or-trace claim and honest audit used to establish
+    the \(W_6\) audit-entry conjunct)
+    that the channel entry assigns to its projection (an active entry assigns at least one annotation of each kind that Definition~\ref{def:role-projection} requires for admissibility and may leave further annotations targeting the cluster unassigned). Let \(S(\Dec{D})\) be the union of the
+    clusters and offers explicitly named by the inactive status entries: the
+    records of the failed offered cluster with the offer's claim annotation and the audits referring to it, for \(\collapsedbc\); all records of the covered seed it names (for clauses (1) and (2), both records the clause names), for
+    \(\belowthr\); and the outside-scope declaration with the audits referring to it, for
+    \(\outsidescope\); \(\absentrec\) accounts for no feature, and a status
+    entry accounts only for records it names. Then
+    \(\Residual{D}=\Raw{D}\setminus\bigl(A(\Dec{D})\cup S(\Dec{D})\bigr)\),
+    relative to the chosen record, and \(\mathrm{Classify}\) assigns to each
+    \(r \in \Residual{D}\), including any bookkeeping annotation not assigned
+    to a channel, a label in the scheme of
+    Definition~\ref{def:residual-scheme}; already covered bookkeeping may
+    receive (ix);
+  \item \(\mathcal{L}\) collects the loss and lift records for any level
+    crossings involved in projections or classifications;
+  \item \(\mathcal{V}\) collects instrument-visibility and
+    empirical-bridge annotations where these are asserted;
+  \item \(\Audit{D}\) is the honest bookkeeping subrecord;
+  \item \(\mathcal{N}\) is the explicit nonclaim record.
+\end{itemize}
+A decomposition/exhaustion record is \emph{well-formed} when each
+\(\Status{i}{D}\) is drawn from the five values of
+Definition~\ref{def:channel-status}, each active
+\(\pi_i(D)\) is admissible in the sense of
+Definitions~\ref{def:role-projection} and~\ref{def:threshold-attachment},
+each inactive status record names a failed offer, covered seed or
+outside-scope declaration of \(D\) for that channel, as
+Definition~\ref{def:channel-status} requires (none for \(\absentrec\)), and every raw feature \(r\) lies in \(A(\Dec{D})\), or in \(S(\Dec{D})\), or in
+\(\Residual{D}\) and receives a label, and, for each
+\(r\in\Residual{D}\), \(\mathrm{Classify}(r)\) is a label whose criterion in the
+table after Definition~\ref{def:residual-scheme} holds for \(r\) relative to
+\(\Dec{D}\). The records in
+\(\mathcal{L}\) and \(\mathcal{V}\) are auxiliary annotations on this
+coverage, not additional role channels. The status entries and the
+collections \(\mathcal{L}\), \(\mathcal{V}\) and \(\mathcal{N}\) are data
+of \(\Dec{D}\). Each cluster, seed, offer or declaration named by a status is
+selected from, or supported by, the records of \(\Raw{D}\) and \(\Audit{D}\)
+required above; the selection and the status entries need not themselves be
+raw records. Forming \(\Dec{D}\) does not change \(D\).
+\end{definition}
+
+By the ordered rule of Definition~\ref{def:channel-status}, the status
+\(\Status{i}{D}\) depends only on \(D\), not on the decomposition record; the
+cluster, offer, seed or declaration that a record names, and hence
+\(A(\Dec{D})\), \(S(\Dec{D})\) and \(\Residual{D}\), may depend on the record.
+Because \(\Residual{D}\) leaves out every feature already accounted for by
+the active projection named for its channel or by an inactive status record, labels~(i)
+and~(ii) of Definition~\ref{def:residual-scheme} do not occur for a residual
+feature of \(\Dec{D}\): both require the record to lie in a cluster named for
+an active projection. This is why the results below list labels (iii)--(ix).
+
+\paragraph{Two residual sets.} A residual feature in the sense of
+Definition~\ref{def:residual-scheme} is also called a \emph{kind residual}, in
+statements and elsewhere, and an element of \(\Residual{D}\) a \emph{record
+residual}.
+Membership in the first depends on the raw-grammar kind of a feature, and
+membership in the second on whether the record \(\Dec{D}\) accounts for it
+through a channel. In particular, a bookkeeping annotation is not a kind
+residual but may be a record residual if the chosen channel assignments do not
+account for it. A kind residual absorbed into an active projection is not a
+record residual, which is why label~(i) does not occur among record residuals.
+The recognition hypothesis and
+Theorem~\ref{thm:upper-bound-classification} cover both sets.
+
+
+\subsection{Existence, six-channel exactness, and residual exhaustion}\label{subsec:dec-theorems}
+
+\begin{theorem}[Decomposition existence]\label{thm:decomposition-existence}
+Every description \(D \in \FATCD{}\) admits a well-formed decomposition/exhaustion
+record \(\Dec{D}\) in the sense of
+Definition~\ref{def:decomposition-record}.
+\end{theorem}
+
+\begin{proof}
+For each \(i \in \{1,\ldots,6\}\), range over the finitely many clusters
+\(C\subseteq\Raw{D}\). If some \(C\) satisfies \(W_i(C)\) together with every
+item of Definitions~\ref{def:threshold-attachment}
+and~\ref{def:role-projection}, name one such \(C\), record
+\(\Status{i}{D} = \activeproj\) and the active projection
+\(\pi_i(D)\) it determines; otherwise record the inactive status that the
+ordered rule of Definition~\ref{def:channel-status} assigns, and name one
+failed offer, covered seed or outside-scope declaration for the first case of
+the rule that applies. Six status entries
+result, one per role. The raw features absorbed by these channel
+records are removed from the residual stage: the statuses, their
+supporting clusters and their assigned annotations are selected first, and
+\(\Residual{D}\) is then formed by the set difference of
+Definition~\ref{def:decomposition-record}. For each \(r\) in it, choose a
+licensed label among (i)--(ix) if one applies. If none applies, then \(r\) is
+not outside the covered scope (otherwise (viii) would apply), \(D\) is finite,
+and every claim concerning \(r\) is referred to by an honest audit annotation; so the criterion of
+(x) holds. Thus \(\mathrm{Classify}\) is total, and the record is well-formed
+irrespective of which labels occur. An unassigned bookkeeping annotation is
+assessed by the same criteria, ordinarily (ix). Relative to the chosen
+record, (i) cannot apply to a record residual, since absorbed content was
+placed in \(A(\Dec{D})\); under the recognition hypothesis
+(Definition~\ref{def:recognition-hypothesis}),
+Theorem~\ref{thm:upper-bound-classification} further places every label in
+(iii)--(ix), with (x) and (xi) empty. The records \(\mathcal{L}\) and \(\mathcal{V}\) are
+read from \(\Raw{D}\) and \(\Audit{D}\); the bookkeeping subrecord is
+\(\Audit{D}\); and \(\mathcal{N}\) records the nonclaims carried
+forward from the witness discipline. The resulting tuple is a
+decomposition/exhaustion record, well-formed by construction.
+Non-vacuity of the six channels follows from
+Theorem~\ref{thm:six-role-lower-bounds}, which supplies, for each
+channel, a description in which that channel is active.
+\end{proof}
+
+\begin{theorem}[Six-channel exactness and residual exhaustion]\label{thm:six-channel-exactness}
+For every \(D \in \FATCD{}\) and every well-formed
+\(\Dec{D}\) in the sense of
+Definition~\ref{def:decomposition-record}:
+\begin{enumerate}[label=(\roman*),topsep=2pt,itemsep=1pt]
+  \item the channel sequence \((\Chan{i}{D})_{i=1}^{6}\) has length
+    exactly six, one per primitive role \Pone{}, \ldots, \Psix{};
+  \item every raw feature of \(D\) is accounted for at the
+    channel/exhaustion level by an active projection \(\pi_i(D)\), a
+    channel-status record for an inactive channel, or a residual
+    classification under the scheme of
+    Definition~\ref{def:residual-scheme}, possibly with label (x) or (xi);
+    since label (x) applies to in-scope features for which no criterion
+    (i)--(ix) holds, this clause alone does not exclude an unresolved
+    candidate (see (iii)); the records in \(\mathcal{L}\)
+    and \(\mathcal{V}\) are auxiliary annotations on this coverage;
+  \item under the recognition hypothesis
+    (Definition~\ref{def:recognition-hypothesis}) and within the covered scope,
+    no raw feature is classified as an unresolved seventh-role threat or as
+    passing the recorded seventh-role screen
+    (Theorem~\ref{thm:upper-bound-classification}); the three principal threat
+    classes are closed without the recognition hypothesis, in the
+    recognized forms of
+    Propositions~\ref{prop:probability-closure}--\ref{prop:agency-closure};
+  \item the status sequence \((\Status{i}{D})_{i=1}^{6}\) is the same for every
+    well-formed \(\Dec{D}\).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Exactness of the channel sequence is built into the definition of
+\(\Dec{D}\); there are six role channels by
+Definition~\ref{def:decomposition-record}. Coverage of raw features is
+the well-formedness condition of
+Definition~\ref{def:decomposition-record} together with totality of
+\(\mathrm{Classify}\) on \(\Residual{D}\), which holds by the case argument in
+the proof of Theorem~\ref{thm:decomposition-existence}. Emptiness of categories (x) and (xi),
+under the recognition hypothesis (Definition~\ref{def:recognition-hypothesis})
+and within the covered scope, is
+Theorem~\ref{thm:upper-bound-classification} directly. The last assertion of
+(iii) is Propositions~\ref{prop:probability-closure},
+\ref{prop:causality-closure} and~\ref{prop:agency-closure}, which hold for
+every \(D\in\FATCD{}\) and every well-formed \(\Dec{D}\) without the
+recognition hypothesis. For (iv), Definition~\ref{def:decomposition-record}
+records each status by the ordered rule of Definition~\ref{def:channel-status},
+whose clauses refer only to \(D\).
+\end{proof}
+
+\subsection{Channel-versus-activation discipline}\label{subsec:channel-vs-activation}
+
+Theorem~\ref{thm:six-channel-exactness} asserts six channels in every
+decomposition/exhaustion record. It does not assert six active
+projections in every record, nor does it assert that a well-formed
+record is unique. The distinction between channel presence and
+channel activation prevents six-channel exactness from being read as
+an all-six-active claim.
+
+Membership of \(D_1,\dots,D_6\) in \(\FATCD_{\mathrm{RH}}\) is verified record by
+record in the proof of Theorem~\ref{thm:scoped-exact-six}; that verification
+uses only Theorem~\ref{thm:six-role-lower-bounds} and the definitions. In brief:
+every content record of \(D_i\) contributes a required field to \(C_i\) or
+carries a covered seed, each of its assertion fields being required or a named
+seed field (R1), or it has no assertion field (R1 or R3); every structural
+annotation of \(D_i\) carries only its typing, target and label or level field,
+and every bookkeeping annotation only datum and reference fields besides its
+exempt fields (R2).
+
+\begin{proposition}[Channel-versus-activation discipline]\label{prop:channel-vs-activation}
+Let \(D \in \FATCD{}\) and let \(\Dec{D}\) be a well-formed decomposition/exhaustion
+record. The following are distinct statements:
+\begin{enumerate}[label=(\roman*),topsep=2pt,itemsep=1pt]
+  \item \emph{Six channels}: the channel sequence
+    \((\Chan{i}{D})_{i=1}^{6}\) has length six with the fixed role names
+    \Pone{}, \ldots, \Psix{}.
+  \item \emph{Six active projections}: for each \(i\),
+    \(\Status{i}{D} = \activeproj\) and the channel carries an active
+    \(\pi_i(D)\).
+\end{enumerate}
+Theorem~\ref{thm:six-channel-exactness} establishes (i) for every
+\(D \in \FATCD{}\). It does not establish (ii). In particular, an
+admissible \(D \in \FATCD{}\) may have any number of active channels
+between zero and six; inactive channels are recorded with status
+\(\belowthr\), \(\collapsedbc\), \(\absentrec\), or \(\outsidescope\)
+and are not active witnesses for the corresponding roles. For each
+\(k\in\{0,\dots,6\}\) some \(D\in\FATCD_{\mathrm{RH}}\) has exactly \(k\) active
+channels, and some single description in \(\FATCD_{\mathrm{RH}}\) has channels of all
+five statuses.
+\end{proposition}
+
+\begin{proof}
+Statements (i) and (ii) differ whenever some channel is inactive, which the
+last clause provides for every \(k<6\). \par\emph{Exactly \(k\) active channels.} For \(k=0\), let \(D_0\) consist of a
+single object record: it is finite and closed, it has no claims, so it is
+audited, and it has no cluster satisfying any \(W_i\), no failed offer, no
+covered seed and no outside-scope declaration, so the status rule of
+Definition~\ref{def:channel-status} gives every channel \(\absentrec\). Its
+object record has no witness field and no predicate, comparison, invariant,
+law or claim field, so it satisfies (R3) of
+Definition~\ref{def:recognition-hypothesis} and
+\(D_0\in\FATCD_{\mathrm{RH}}\). For
+\(1\le k\le 6\), choose \(k\) distinct indices \(S\) and let \(D_S\) be the
+disjoint union of the descriptions \(D_i\), \(i\in S\), of
+Theorem~\ref{thm:six-role-lower-bounds}, with record identifiers made
+disjoint by an injective renaming applied recursively to every
+record-identifier occurrence in reference, datum, term-valued and
+formula-valued fields, including identifiers inside finite lists,
+tuples, relation classes and map tables, and the argument lists of
+\(W_j\) atoms. Rational constants and other non-identifier values
+are unchanged. A numeral in record-sorted position (paragraph \emph{Sorts} of Section~\ref{sec:primitive-role-architecture}), such as \(0\) and \(2\) in the formula of \(s\) in \(D_2\), is a record-identifier occurrence and is renamed; a numeral in rational-sorted position, such as an element of the monoid list of \(D_3\), is not. Each condition of Definition~\ref{def:fatcd} concerns a record, an
+annotation or a claim together with the records it refers to, which lie in one component, except that certificate correctness and the evaluation of \(W_j\) atoms may read description-wide data (all declared records or those of one kind, the rule list \(R\), \(\mathrm{Audit}_0(D)\)); the next sentences check that this data leaves every recomputed value unchanged. The certificates' quantifiers are bounded by listed object records or finite field lists, except \(\forall u\in|E|\), which is guarded by \(E(u,u)\); this is false at every record of another component, since renaming keeps the classes of \(E\) inside its component. So the content checks retain their values in \(D_S\). The \(W_1,W_2,W_4,W_5\) checks remain within their components. The
+\(W_3\) row also requires the rules of its cluster to be all rewrite rules
+recorded in the description; since the indices in \(S\) are distinct and \(D_3\)
+is the only component recording rewrite rules, this clause keeps its value in
+\(D_S\). For
+\(W_6(C_6)\), the honest event-or-trace audit entry of \(D_6\) remains in
+\(\mathrm{Audit}_0(D_S)\), so its separate audit conjunct also remains true.
+Thus the audits remain honest and \(D_S\in\FATCD{}\). For \(i\in S\), the cluster \(C_i\)
+with its attachments still satisfies \(W_i\), so channel \(P_i\) is
+\activeproj{}. For \(j\notin S\), no component has a witness-schema
+annotation naming \(P_j\), together with a threshold and an honest audit of
+\(W_j(C)\) for a cluster \(C\), and making record identifiers disjoint creates
+no such annotation or cross-component reference. So no admissible
+\(\pi_j(D_S,C)\) in the sense of Definition~\ref{def:role-projection} exists,
+and channel \(P_j\) is not active. Hence \(D_S\) has exactly \(k\) active
+channels.
+Each of these descriptions lies in \(\FATCD_{\mathrm{RH}}\).
+The inventory in the proof of the last clause of
+Theorem~\ref{thm:scoped-exact-six} (Section~\ref{sec:scoped-exact-six}, p.~\pageref{thm:scoped-exact-six}), which uses
+Theorem~\ref{thm:six-role-lower-bounds} and the definitions but not this
+proposition, establishes (R1) or (R3) for every content record of each \(D_i\)
+using records and checks within that component, and (R2) for its
+structural and bookkeeping annotations. Under this renaming each
+certificate, claim statement and audit conclusion of \(D_i\) becomes its renamed
+image, which recomputes to the same value in \(D_S\). They apply to every
+kind residual and every possible record residual of \(D_S\),
+independently of the chosen decomposition record. The case \(D_0\)
+was checked above.
+\par\emph{All five statuses.} For the five statuses, \(D_S\) supplies \(\activeproj\) and \(D_0\) supplies
+\(\absentrec\). Let \(o\) be the object record of \(D_0\). Let \(D_{\mathrm c}\) consist of state
+records \(x\ne y\), an object record \(X_{\mathrm c}\) listing \(x\) and \(y\), a
+relation record \(E\) on \(X_{\mathrm c}\) of declared use quotient with the
+single class \(\{x,y\}\), a claim naming \Pfive{} and \(C=\{x,y,E\}\), and an
+honest audit listing \((W_5(C),\mathrm{false})\); no packaging map is present, so
+this failed offer lies on a cluster carrying a covered \Pfive{} seed, and channel
+\Pfive{} is \(\collapsedbc\). Here \(x\), \(y\) and \(X_{\mathrm c}\) satisfy (R3), \(E\) carries a
+covered seed whose class data are named seed fields and satisfies (R1), and the
+annotations satisfy (R2). Let \(D_{\mathrm{o}}\) be \(D_0\) together with a predicate record \(Q\) (here \(Q\) is a predicate record, unrelated to the quotient objects \(Q\) of the \(W_5\) row and Remark~\ref{rem:recognition-open}, and \(o\) is the object record of \(D_0\), not the order record of \(D_{\mathrm{scr}}\)) of arity
+one, its argument place declared to range over object records, with no formula field and no relation record presenting it, a predicate
+record \(s\) whose only assertion field is \(Q(o)\), a claim naming \Ptwo{} and
+\(s\) with statement \(Q(o)\), and an honest audit that lists no certificate,
+records no check of \(W_2\) (so the claim is not an offer), concludes \(o=o\)
+and lists the field of \(s\) in its non-certification field. This claim is an
+outside-scope declaration, so channel \Ptwo{} of \(D_{\mathrm{o}}\) is
+\(\outsidescope\). The declaration is not an admissible claim in the sense of
+Definition~\ref{prop:honest-bookkeeping}, since no audit certifies \(Q(o)\);
+Definition~\ref{def:channel-status} requires only that its audit be honest, and
+the conclusion \(o=o\) makes the audit honest while certifying nothing about
+\(Q\). In \(D_{\mathrm{o}}\) \(o\) and \(Q\)
+satisfy (R3), \(s\) satisfies (R5), and the annotations satisfy (R2). The
+description \(D_{\mathrm{ex}}\) of Section~\ref{sec:fatcd-domain} supplies
+\(\belowthr\) for its \Pfour{} channel. It lies in \(\FATCD_{\mathrm{RH}}\). The records \(F\), \(E\), the
+split-pair comparison, \(q\), \(\{A,B\}\), the quotient-validity check, the
+event, the trace and the check record each contribute a required field to
+\(C_1\), \(C_5\) or \(C_6\), and their assertion fields (the split-pair,
+validity and replay certificates) are required for \(W_1\), \(W_5\) and \(W_6\)
+respectively, so these records satisfy (R1). The provenance record carries a
+covered \Psix{} seed, and the transition record carries a covered \Pfour{} seed
+whose law field is a named seed field; both satisfy (R1). The state records,
+\(S_0\), the object records \(A\), \(B\) and the replay record have no assertion field and satisfy (R1) or
+(R3); the index record satisfies (R4) by the one-step chain to \(E\), which satisfies
+(R1); and its annotations satisfy (R2).
+\par\emph{All five in one description.} Let \(D_{\mathrm{all}}\) be the renamed disjoint union of \(D_6\),
+\(D_{\mathrm c}\), \(D_{\mathrm o}\) and \(D_T\), where \(D_T\) has a state record
+\(z\), an object record \(Z\) listing it, and a transition record \(T:Z\to Z\),
+\(T(z)=z\), whose law field carries the certificate, recomputed true, that \(T\)
+is defined on \(Z\) with values in \(Z\). The argument for \(D_S\) gives
+\(D_{\mathrm{all}}\in\FATCD{}\); \(T\) carries a covered \Pfour{} seed with named
+law field and satisfies (R1), \(z\) and \(Z\) satisfy (R1) or (R3), and the other
+components are inventoried above, so \(D_{\mathrm{all}}\in\FATCD_{\mathrm{RH}}\).
+No component supplies a \Pone{}, \Ptwo{} or \Pthree{} seed, an active projection
+other than that of \(D_6\), or a failed offer other than that of
+\(D_{\mathrm c}\); so by the ordered rule \Psix{} is \(\activeproj\), \Pfive{}
+\(\collapsedbc\), \Pfour{} \(\belowthr\), \Ptwo{} \(\outsidescope\), and \Pone{}
+and \Pthree{} \(\absentrec\).
+\end{proof}
+
+\begin{proposition}[Decomposition records are not unique]\label{prop:non-uniqueness}
+A description \(D \in \FATCD{}\) may admit more than one well-formed
+decomposition/exhaustion record in the sense of
+Definition~\ref{def:decomposition-record}. In particular, distinct
+well-formed records may name different witness clusters for one active
+channel, and then have different sets \(A(\Dec{D})\), \(\Residual{D}\) and
+residual labels; Definition~\ref{def:decomposition-record} also leaves the choice among
+level annotations attached to the named cluster and the placement of
+loss/lift and visibility records to the record. Such a description can be chosen in \(\FATCD_{\mathrm{RH}}\).
+Theorems~\ref{thm:decomposition-existence}
+and~\ref{thm:six-channel-exactness} assert existence, not uniqueness.
+\end{proposition}
+
+\begin{proof}
+Let \(D\) be the disjoint union of two copies of the description \(D_5\) of
+Theorem~\ref{thm:six-role-lower-bounds} (with the same renaming), as in the proof of
+Proposition~\ref{prop:channel-vs-activation}; then \(D\in\FATCD{}\), and each
+copy carries a cluster, \(C_5\) and \(C_5'\), that satisfies \(W_5\) with its
+attachments. The construction of Theorem~\ref{thm:decomposition-existence}
+may name either cluster for the \Pfive{} channel. In the record naming
+\(C_5\), the content records of \(C_5'\) that contribute a required field to
+\(C_5'\), a six-role-aligned cluster that the chosen projection does not
+absorb, receive label (v), and any others, having no predicate, comparison,
+invariant, law or claim field and supplying no witness field, receive (ix-c); in the record naming \(C_5'\), the same holds with the
+copies exchanged. The \(W_5\) assertion of the unchosen copy is represented by
+its check record and other required-field records, labelled (v); its
+bookkeeping annotations receive (ix-a) and its threshold and level annotations
+(ix-b).
+The two records name different clusters, so they differ, and both are
+well-formed. The description \(D\) satisfies the recognition hypothesis: each
+content record of either copy supplies a witness field to that copy's cluster
+satisfying \(W_5\), or is an input without assertion fields, and so satisfies
+(R1) or (R3) as in the inventory in the proof of
+Theorem~\ref{thm:scoped-exact-six} (p.~\pageref{thm:scoped-exact-six}); its annotations satisfy (R2). Hence
+\(D\in\FATCD_{\mathrm{RH}}\).
+\end{proof}
+
+\paragraph{The running example, decomposed.} For the description
+\(D_{\mathrm{ex}}\) of Section~\ref{sec:fatcd-domain}, a well-formed
+decomposition record assigns the six channels the following statuses; the
+records named are those of the table in Section~\ref{sec:fatcd-domain}. The
+channels \Pone{}, \Pfive{} and \Psix{} have status \activeproj{}: the split pair
+\((0,1)\) witnesses the descent obstruction, the quotient object \(\{A,B\}\)
+with its packaging map witnesses the packaging, and the replayed and checked
+trace witnesses the audit. The channel \Pfour{} has status \belowthr{}: the
+transition record of \(F\) is present, but no threshold annotation targets a
+cluster containing it. The channels \Ptwo{} and \Pthree{} have status \absentrec{}: the
+description records no macro-specification and no path or derivation record. The index
+record copying the classes of \(E\) is a residual feature, classified as a
+presentation variant of the relation record. So \(D_{\mathrm{ex}}\) carries six
+channels and three active projections, as Proposition~\ref{prop:channel-vs-activation}
+allows.
+
+\begin{remark}[What the decomposition theorems do and do not prove]\label{rem:dec-scope}
+Theorems~\ref{thm:decomposition-existence}
+and~\ref{thm:six-channel-exactness} establish the structural side of
+the scoped exact-six claim: every \(D \in \FATCD{}\) admits a
+six-channel decomposition/exhaustion record, with residual exhaustion in the
+covered scope under the recognition hypothesis
+(Definition~\ref{def:recognition-hypothesis}). Together with the lower-bound theorem
+(Section~\ref{sec:lower-bounds}) and the upper-bound classification
+(Section~\ref{sec:upper-bound-classification}), they prepare the
+scoped exact-six theorem but do not replace the integrated-stress
+check that follows. They do not assert that every description
+activates all six roles, that the decomposition is canonical or
+unique, or that the scoped exact-six program extends beyond \FATCD{};
+those remain nonclaims.
+\end{remark}
+

@@ -1,0 +1,1061 @@
+\section{The FATCD domain and the exact-six question}\label{sec:fatcd-domain}
+
+
+This section defines the class of descriptions over which the
+exact-six theorem is stated. A \emph{finite audited typed closure
+description}, abbreviated \FATCD{}, is a finitely presented collection
+of typed raw records and annotations that is finite, closed under its
+own references, and audited in the sense of Definition~\ref{def:audited}; the setting is that of finite
+model theory~\citep{Libkin2004}. Roles are not part of the definition.
+A role enters only when a threshold annotation is attached to a cluster
+of raw features, and the role projections \(\pi_1(D),\dots,\pi_6(D)\)
+are readings of the raw material, not conditions for membership in the
+domain. Every content record and structural annotation is a
+residual feature in the sense of Definition~\ref{def:residual-scheme} and
+is licensed some of the eleven labels of Definition~\ref{def:residual-scheme}; the unresolved label (x) is licensed exactly when none of labels (i)--(ix) is; the features
+that no channel of a chosen decomposition record accounts for are its record
+residuals. So a seventh role is not ruled out by definition. The section closes with
+non-circularity and non-overbreadth schemas and formulates the
+exact-six question precisely over \FATCD{}: whether every
+\(D \in \FATCD{}\) admits a decomposition/exhaustion record with
+exactly six role channels relative to which no kind residual and no record residual is licensed
+label (x) or (xi) of Definition~\ref{def:residual-scheme}. A six-channel record
+always exists (Theorem~\ref{thm:decomposition-existence}); the question is
+decided by the residual condition. The theorem chain answering that question
+appears in
+Sections~\ref{sec:lower-bounds}--\ref{sec:decomposition-exhaustion}.
+
+The domain is framed in the finite theory-package setting of
+Foundations~I~\citep{Tsiokos2026SixBirdsFoundations}, where one works
+with tuples \(\mathcal{T} = (Z, f, \Sigma_f, E, \mathcal{A})\)
+carrying a lens, a completion operator, and an audit functional. \FATCD{} does not
+identify a description with such a tuple; it extracts from that
+setting the structural requirements relevant to the scoped exact-six
+question: finite typed raw data, closure under references, sources,
+targets, endpoints, and annotations, and the audit condition of
+Definition~\ref{def:audited}, on which the regime of
+Section~\ref{sec:admissibility-meta-theory} builds. Optimization,
+objective, and richer semantic material are not excluded at the
+outset; they belong in the domain when finitely represented and
+honestly recorded as raw or annotated data.
+
+\subsection{Raw grammar}\label{subsec:raw-grammar}
+
+We begin with the neutral typed raw grammar from which every element
+of \FATCD{} is built. The alphabet is fixed in advance of the role
+vocabulary and follows standard typed-record
+conventions~\citep{CardelliMitchell1991}.
+
+\paragraph{How to read this section.} A description is a finite collection of
+records. Each record is either a raw record of one of the kinds of
+Definition~\ref{def:raw-record} or an annotation of one of the six structural or seven bookkeeping kinds
+of Definition~\ref{def:annotations}; it carries finitely many typed fields
+and may refer to other records of the same description. The conditions
+of Section~\ref{subsec:conditions} then require three things: everything
+is finite (Definition~\ref{def:finite}); every reference, endpoint and
+annotation target is a record of the description, and every claim it
+carries has a bookkeeping record (Definition~\ref{def:closed}); and those
+bookkeeping records are complete (Definition~\ref{def:audited}). A
+\emph{claim} is a claim annotation (Definition~\ref{def:audited}(a)), an assertion the description makes about its own
+records, such as that a cluster is read as a role; a field with field role claim on another record is not a claim. Its bookkeeping record
+is an audit annotation in \(\Audit{D}\) that refers to the claim, lists
+the certificates it uses and records its conclusion
+(Definition~\ref{def:audited}(a)); the claim annotation records the
+statement, hypotheses and scope. For a claim admissible under
+Definition~\ref{prop:honest-bookkeeping}, the promotions, translations,
+lifts, forgetting maps, visibility and empirical bridges it uses have further
+annotations carried in \(\Audit{D}\). Appendix~\ref{app:mechanization}
+describes the typed Lean mirror of these definitions.
+
+In set terms, a description can be written as a finite set \(R\) of records
+with a kind map from \(R\) to the kinds of Definitions~\ref{def:raw-record}
+and~\ref{def:annotations}, finitely many typed fields on each record, a
+reference relation on \(R\) (an annotation refers to its target), a finite
+set of claims, and a map sending each claim to its bookkeeping record in
+\(\Audit{D}\subseteq R\). Definition~\ref{def:finite} makes all of these
+finite, Definition~\ref{def:closed} requires every reference to land in
+\(R\) and every claim to have a bookkeeping record, and
+Definition~\ref{def:audited} lists the entries each bookkeeping record must
+carry. Here \(R\) is \(\Raw{D}\). A \emph{typed field} is a triple \((n,\rho,v)\): a
+name \(n\), a field role \(\rho\) (datum, reference, predicate, comparison,
+invariant, law or claim; Definition~\ref{def:raw-record}), and a value \(v\) of
+the type fixed by the record kind and \(\rho\). For a datum field this is a
+rational, an element of a declared finite set, or a finite list or table of
+such values and record identifiers, such as the graph of a map record; for a
+reference field an identifier or a finite list of identifiers (the member
+list of an object record, the candidate class of a realization relation, the
+entry list of a trace, the list of successive records and the word of a path
+or derivation record, and
+every declared domain, codomain, source, target, endpoint and index field are
+reference fields); for a term- or
+formula-valued field a check- or assertion-language expression (a term-valued field, such as the row
+\(v(w_1),\dots,v(w_n)\) of the transition record of Remark~\ref{rem:recognition-open}, has
+field role datum; a formula-valued field has an assertion role); and for a
+certificate field a triple \((\varphi,\text{inputs},b)\). A field may carry a
+value-type tag. Deleting a field removes one triple; changing its value
+replaces \(v\) by another value of the same type. A \emph{declared record} of \(D\) is an
+element of \(R\), and a \emph{raw feature} is any declared record. A
+\emph{content record} is a declared record of a kind of
+Definition~\ref{def:raw-record}, and an \emph{annotation} one of a kind of
+Definition~\ref{def:annotations}. Thus \(\Raw{D}\) contains annotations, while
+``raw record'' means a content record.
+
+\begin{definition}[Raw record]\label{def:raw-record}
+A \emph{raw record} is a finite typed syntactic or relational feature of a
+description. The admissible record kinds are
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item \emph{object} and \emph{state} records;
+  \item \emph{relation} records, \emph{map} records, and \emph{partial-map}
+    records;
+  \item \emph{predicate} records and \emph{comparison} records;
+  \item \emph{path} or \emph{derivation} records;
+  \item \emph{index}, \emph{order}, \emph{transition}, and \emph{refinement}
+    records; a \emph{stage} is an index record together with an order
+    record ranging over it; in the \(W_4\) row and seed clause (4) of Definition~\ref{def:channel-status} a stage
+    counts through its order record;
+  \item \emph{trace}, \emph{event}, and \emph{provenance} records;
+  \item \emph{replay} and \emph{check} records.
+\end{itemize}
+The rest of the definition fixes, in order: declared uses of map and relation records (including realization relations), the sort declarations of predicate records, rule fields, field roles, and value-type tags.
+A map or partial-map record declares its use in a typed field: \emph{update},
+for a map from a declared state set to itself, \emph{packaging}, for a map to
+a declared quotient object (surjectivity is certified by the \(W_5\) check, not assumed), or \emph{other}; a relation record likewise declares its use
+as \emph{quotient}, for an equivalence relation presented as the classes of a
+quotient, or \emph{other}. The graph of a map or transition record lists exactly
+one value at each member of its declared domain; only a partial-map record may
+leave members of its declared domain without a value. The listed classes of a relation record of declared use quotient are nonempty and pairwise disjoint, so its relation atom is an equivalence relation on the members of its classes. These conditions are part of the
+record's type, so the recorded values of \(D\) form a well-typed interpretation
+in the sense of Definition~\ref{def:audited}(c1). A relation record may instead declare its use as
+\emph{realization}: it declares a finite nonempty candidate class \(K\) of
+declared records and, as its target, a predicate record \(s\) declared as a
+macro-specification whose formula has exactly one free variable, which occurs in the formula and
+ranges over records of the kind of the members of \(K\), and whose formula is a formula of the check language, so that it has a truth value over \(D\) at every member of \(K\); the relation lists
+exactly those \(r\in K\) at which that formula evaluates to true in \(D\) (a condition on the recorded values of \(D\), required for membership in \FATCD{}; unlike the graph and class conditions above, it is not imposed on other well-typed interpretations of Definition~\ref{def:audited}(c1)); it may also record the value of that formula at further declared records
+of the same kind. A macro-specification's formula may be closed; the
+one-free-variable condition is imposed only by realization relations, seed
+clause (2) and the \(W_2\) row. A predicate record declares in a
+typed field whether it is a \emph{macro-specification}. It also declares, in a datum field, for each free variable of its formula and, for a predicate record without a formula field, for each argument place of its declared arity, the record kind over whose declared records that variable or argument ranges, the rational sort when it is applied to rational-valued terms, or a sort declared by an object record listing no members; for a macro-specification targeted by a realization relation this is the common kind of the members of \(K\), which must all be of one kind. A path, derivation or comparison
+record may carry \emph{rule fields}: datum fields whose declared type, fixed by
+the record kind, is a pair \((\lambda,\mu)\) of finite lists of identifiers of map
+or partial-map records; the rewrite rules recorded in \(D\) are the values of
+all rule fields of records of \(D\). Each typed field of a
+record declares one of the field roles \emph{datum}, \emph{reference},
+\emph{predicate}, \emph{comparison}, \emph{invariant}, \emph{law} or
+\emph{claim}; a field recording a checked equality, isomorphism or level
+translation is a comparison field. A field whose value is a proposition about
+recorded values (a formula, constraint or asserted property) declares one of
+the assertion roles predicate, comparison, invariant, law or claim; datum and
+reference fields record values and identities only. ``Predicate field'', ``comparison field''
+and the like refer to these declared roles. A field holding a certificate has
+an assertion role: law when it is the law field of an order, transition or
+refinement record, or of a relation record carrying an order in the sense of
+the paragraph \emph{Laws} (Section~\ref{sec:primitive-role-architecture}), and
+comparison otherwise; the certificate of an equality,
+isomorphism or level translation is part of the comparison field it checks. A typed field may also carry a
+declared value-type tag from a finite list recorded in \(D\) (for instance
+probability, weight, kernel, confidence, error, intervention, counterfactual,
+causal dependence, goal, objective, plan, policy or choice); tags make no
+assertion and enter no witness or residual-label criterion;
+Section~\ref{sec:upper-bound-classification} uses them to delimit its threat
+classes. A raw record is not, by itself, a
+\Pone{}--\Psix{} role.
+\end{definition}
+
+\begin{definition}[Annotations]\label{def:annotations}
+In addition to raw records, a description admits \emph{annotations} of six
+declared structural kinds:
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item level annotations \(\mathrm{Ann}_L\);
+  \item threshold annotations \(\mathrm{Ann}_\Theta\);
+  \item lift annotations \(\mathrm{Ann}_{\mathrm{Lift}}\);
+  \item forgetting annotations \(\mathrm{Ann}_{\mathrm{Forget}}\);
+  \item instrument-visibility annotations \(\mathrm{Ann}_{\mathrm{Vis}}\);
+  \item empirical-bridge annotations \(\mathrm{Ann}_{\mathrm{Bridge}}\).
+\end{itemize}
+A description also admits \emph{bookkeeping annotations} of kinds audit,
+claim, witness-schema, collapse-case, promotion, translation and nonclaim. A
+\emph{promotion} annotation records a claim's move from a lower to a higher
+level of Definition~\ref{prop:level-profile}, with the fields of
+Definition~\ref{def:audited}(g); the selected higher-level datum the move adds
+is recorded by a lift annotation.
+They belong to \(\Raw{D}\), have finite typed fields and declared targets,
+and are subject to the same reference-closure condition as the other
+annotations. \(\Audit{D}\) is the collection of its honest audit
+annotations (as in Definition~\ref{def:audited}(e)); a record is \emph{carried in} \(\Audit{D}\) when it is such an
+annotation or a claim, promotion, translation, collapse-case,
+witness-schema, nonclaim, lift, forgetting, visibility or bridge annotation
+referenced by one.
+\par\emph{Claim annotations and the representation condition.} A claim annotation records a statement, its referenced
+records, its hypotheses and its scope; the scope field is a reference field
+listing the records and clusters the claim concerns, and makes no assertion. It may additionally carry a
+\emph{witness-cluster field}: a typed reference field listing exactly
+the members of a cluster proposed for a named role. In every
+construction in this paper, a claim described as naming \(P_i\)
+and a cluster \(C\) for a witness check or derived projection
+lists \(C\) in this field. Merely naming a content record does
+not supply a witness-cluster field. A claim annotation is bookkeeping about
+the declared content records it names. It satisfies the
+\emph{representation condition} when every substantive assertion in its
+statement, that is, any predicate, comparison, invariant or law content of the
+statement other than naming its referenced records, hypotheses and scope, is
+represented by fields of those records, and an assertion
+introducing independent content requires an additional declared content
+record. The audit identifies the fields and checks the asserted consequence.
+Precisely, an assertion of the statement is \emph{represented by fields} of the
+named records when it is the formula of one of their predicate, comparison,
+invariant, law or certificate fields, a conjunction of such formulas, or a
+formula logically entailed by a specified finite list of signed certificate
+formulas carried in those fields (true in every well-typed interpretation, under every assignment of truth values to the atomic \(W_j\) formulas, in which those signed formulas are true; this is the entailment of Definition~\ref{def:audited}(c2) with the \(W_j\) atoms uninterpreted). For this representation test,
+\((\varphi,\mathrm{true})\) supplies \(\varphi\) and
+\((\varphi,\mathrm{false})\) supplies \(\neg\varphi\), and atomic \(W_j\)
+formulas are treated as propositional atoms. Certificate correctness,
+completeness and audit honesty are checked separately under
+Definition~\ref{def:audited}. The statement \(W_i(C)\) or \(\neg W_i(C)\) of an
+offer, and the statement \(W_i(C)\) of a role claim, is represented by the
+members of \(C\) listed in its witness-cluster field, the \(\Audit{D}\) conjunct
+of the \(W_6\) row being handled as in the next sentence.
+For a \(W_6(C)\) claim, its event, trace and check content is represented by
+the named content records; its separate \(\Audit{D}\)-entry conjunct is
+evidenced by the honest event-or-trace audit entry required by the \(W_6\)
+row.
+\par\emph{Citation roles.} Two citation roles, (1) and (2), are fixed as follows; (3) is a condition common to both.
+\begin{enumerate}[label=(\arabic*),topsep=2pt,itemsep=1pt]
+  \item A \emph{\(W_i\)-witness record} is a content record of a cluster offered or used as a \(P_i\) witness that meets condition (3).
+  \item A \emph{boundary record} is a record meeting condition (3) of a cluster on which a row of the boundary matrix (Table~\ref{tab:boundary-matrix}) is checked: a content record or, for the rows whose bare datum is a \Psix{} audit record, that audit annotation; a bare datum consisting of several records is presented as the set of their boundary records.
+  \item A \(W_i\)-witness record carries exactly the fields specified by its declared witness check together with the datum and reference fields that check uses and reference fields to other members of the same cluster; a boundary record carries exactly the fields constituting the bare datum of its row of Table~\ref{tab:boundary-matrix}, the typing fields of its kind (kind and declared use), the datum and reference fields its certificates read, and reference fields to other members of the same cluster. A record carrying further fields is not a \(W_i\)-witness or boundary record; this is a condition on which records a claim may cite as such, not a membership condition of \FATCD{}.
+\end{enumerate}
+\noindent Independent operations on the six primitives, axioms for those operations, and global-independence certificates require separate content records.
+\par\emph{Witness-schema annotations.} When a witness-schema annotation names
+\(P_i\), it carries a target field listing the cluster to be checked. A
+witness-schema annotation either names
+\(P_i\) and the corresponding row of the \emph{Witness types} table of
+Section~\ref{sec:primitive-role-architecture}, or names a candidate role
+outside \(P_1,\ldots,P_6\) and
+a check-language formula schema \(\psi(C)\) evaluated on declared clusters. A \emph{formula schema} is a check-language formula without atomic \(W_j\) formulas, with a cluster parameter \(C\) occurring only in finite disjunctions \(\bigvee_{d\in C}\chi(d)\) and conjunctions \(\bigwedge_{d\in C}\chi(d)\), \(d\) record-sorted; its \emph{instance} \(\psi(C')\) at a finite set \(C'\) of declared identifiers expands each over the members of \(C'\) (the empty disjunction being false and the empty conjunction true). We write \(t\in C\) for \(\bigvee_{d\in C}t=d\).
+The latter annotation supplies no \(W_i\) witness or derived projection. An
+assertion that \(W_i(C)\) holds additionally requires the finite evidence
+specified in its table row.
+These annotation kinds belong to the raw grammar; the finiteness and closure
+conditions on how they attach to declared records are imposed in the next
+subsection. For a description \(D\), we write \(\Raw{D}\) for the finite
+collection of raw records and annotations of \(D\).
+\end{definition}
+
+\begin{remark}[Independence of the feature alphabet]\label{rem:alphabet-independence}
+The record and annotation kinds in Definitions~\ref{def:raw-record} and
+\ref{def:annotations} are syntactic or relational entities. No kind is named
+\Pone{}, \ldots, \Psix{}. Consequently, membership in \FATCD{} does not
+require any derived role projection, does not require an exact-six
+decomposition/exhaustion record, and does not exclude candidate seventh-role
+features by definition. An optional witness-schema annotation may name a
+role, but no content kind is itself a role, and membership requires no
+witness schema or derived projection.
+\end{remark}
+
+\subsection{Finiteness, closure, and audit conditions}\label{subsec:conditions}
+
+Three further restrictions turn the raw grammar into a domain of
+admissible descriptions: finiteness, closure, and audit.
+
+\begin{definition}[Finite description]\label{def:finite}
+A description \(D\) is \emph{finite} when
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item \(\Raw{D}\) contains finitely many records and annotations;
+  \item every record or annotation carries finite typed fields;
+  \item every relation, map, path, trace, or annotation is finitely
+    represented;
+  \item every reference in a record points to a declared record of
+    \(D\);
+  \item in particular, semantic, probabilistic, topological, geometric,
+    causal, optimization, or resource structure enters \(D\) only through
+    such finitely represented records, by the preceding conditions.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Closed description]\label{def:closed}
+A finite description \(D\) satisfies the \emph{closure condition} \(\Closed{D}\)
+when
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item every source and target of every relation or map record is a declared
+    record of \(D\);
+  \item every endpoint of every path or derivation record is a declared record
+    of \(D\);
+  \item every index, transition, order, or refinement reference is a declared
+    record of \(D\);
+  \item every trace, event, provenance, replay, or check record references
+    declared records of \(D\);
+  \item every level, threshold, lift, forgetting, visibility, or
+    empirical-bridge annotation references declared records of \(D\);
+  \item every claim annotation carried by \(D\) is referred to by an audit annotation
+    of \(D\) (its bookkeeping record).
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Audited description]\label{def:audited}
+Summary, made precise in (a)--(g) below. An audit is honest exactly when its
+references resolve (b1); its certificates recompute correctly (b2); it lists
+every check its claim requires (b3); predicates with unrecorded extensions
+occur in its conclusion only negatively (b4); its conclusion follows from the
+signed certificates in every well-typed interpretation (c1)--(c2); and
+unverified hypotheses occur only as antecedents of a conditional conclusion,
+every hypothesis used in an outright conclusion being recorded and checked
+true, and the conclusion uses no field it lists as non-certified (c4). These
+conditions are evaluated in the order fixed by (f). Consequently (c3), every conclusion, outright or conditional, using only recorded predicates and carriers is true in
+\(D\).
+\par \emph{(a) Claims and audits.} A \emph{claim} is a claim annotation with a statement, referenced records,
+hypotheses and scope. An audit annotation for a claim records references to
+the claim and to the records it names, a finite list of certificates
+(Section~\ref{sec:primitive-role-architecture}) with their recomputed truth
+values, and a conclusion field holding a closed formula of the assertion language;
+it \emph{certifies} exactly the formula in its conclusion field. \par\emph{(b) Honesty.} It is
+\emph{honest} exactly when (b1)--(b4) below, the entailment requirement (c2)
+and the requirements of (c4) all hold, evaluated in the order fixed by (f);
+(c1) defines the interpretations used in (c2), and (c3) is a consequence:
+(b1) its references resolve in \(D\); (b2) every listed
+certificate is correct; (b3) the list contains every check the claim requires,
+namely: (b3-i) for a claim naming \(P_i\) and listing a cluster \(C\) in a
+witness-cluster field (the claim of an offer in the sense of (d)), every certificate that the \(W_i\) row prescribes and a member of \(C\) carries (for \(W_2\), including every recorded evaluation certificate \((s(t),b)\)), each listed as \((\varphi,b')\) with \(b'\) its recomputed truth value, together with the certificate \((W_i(C),b)\) recording
+the result, or, when \(C\) lacks a record that every alternative of the row requires, that certificate
+alone, with \(b=\mathrm{false}\); (b3-ii) for \(W_6(C)\), the content checks of the
+\(W_6\) row; (b3-iii) for an assertion represented by fields of content records, the
+certificates in those fields; and (b4) the conclusion field contains a closed formula of the assertion language in which every atom whose
+predicate symbol has an unrecorded extension occurs only negatively (within an
+odd number of implication antecedents and negations). Here \(D\) records the extension of a declared predicate \(p\) when at least
+one complete presentation of \(p\) is supplied, either by a relation record
+that references the declaring record of \(p\) in a field declaring it the
+extension of \(p\), its listed tuples being by definition the true tuples of
+\(p\), provided the argument sorts of \(p\) have recorded finite carriers, or
+by its declaring predicate record giving an explicit formula of the fixed check
+language over recorded inputs and declared finite ranges (arguments of
+rational sort being then admitted and evaluated by that formula), all such presentations agreeing on
+every tuple; the criterion is repeated, with the definition of recorded
+carriers, in the paragraph \emph{Terms used in the label criteria} after
+Definition~\ref{def:residual-scheme}.
+\par\emph{(c) Premises.} (c1)~\emph{Interpretations.} An \emph{interpretation} (or \emph{well-typed interpretation}) of \(D\) does three things. First, it keeps the records of \(D\), their kinds, declared uses, the markers declaring a transition codomain distribution-valued, field roles and references; so reference-field carrier lists and declared map and transition domains are fixed across interpretations, while quantifier bounds supplied by datum fields may vary. Second, it keeps every formula-valued field (predicate, comparison, invariant, law, claim, certificate and conclusion fields) and every term-valued field syntactically fixed. A term-valued field is a field explicitly recorded as a symbolic check-language term or a finite list of such terms, including a transition row recorded as \(v(w_1),\dots,v(w_n)\); these expressions are evaluated using the interpretation's datum values, componentwise for lists; ordinary numeric datum fields are not term-valued merely because their values are rational constants. Third, it assigns each remaining datum field a value of its declared type: the type of a map, partial-map or transition graph, or of a table field, fixes the sorts of its values but not their membership in a declared codomain or list, and a row into \(\mathrm{Dist}(S)\) has exactly one coordinate for each member of the fixed reference-field list \(S\), with arbitrary rational entries. Unrecorded predicate extensions and unlisted-sort carriers vary arbitrarily, and \(W_j(C)\) is evaluated by its row, the \(\Audit{D}\) conjunct of the \(W_6\) row ranging over \(\mathrm{Audit}_0(D)\) of \(D\) itself.
+(c2)~\emph{Entailment.} For a correct certificate
+\((\varphi,b)\), an audit may use \(\varphi\) as a premise if \(b\) is true
+and \(\neg\varphi\) if \(b\) is false. Honesty requires the signed premises to entail the conclusion in every
+interpretation; the entailment requirement is therefore a validity condition over these interpretations; certificate correctness is checked separately by recomputation. When an audit conclusion is one of its signed premises, entailment holds by syntactic identity, but reference closure, certificate correctness, completeness and the remaining honesty requirements must also hold. (c3)~\emph{Truth of conclusions.} In particular, every conclusion of an honest audit, outright or conditional, that uses no unrecorded predicate
+symbol and quantifies only over recorded carriers is true in \(D\): the recorded
+datum values of \(D\), with any choice of unrecorded extensions and carriers,
+form an interpretation in which every correct signed premise is true, so the
+conclusion is true there, and its value does not depend on extensions it does
+not use. (c4)~\emph{Hypotheses and non-certification.} An unverified stated hypothesis may occur only as
+an antecedent of a conditional conclusion; an outright conclusion requires
+every hypothesis used to be recorded and checked true. A failed check may thus
+be honestly recorded without supporting a positive witness claim. An audit
+annotation may carry a \emph{non-certification field}, a reference field
+listing fields of the
+records it names whose asserted property it does not certify; it is honest
+only if its conclusion does not use those fields.
+\par\emph{(d) Offers.} In particular, an \emph{offer} of a cluster \(C\) as a \(P_i\)
+witness is a claim annotation naming \(P_i\) and listing \(C\) in a
+witness-cluster field, together with an honest
+audit annotation recording the check of \(W_i(C)\) and its result; an offer
+requires no threshold, level or collapse-case annotation; its statement is
+\(W_i(C)\) when the recorded result is true and \(\neg W_i(C)\) when it is false,
+and its audit concludes that statement from the certificate \((W_i(C),b)\). A
+witness-schema annotation records the predicate to be checked, not a claim
+that every referenced cluster satisfies it.
+\par\emph{(e) Audited descriptions.} A description \(D\) is
+\emph{audited} when every audit annotation it carries is honest and every
+claim it carries is referred to by at least one such annotation and
+satisfies the representation condition of Definition~\ref{def:annotations}; the honest
+audit annotations form \(\Audit{D}\subseteq\Raw{D}\).
+\par\emph{(f) Order of evaluation.} Honesty is determined in
+two stages. Let \(\mathrm{Audit}_0(D)\) be the honest audit annotations whose
+certificates and conclusion contain no atomic \(W_j\) formula; their honesty
+does not depend on any \(W_j\). The \(\Audit{D}\) conjunct of the \(W_6\) row
+ranges over \(\mathrm{Audit}_0(D)\), so an audit of \(W_6(C)\) cannot itself
+discharge it. Every atom \(W_j(C')\) is then determined, since
+the rows of \(W_1,\dots,W_5\) refer to no audit annotation and so do not depend
+on which audits are honest, and \(W_6\) depends on audits only through
+\(\mathrm{Audit}_0(D)\); this determines the
+honesty of the remaining audit annotations.
+\par\emph{(g) Required fields.} Promotions,
+translations, lifts, forgetting, visibility and bridge assertions must also
+carry the following fields, with their stated losses and limits preserved:
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item every promotion records its source level, target level, added data,
+    losses, and nonclaims;
+  \item every translation records its source context, target context,
+    preserved data, suppressed data, and claim strength;
+  \item every lift is marked as selected and non-unique unless uniqueness for its specified source data and target class is proved and recorded;
+  \item every forgetting map records its losses;
+  \item every visibility claim records both visible and suppressed data;
+  \item every empirical-bridge claim records substrate, observable,
+    instrument, level map, threshold witness relation, and
+    suppressed-structure nonclaims.
+\end{itemize}
+\end{definition}
+
+\subsection{Finite audited typed closure descriptions}\label{subsec:fatcd}
+
+Combining the grammar with the three admissibility conditions yields
+the domain over which the exact-six question is posed.
+
+\begin{definition}[Finite audited typed closure description]\label{def:fatcd}
+A \emph{finite audited typed closure description} is a finitely presented,
+closed, audited collection of typed raw records and annotations: every claim
+it carries is referred to by an honest audit annotation, and its promotions,
+translations, lifts, forgetting, visibility and empirical-bridge assertions
+carry the fields listed in Definition~\ref{def:audited}. Membership does not
+require every claim to be certified: a member may carry a claim whose honest
+audit does not certify its statement, making that claim inadmissible under
+Definition~\ref{prop:honest-bookkeeping}. Precisely, it is a
+description \(D\) whose raw content \(\Raw{D}\) is drawn from the kinds
+declared in Definitions~\ref{def:raw-record} and~\ref{def:annotations}, such
+that \(D\) is finite in the sense of Definition~\ref{def:finite}, satisfies
+the closure condition \(\Closed{D}\) of Definition~\ref{def:closed}, is
+audited in the sense of Definition~\ref{def:audited}, and each realization relation of \(D\) lists exactly the members of its candidate class at which its target's formula is true in \(D\) (Definition~\ref{def:raw-record}). We write \FATCD{} for
+the class of all such descriptions, and \(D \in \FATCD{}\) for membership.
+\end{definition}
+
+\begin{remark}[No minimum richness]\label{rem:fatcd-minimality}
+\FATCD{} imposes no lower bound on description size. A description \(D_0\)
+consisting of one declared object record and no claims is finite, closed and
+audited. Its record has no witness, predicate, comparison, invariant, law or
+claim field, so its record satisfies (R3) of
+Definition~\ref{def:recognition-hypothesis} and \(D_0\) satisfies the
+recognition hypothesis. Richer descriptions carrying
+transitions, paths, derivations or annotations of every kind may also belong
+to \FATCD{}; whether they satisfy the recognition hypothesis is checked record
+by record. The domain is defined by structural discipline, not by the presence
+of any particular feature kind. A second small member, used in
+Proposition~\ref{prop:non-circularity}, is the following description \(D_{\mathrm{norm}}\), analysed in
+Remark~\ref{rem:recognition-open}: state records \(w_1,\dots,w_n\) (\(n\ge1\))
+with nonnegative rational value fields \(v(w_k)\) summing to one (for instance
+\(n=2\) and \(v(w_1)=v(w_2)=1/2\)), a predicate record \(N\) (unrelated to the monoid \(N\) of route certificate (a)) declared a
+macro-specification whose formula is \(\bigwedge_k v(w_k)\ge0\wedge\sum_k v(w_k)=1\), a claim annotation
+naming \(N\) whose statement is the formula of \(N\), and an honest audit
+annotation listing the certificate \((\bigwedge_k v(w_k)\ge0\wedge\sum_k v(w_k)=1,\mathrm{true})\) and
+certifying that formula.
+\end{remark}
+
+\subsection{Threshold attachment}\label{subsec:threshold-attachment}
+
+Membership in \FATCD{} is fixed; the next step is to specify how
+role-theoretic claims may attach to the raw data of an admissible
+description. Role projections in \FATCD{} enter only through a
+disciplined attachment of threshold and witness data to raw features.
+The condition below is the structural precondition for the role
+vocabulary introduced in the next subsection.
+
+\begin{definition}[Threshold attachment]\label{def:threshold-attachment}
+Let \(C\subseteq\Raw{D}\) be a finite cluster of raw features of \(D\), possibly
+a single feature; attachment of an annotation to \(C\) is defined below. A derived role projection on \(C\) is
+admissible only when all of the following are present in \(\Raw{D}\):
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item the raw features of \(C\) themselves;
+  \item a threshold annotation \(\mathrm{Ann}_\Theta\) attached to \(C\);
+  \item a witness schema, in the sense of
+    Definition~\ref{def:role-projection}, for the attempted projection, recorded by a witness-schema annotation whose target field lists exactly the members of \(C\);
+  \item a collapse-case annotation targeting exactly \(C\), a record of the collapse
+    cases that would invalidate the witness; like a threshold label, its
+    content is recorded and is not checked by the results of this paper;
+  \item a level annotation \(\mathrm{Ann}_L\) attached to \(C\);
+  \item a nonclaim annotation targeting exactly \(C\);
+  \item an audit record in \(\Audit{D}\) honestly bookkeeping a claim annotation
+    that names the attempted role and lists \(C\) in its witness-cluster field.
+\end{itemize}
+These are necessary conditions; the complete condition is the admissibility
+clause of Definition~\ref{def:role-projection}.
+An annotation is \emph{attached to} \(C\) when its declared target field
+lists exactly the members of \(C\). A threshold annotation may carry a \emph{threshold predicate} on recorded
+fields of \(C\); when it does, the projection on \(C\) is attempted only if
+\(\Audit{D}\) records that predicate checked true, that is, only if some audit annotation in \(\Audit{D}\) lists a correct certificate \((\theta,\mathrm{true})\) whose formula is the threshold predicate \(\theta\), a closed check-language formula. A threshold annotation may
+also carry a label field naming the attempted reading, and a level annotation
+carries a level field. Label and level fields are operation data in the sense
+of (R2) of Definition~\ref{def:recognition-hypothesis} and of criterion (ix-b),
+and make no assertion. A threshold predicate is operation data under (R2) and
+(ix-b) only when it reads the value of at least one record, every record whose values it reads is a member of \(C\), and each such record satisfies (R1); otherwise
+it is an independent assertion.
+\end{definition}
+
+\begin{remark}[Pre-projection discipline]\label{rem:pre-projection}
+The items of Definition~\ref{def:threshold-attachment} form a structural
+precondition, not a process narrative. What matters is that each item is
+present explicitly in \(\Raw{D}\) before a role projection is asserted, so
+that no threshold, witness, collapse case, or level is supplied tacitly by
+the act of projection itself. The lower-bound examples use threshold
+annotations as recorded tags; Definition~\ref{def:threshold-attachment} does
+not require a numerical cut-off. By the ordered rule of
+Definition~\ref{def:channel-status}, \belowthr{} means that a covered seed is
+present but neither an admissible active projection nor a failed offer takes
+precedence. The missing data may be witness fields or attachments.
+\end{remark}
+
+\subsection{Derived role projections}\label{subsec:derived-role-projections}
+
+The role vocabulary \Pone{}--\Psix{} now enters \FATCD{}, not as a
+constraint on membership but as a derived interpretation of raw
+features conditioned on the attachment data of
+\S\ref{subsec:threshold-attachment}.
+
+\begin{definition}[Derived role projection]\label{def:role-projection}
+A \emph{derived role projection} for a description \(D \in \FATCD{}\) at
+role index \(i \in \{1,\ldots,6\}\) is a tuple \(\pi_i(D,C)\), written \(\pi_i(D)\) when the cluster \(C\) is fixed
+by context (a description may carry admissible projections on several clusters
+for the same \(i\)), specified as follows, interpreting raw features of \(D\) as the role \(\mathrm{P}_i\), supported
+by threshold data, witness schema, level assignment, and honest bookkeeping.
+Concretely, \(\pi_i(D)\) is specified by
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item the proposed role name, one of \Pone{}, \Ptwo{}, \Pthree{},
+    \Pfour{}, \Pfive{}, \Psix{};
+  \item a raw feature cluster \(C \subseteq \Raw{D}\) on which the role is
+    interpreted;
+  \item the threshold data \(\Theta_i\) attached to \(C\) in the sense of
+    Definition~\ref{def:threshold-attachment};
+  \item a witness schema \(W_i\): the predicate on pairs \((D,C)\) of a finite
+    description and a finite \(C\subseteq\Raw{D}\), not necessarily with
+    \(D\in\FATCD{}\), given by the \(P_i\) row of the
+    \emph{Witness types} table in Section~\ref{sec:primitive-role-architecture}
+    (depending on annotations only through the \(\Audit{D}\) conjunct of the
+    \(W_6\) row, which is evaluated over \(\mathrm{Audit}_0(D)\), not over \(C\)),
+    fixed by a witness-schema annotation \(w_i\in\Raw{D}\) naming \(P_i\) and
+    that row, which the tuple also records; we write \(W_i(C)\) when \(D\) is
+    fixed;
+  \item a level assignment \(\mathrm{Level}_i\);
+  \item an evidence or certificate type;
+  \item a record of collapse cases avoided or accepted;
+  \item loss and lift annotations for any level crossings involved;
+  \item the explicit nonclaims preserved by the projection.
+\end{itemize}
+The supporting data for \(\pi_i(D)\) are carried by
+\(\Raw{D}\) and certified by \(\Audit{D}\) in the sense of
+Definition~\ref{def:audited}. Where the cluster matters we write
+\(\pi_i(D,C)\). The projection \(\pi_i(D,C)\) makes a \emph{level crossing} when the level
+recorded in its level annotation differs from the level recorded in some other
+level annotation whose target field lists a member of \(C\). The projection \(\pi_i(D,C)\) is \emph{admissible} if and only if
+\(W_i(C)\) holds with its check recorded by an honest audit annotation; the
+threshold, witness-schema, collapse-case and level annotations target exactly
+\(C\); every threshold predicate \(\theta\) they carry is recorded in \(\Audit{D}\) as
+checked true in the sense of Definition~\ref{def:threshold-attachment}; a claim naming \(P_i\) and \(C\) is admissible in the sense of
+Definition~\ref{prop:honest-bookkeeping}, some honest audit annotation
+referring to it and certifying \(W_i(C)\); a nonclaim annotation targets exactly \(C\); if the
+projection makes a level crossing, it carries the translation and the lift or
+forgetting annotation required for that crossing, with the audited losses or
+selected-lift data required by Definitions~\ref{prop:level-profile}
+and~\ref{prop:forgetting-lifts}; and every lift or forgetting annotation whose
+targets meet \(C\) satisfies Definition~\ref{prop:forgetting-lifts}. The
+evidence or certificate is then an applicable alternative of the \(W_i\) row,
+since \(W_i(C)\) holds, and no lift or forgetting annotation is required when
+no crossing occurs. An admissible derived role projection is called
+\emph{active}; a channel is active when its status is \activeproj{}
+(Definition~\ref{def:channel-status}).
+\end{definition}
+
+\begin{remark}[Fixed role meanings]\label{rem:fixed-role-meanings}
+The role names \Pone{}--\Psix{} are defined by their meanings in
+Section~\ref{sec:primitive-role-architecture}: \Pone{} concerns
+update-vs-quotient compatibility and descent obstruction; \Ptwo{} concerns
+macro-specification representability; \Pthree{} concerns enriched
+route and coherence mismatch, not a directionality certificate; \Pfour{}
+concerns stage, order, transition, and refinement structure; \Pfive{}
+concerns quotient packaging; and
+\Psix{} concerns audit, bookkeeping, provenance, replay, and checkability.
+The witness schema \(W_i\) in Definition~\ref{def:role-projection} must be
+aligned with these meanings; a cluster whose raw features do not support the
+meaning of the proposed role contributes no \(\pi_i(D)\).
+\end{remark}
+
+\paragraph{What a witness type is.} Proposition~\ref{prop:alignment-rules}
+lists, for each role, the data a candidate cluster must carry (tabulated
+under \emph{Witness types} in Section~\ref{sec:primitive-role-architecture}): for \Pone{},
+for instance, a map or partial-map record of declared use update, source and target relation records of declared use quotient, and a certificate of alternative (a) or (b) of the \(W_1\) row.
+A cluster or feature \emph{supplies the witness type} of \(P_i\) when it
+carries the data listed there for \(P_i\). The witness schema \(W_i\), recorded in
+\(\Raw{D}\) under Definition~\ref{def:threshold-attachment}, specifies what in
+the candidate cluster would support the projection.
+
+\begin{remark}[Projection and membership are independent]\label{rem:projection-vs-membership}
+Whether a description \(D\) supports a given derived role projection
+\(\pi_i(D)\) is not part of the admissibility conditions of
+Definitions~\ref{def:finite}--\ref{def:audited}. A description
+\(D \in \FATCD{}\) may carry no derived role projection, projections
+for some roles, or projections for all six; its membership in
+\FATCD{} is unaffected. The decomposition/exhaustion record of
+Section~\ref{sec:decomposition-exhaustion} accordingly assigns a
+status to every role channel of \(D\), only some of which need be
+active.
+\end{remark}
+
+\subsection{Residual classification scheme}\label{subsec:residual-classification}
+
+Some raw features remain role-theoretically unsettled at the
+raw-grammar level. \FATCD{} provides an explicit scheme for
+classifying them.
+
+The scheme is stated in four pieces: the notions it borrows from later
+sections (next paragraph); the list of labels (Definition~\ref{def:residual-scheme});
+the criterion for each label (the table after it, part of the definition); and
+the terms those criteria use (the paragraph after the table).
+Section~\ref{sec:upper-bound-classification} restates the criteria in
+record-independent form as (R1)--(R5).
+
+\paragraph{Forward notions.} The label criteria below use six notions
+defined later; we state them here, and the cited definitions are the official
+source. A cluster is \emph{aligned} with \(P_i\) when \(W_i\) holds of it, and
+the required fields are defined after the label table. A \emph{covered seed}
+for \(P_i\) (Definition~\ref{def:channel-status}, p.~\pageref{def:channel-status}, which also defines failed offers and outside-scope declarations) is a record of one of the
+kinds (1)--(6) of that definition, with the named seed fields listed there.
+Briefly: (1) an update map with its source relation; (2) a one-free-variable
+macro-specification taking both truth values, with a realization relation;
+(3) a comparison certificate for two routes with the same endpoints; (4) a
+law-bearing stage, order, transition or refinement record; (5) a quotient
+relation or packaging map; (6) an event, provenance or trace record, or a
+replay or check record certifying a property of its trace. \(A(\Dec{D})\) and \(S(\Dec{D})\) are the records of
+the active projections and of the inactive-status entries of a decomposition
+record (Definition~\ref{def:decomposition-record}), fixed before its residual
+features are labelled. An \emph{(R4) chain} from \(r\) is a finite sequence of
+distinct declared records \(r=r_0,\ldots,r_n\), \(n\ge1\), in which, for each
+\(j<n\), \(r_j\) records a checked equality or isomorphism of presentation data (a bijection between specified datum fields that are not term-valued, or member lists of object records, of \(r_j\) and \(r_{j+1}\), with a certificate that each value equals its image; a level-translation step carries such a bijection and certificate as well; no structural isomorphism is meant) with,
+or a checked level translation to, \(r_{j+1}\) and, apart from one comparison field recording the equality, isomorphism or level translation with \(r_{j+1}\), and the datum and reference fields it compares, has no predicate, comparison, invariant, law or claim field (Definition~\ref{def:recognition-hypothesis}).
+Two further notions come from Definition~\ref{def:recognition-hypothesis}. A
+record satisfies \emph{(R1)} when it contributes a required field to a cluster
+aligned with some \(P_i\) or carries a covered seed, and each of its predicate,
+comparison, invariant, law or claim fields is required for, or an input to the
+check of, \(W_{i_\varphi}\) at some cluster \(C_\varphi\ni r\) aligned with
+\(P_{i_\varphi}\), with the index and cluster chosen separately for each field
+\(\varphi\), or is a named field of a seed clause it carries (so \(r\) carries no assertion beyond these fields; content beyond them must be recorded in a separate declared content record, which is classified on its own); or when it is a member of the cluster of an honestly
+recorded failed offer and each such field is an input to the recorded check.
+The \emph{exempt fields of (R2)} are the statement and hypothesis fields of a
+claim annotation, the certificate field of an audit annotation and its conclusion field when its conclusion is true in every well-typed interpretation or is represented, in the sense of Definition~\ref{def:annotations}, by fields of the content records named by the claim it audits,
+and the formula schema of a witness-schema annotation; a conclusion field that is not exempt is a formula-valued field, so an audit annotation carrying one does not have only datum and reference fields besides its exempt fields.
+
+\begin{definition}[Residual feature; residual classification scheme]\label{def:residual-scheme}
+Let \(D \in \FATCD{}\). A \emph{residual feature}, or \emph{kind residual}, of \(D\) is
+any content record of Definition~\ref{def:raw-record} or any of the six
+structural annotations of Definition~\ref{def:annotations} in \(\Raw{D}\). The
+seven bookkeeping annotations are excluded from this kind-residual set; they
+may still be record residuals of a particular decomposition. Raw-grammar kind
+alone assigns none of these features a role; ``residual'' means residual to
+the raw kinds, not left over by a decomposition, and every content record is a
+kind residual, including the constituents of active clusters. The records left
+over by a particular decomposition record form the set \(\Residual{D}\) of
+Section~\ref{sec:decomposition-exhaustion}. The \emph{residual classification scheme}
+specifies, relative to the channel entries of a decomposition record (its six
+statuses and the clusters, offers, seeds and declarations they name, which fix
+\(A(\Dec{D})\), \(S(\Dec{D})\) and \(\Residual{D}\) before any label is chosen),
+which labels are licensed for each residual feature; a record chooses one licensed label
+\(\operatorname{Classify}(r)\) for each \(r\in\Residual{D}\)
+(Definition~\ref{def:decomposition-record}), drawn from the list
+\begin{enumerate}[label=(\roman*),topsep=2pt,itemsep=1pt]
+  \item a declared constituent of the cluster that the decomposition record
+    names for an active \Pone{}--\Psix{} projection \(\pi_i(D)\), whose
+    cluster satisfies \(W_i\);
+  \item shared constituent of two such projections;
+  \item presentation variant of an already classified feature;
+  \item level shift of an already classified feature;
+  \item unabsorbed role-aligned content, covered-seed content with no
+    certified witness \(W_i\), content checked in an honestly failed offer, or activation-threshold refinement;
+  \item instrument-visibility artifact;
+  \item empirical-bridge annotation;
+  \item outside-domain structure;
+  \item already-covered bookkeeping or annotation data, or role-neutral data
+    without an assertion of its own;
+  \item unresolved candidate seventh-role threat: an in-scope feature placed by none of (i)--(ix), which need be neither true nor a proposed role (Remark~\ref{rem:recognition-open});
+  \item recorded seventh-role screen.
+\end{enumerate}
+The same criteria apply to every member of \(\Residual{D}\) for a chosen
+decomposition record, including a bookkeeping annotation not assigned to a
+channel. They are evaluated in the same way for every bookkeeping annotation of \(D\), assigned to a channel or not; Theorems~\ref{thm:upper-bound-classification} and~\ref{thm:scoped-exact-six} use them so. A claim annotation's bookkeeping fields may receive (ix); its substantive
+assertion is classified through the content records representing it,
+including any additional record required for independent content. For a feature with no claim about it, ``honestly audited'' in
+criterion (x) means that every claim concerning it, if any, has an honest
+audit; it does not require an audit annotation for an unclaimed raw record.
+A decomposition record fixes one such assignment; where the label criteria
+license more than one label for \(r\), different records may choose
+differently (Proposition~\ref{prop:non-uniqueness}). A label applies to \(r\) under the criterion given for it in the table
+after this definition, which is part of the definition. In particular,
+(x) applies when \(r\) has finite, honestly audited content in the covered scope and
+no criterion (i)--(ix) holds for it, so that it remains an unresolved
+candidate; and (xi) applies under the criterion in the last row of the table. In words, (xi)
+holds for an unresolved feature \(r\) when a recorded formula \(\psi\), attached
+to a named candidate role outside \(P_1,\dots,P_6\), holds at some cluster
+containing \(r\) at which no \(W_i\) holds, fails at some other cluster and at
+every cluster at which some \(W_i\) holds, and \(r\) records a closure operator \(c\) on
+a declared finite order lying outside the monoid generated by \(\mathrm{id}_X\) and the restrictions to \(X\) of the graphs of those map, partial-map, transition and refinement records of
+\(D\) that are defined at every member of \(X\) with values in \(X\) (a map recorded only in a field of a record of another kind is not counted). There the
+separation certificate is the one whose formula is the finite conjunction over
+all \(C'\subseteq\Raw{D}\) of
+\((W_1(C')\vee\dots\vee W_6(C'))\rightarrow\neg\psi(C')\), with \(\psi(C')\) the
+instance of the schema at the list \(C'\); this separation certificate
+establishes no witness row, law or seed, so its formula may contain \(W\)
+atoms, although \(\psi\) itself contains none, and ``\(\psi\) false at some other cluster'' is the certificate
+\(\neg\psi(C_0)\) for a named \(C_0\ne C\). Criterion (xi) is a recorded screen, not the identification of a new closure
+role.
+\par\emph{Example (illustrative; not part of the definition).} For \(X=\{0,1\}\) with a declared order record for \(0<1\) and a certificate of its order law, a relation record of declared use other may
+carry a finite table field \(c\) with \(c(0)=1\), \(c(1)=1\), and a datum field
+listing \((\mathrm{id}_X)\), with correct certificates, recorded true, of extensivity,
+monotonicity, \(c^2=c\), closure of this list under composition, and
+\(c\ne\mathrm{id}_X\). If no listed generating-record kind records a total map
+on \(X\), its generated monoid is \(\{\mathrm{id}_X\}\). These records establish only the closure-operation part of (xi). The full
+criterion additionally requires (x), a witness-schema annotation, and the
+certified \(\psi\)-separation specified above. For that full criterion, add a check record carrying the stated recomputable
+certificates, and a claim annotation referencing both \(r\) and that check
+record whose statement is exactly the certified screen conditions. An honest
+audit of the claim cites those records and certifies that statement. This ends
+the example.
+\par The scheme is declarative. At the domain-definition level, \FATCD{} records
+the available labels but neither proves that every residual feature lands in
+categories (i)--(ix) nor proves that categories (x) and (xi) are empty. Those
+claims are deferred to Section~\ref{sec:upper-bound-classification}.
+The terms aligned, contributes a required field, required for \(W_i\) at \(C\),
+input to the check and outside the covered scope are defined in the paragraph
+\emph{Terms used in the label criteria} after the table below.
+\end{definition}
+
+\paragraph{When each label applies.} Labels are assigned relative to the
+channel entries of a fixed decomposition record \(\Dec{D}\)
+(Definition~\ref{def:decomposition-record}); well-formedness of \(\Dec{D}\)
+then requires each chosen label to be licensed in this sense. Labels (i)--(v) use
+the named channel entries where their criteria require them, together with the
+records and clusters specified in those criteria. The residual scheme allows the
+following labels for a residual feature \(r\) in the sense of this
+definition; the criteria are given in the table below, and
+Theorem~\ref{thm:upper-bound-classification} uses them to exclude (x) and
+(xi) under the recognition hypothesis. Labels~(i) and~(ii) do not occur in the
+set \(\Residual{D}\) of a decomposition record
+(Section~\ref{sec:decomposition-exhaustion}).
+\begingroup\small
+\begin{longtable}{@{}l>{\raggedright\arraybackslash}p{0.88\linewidth}@{}}
+\toprule
+Label & The residual feature \(r\) \\
+\midrule
+\endhead
+(i) & belongs to the cluster that the decomposition record names for an active projection satisfying \(W_i\), and every predicate, comparison, invariant, law or claim field of \(r\) is required for \(W_i\) at the cluster \(C\) of the clause, or is an input to the check of \(W_i\) at \(C\), or is a named field of a seed clause that \(r\) carries (so \(r\) carries no assertion beyond these fields; content beyond them must be recorded in a separate declared content record, which is classified on its own) \\
+(ii) & there are indices \(i\neq j\) and clusters \(C_i,C_j\) named by the decomposition record for active projections such that \(r\) contributes a required field to both, and every predicate, comparison, invariant, law or claim field of \(r\) is required for, or an input to the check of, \(W_i\) at \(C_i\) or \(W_j\) at \(C_j\); the relation record \(E\) of the running example, which lies in the \Pone{} and \Pfive{} clusters, is an example, as is the map record for \(F\), which lies in \(C_1\) and \(C_6\) (the clusters of the paragraph \emph{The running example as a description} below) \\
+(iii) & re-presents a classified feature: \(r=r_0\) begins a finite chain \(r_0,\ldots,r_n\) as in (R4), with \(n\geq1\), distinct records and only checked equality or isomorphism steps, whose terminal \(r_n\) lies in \(A(\Dec{D})\cup S(\Dec{D})\) or satisfies a criterion among (i), (ii) and (v)--(ix) \\
+(iv) & restates a classified feature at a different level: \(r=r_0\) begins a finite chain \(r_0,\ldots,r_n\) as in (R4), with \(n\geq1\), distinct records and at least one checked level-translation step, whose terminal \(r_n\) lies in \(A(\Dec{D})\cup S(\Dec{D})\) or satisfies a criterion among (i), (ii) and (v)--(ix) \\
+(v) & one of: (v-a) \(r\) contributes a required field to a six-role-aligned cluster, or itself carries a covered seed for one of the six roles, but criterion (i) does not hold for \(r\); this includes a cluster missing an attachment and a seed lacking a complete witness; and every predicate, comparison, invariant, law or claim field \(\varphi\) of \(r\) is, for some index \(i_\varphi\) and some finite cluster \(C_\varphi\ni r\) aligned with \(P_{i_\varphi}\), required for \(W_{i_\varphi}\) at \(C_\varphi\) or an input to its check, or is named in a seed clause that \(r\) carries (so \(r\) carries no assertion beyond these fields; content beyond them must be recorded in a separate declared content record, which is classified on its own);\newline (v-b) \(r\) is a threshold annotation targeting a cluster named for an active projection, which carries a threshold predicate and no field other than its typing, target and label fields and that predicate, in the sense of Definition~\ref{def:threshold-attachment}, and the threshold predicate reads at least one record, every record whose values it reads is listed in the annotation's target field, and each such record satisfies (R1);\newline (v-c) \(r\) is a member of the cluster of an honestly recorded failed offer for some \(P_i\), each of whose predicate, comparison, invariant, law or claim fields is an input to the recorded check of \(W_i\) on that cluster \\
+(vi) & is an instrument-visibility annotation whose fields other than its typing and target fields are its visible data, suppressed data, instruments and claim strength (Definition~\ref{prop:visibility}), each formula-valued one of which reads at least one record, reads only records listed in its target field, and reads only records satisfying (R1) \\
+(vii) & is an empirical-bridge annotation identifying an admissible bridge claim whose associated entry in \(\Audit{D}\) carries the five items of Definition~\ref{prop:empirical-bridge}, and whose own fields other than its typing and target fields only identify that bridge claim and those items \\
+(viii) & lies outside the covered scope: a field of \(r\) asserts a property whose check is not finite over the records of \(D\): it quantifies over a declared domain for which \(D\) supplies no finite checking range, or uses a declared predicate whose extension \(D\) does not record, and its truth value is not fixed by the recorded values of \(D\) (it is true in some expansion of \(D\) and false in another, in the sense of the paragraph \emph{Certificates, assertion language and laws} of Section~\ref{sec:primitive-role-architecture}; for a formula with free variables: for some assignment \(\alpha\) of its free variables and two expansions of \(D\) whose carriers contain the values \(\alpha\) gives to variables of unlisted sorts, it is true under \(\alpha\) in one and false under \(\alpha\) in the other). In addition, every other predicate, comparison, invariant, law or claim field of \(r\) either has this property or is required for \(W_i\) at a cluster \(C\) aligned with \(P_i\), an input to the check of \(W_i\) at such a cluster, or named in a seed clause that \(r\) carries \\
+(ix) & is one of: (ix-a) a bookkeeping annotation whose fields other than the exempt fields of (R2) are datum or reference fields;\newline (ix-b) a structural annotation whose fields contain only its declared operation, its targets, and the finite typing, checking, preserved or suppressed data, losses and nonclaims required for that operation, with no independent assertion, when (v), (vi) and (vii) do not apply. Here a formula-valued field of a structural annotation (a threshold predicate, a preserved or lost invariant) is part of its declared operation only when it reads at least one record, every record whose values it reads is listed in the annotation's target field, and each such record satisfies (R1); otherwise it is an independent assertion and (ix-b) does not apply;\newline (ix-c) role-neutral data without an assertion of its own: it supplies no witness field and has no predicate, comparison, invariant, law or claim field, such as an input used in checking a required or seed field, or a declared object or state that no role datum uses; also a predicate record supplying no witness field whose only assertion field is a formula with at least one free variable whose truth value is not the same under all assignments respecting the declared sorts of its free variables, using only predicates whose extensions \(D\) records, and quantifying only over sorts whose carriers \(D\) records, each free variable ranging over a record kind or the rational sort, referenced by no claim annotation, and referenced by certificates only through the abbreviation \(s(t)\) of the paragraph \emph{Check language} (a definition, which has no truth value over \(D\)) \\
+(x) & has finite, honestly audited content in the covered scope, and no criterion (i)--(ix) holds for it; for \(D\in\FATCD{}\) the first two conditions hold for every record (Definitions~\ref{def:finite} and~\ref{def:audited}(e)), so (x) applies exactly when \(r\) lies in the covered scope and no criterion (i)--(ix) holds \\
+(xi) & satisfies (x), and: (a) \(D\) carries a witness-schema annotation naming a role label outside \(P_1,\dots,P_6\) with a formula schema \(\psi(C)\) (Definition~\ref{def:annotations}) each of whose instances \(\psi(C')\), at the identifier list of a cluster \(C'\), is a closed formula of the fixed check language containing no atomic \(W_j\) formula;\newline (b) for some cluster \(C\ni r\), an honest audit records \(\psi(C)\) true, \(W_1(C),\dots,W_6(C)\) all false, and \(\psi\) false at some other cluster of \(D\);\newline (c) the same audit records \(\psi(C')\) false for every cluster \(C'\subseteq\Raw{D}\) at which some \(W_i(C')\) holds, by the separation certificate specified in the body of this definition;\newline (d) \(r\) records a closure operation \(c\) on a declared finite order \((X,\le)\), with \(\le\) the reflexive closure of the relation of a declared order record whose law is certified, that is, a total map \(c:X\to X\) recorded in a field of \(r\) with correct certificates, recorded true, whose formulas are obtained, by the steps permitted in the paragraph \emph{What a required certificate must express} of Section~\ref{sec:primitive-role-architecture}, from the prescribed conditions \(\forall x\in X\,(x<_o c(x)\vee x=c(x))\), \(\forall x,y\in X\,((x<_o y\vee x=y)\to(c(x)<_o c(y)\vee c(x)=c(y)))\) and \(\forall x\in X\,(c(c(x))=c(x))\), \(o\) being that order record;\newline (e) a datum field of \(r\) lists finitely many total maps \(X\to X\), among them \(\mathrm{id}_X\) and, for every map, partial-map, transition or refinement record of \(D\) whose graph is defined at every member of \(X\) with values in \(X\), the restriction of that graph to \(X\), and correct certificates, recorded true, whose formulas are obtained in the same way from the prescribed conditions \(\forall k,l<|L|\,\exists j<|L|\,\forall x\in X\,(L_j(x)=L_k(L_l(x)))\) and \(\forall k<|L|\,\exists x\in X\,(c(x)\neq L_k(x))\), \(L\) being that datum field, stating that the list is closed under composition and that \(c\) differs from every listed map; the list then contains the monoid these maps generate, so \(c\) lies outside it \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+Criterion (viii) states the same condition as the paragraph \emph{Covered scope} below and as (R5); criterion (ix-c) states the same condition as (R3); and criterion (v-a) is the first branch of (R1) together with the failure of (i).
+
+\paragraph{Terms used in the label criteria.}
+\emph{Declared operations.} The \emph{declared operation} of a structural annotation of
+Definition~\ref{def:annotations} is the operation of its kind (a level
+assignment, a threshold, a lift, a forgetting, an instrument restriction or an
+empirical bridge) together with the fields that the definition of that kind
+prescribes for it; an \emph{independent assertion} of such an annotation is a
+predicate, comparison, invariant, law or claim field other than those
+prescribed fields, or a formula-valued prescribed field that is not part of
+its declared operation under the condition of criterion (ix-b).
+\par\smallskip\noindent\emph{Alignment and required members.} A cluster \(C\subseteq\Raw{D}\) is \emph{aligned} with \(P_i\), or
+\emph{six-role-aligned}, when \(W_i(C)\) holds; it may lack the attachment
+data of Definition~\ref{def:threshold-attachment}. A record \(r\in C\) is a \emph{required member} of such a cluster, and is said
+to \emph{contribute a required field} to it, when
+\(W_i(C\setminus\{r\})\) fails (the condition concerns membership, so a record
+without fields, such as a micro-element of the \(W_5\) row, can contribute a
+required field), and \(r\) \emph{supplies a witness field}
+when it contributes a required field to some aligned cluster or carries a
+covered seed. \par\noindent\emph{Required fields and inputs.} For \(r\in C\) and a field \(\varphi\) of \(r\), let \(D[r\setminus\varphi]\) be
+the description with \(\varphi\) deleted from \(r\), all else unchanged, and
+\(C[r\setminus\varphi]\) the corresponding cluster; the rows of the witness table
+define \(W_i\) on every such pair, whether or not it lies in \FATCD{}. The field
+\(\varphi\) is \emph{required for \(W_i\) at \(C\)} when \(W_i(C)\) holds and
+\(W_i(D[r\setminus\varphi],C[r\setminus\varphi])\) fails, and is an \emph{input to
+the check} of \(W_i\) at \(C\) when changing only its value (for a datum
+field its recorded datum; for a formula-valued or certificate field its
+recorded formula together with, for a certificate, its named inputs; the
+recorded truth value of a certificate is not read by recomputation) can change the
+recomputed result of some certificate \(\kappa\) carried by a member of \(C\)
+whose recorded formula, before the change, expresses, in the sense of the paragraph \emph{What a required certificate must
+express} (Section~\ref{sec:primitive-role-architecture}), the
+conditions that the \(W_i\) row prescribes
+for that certificate (for
+\(W_6\), a property of a trace in \(C\) tied to an event in \(C\); for \(W_3\), a
+non-reducibility certificate for two routes in \(C\); for \(W_4\), a law of an
+order, transition or refinement record in \(C\); \(\kappa\) may be \(\varphi\)
+itself only when \(\varphi\)'s recorded formula already expresses such a
+condition). For a failed offer on \(C\), a
+field \(\varphi\) of \(r\in C\) is an \emph{input to the recorded check} when the
+offer's audit lists a certificate carried by a member of \(C\), other than
+\((W_i(C),\mathrm{false})\), whose formula expresses a condition prescribed by
+the \(W_i\) row and whose recomputed result changes when only the value of
+\(\varphi\) changes; when the audit lists \((W_i(C),\mathrm{false})\) alone, no
+field is such an input. This field-level notion differs from the record-level
+phrase of the paragraph \emph{Witness types}, which governs only cluster
+membership; a reference field is never an input to the check. For a covered seed, the required fields are the
+fields named in its seed clause of Definition~\ref{def:channel-status}. \par\noindent\emph{Covered scope.} A record \(r\) of \(D\) lies \emph{outside the covered scope} when a field of \(r\) asserts a property whose check is not finite over the records of \(D\): it quantifies over a declared domain for which \(D\) supplies no finite checking range, or uses a declared predicate whose extension \(D\) does not record, and its truth value is not fixed by the recorded values of \(D\) (it is true in some expansion of \(D\) and false in another, in the sense of the paragraph \emph{Certificates, assertion language and laws} of Section~\ref{sec:primitive-role-architecture}; for a formula with free variables: for some assignment \(\alpha\) of its free variables and two expansions of \(D\) whose carriers contain the values \(\alpha\) gives to variables of unlisted sorts, it is true under \(\alpha\) in one and false under \(\alpha\) in the other). In addition, every other predicate, comparison, invariant, law or claim field of \(r\) either has this property or is required for \(W_i\) at a cluster \(C\) aligned with \(P_i\), an input to the check of \(W_i\) at such a cluster, or named in a seed clause that \(r\) carries; the \emph{covered scope} of \(D\) consists of its other records. \par\noindent\emph{Recorded extensions and carriers.} Here \(D\) \emph{records the extension} of a declared predicate \(p\) when at least one complete presentation of \(p\) is supplied, either by a relation record that references the declaring record of \(p\) in a field declaring it the extension of \(p\), its listed tuples being by definition the true tuples of \(p\), provided the argument sorts of \(p\) have recorded finite carriers, or by its declaring predicate record (possibly \(r\) itself) giving an explicit formula of the fixed check language of Section~\ref{sec:primitive-role-architecture} over recorded inputs and declared finite ranges (arguments of rational sort being then admitted and evaluated by that formula); all such presentations of \(p\) must agree on every tuple, and otherwise \(D\) does not record its extension. This depends only on \(D\) and \(p\).\par\noindent\emph{Finite checking ranges.} \(D\) supplies a finite
+checking range for, and records the carrier of, a declared domain \(\sigma\)
+when \(\sigma\) is declared by an object record listing its members or is the
+set of declared records of one kind; a sort declared by an object record
+listing no members has neither. Both conditions are decided by inspecting the fields of \(r\) and the declarations of \(D\). The record and its references remain finite and declared. \par\noindent\emph{Outside-scope declarations; examples.} An outside-scope declaration (Definition~\ref{def:channel-status}) additionally requires the honest audit of its claim to list that field in its non-certification field; the outside-scope criterion itself imposes no condition on audits. A finite, audited feature is not outside scope merely because it supplies
+none of the six role witnesses. Label~(viii) applies to a record outside the
+covered scope: the record itself is finite and belongs to \(D\), but the check
+its assertion needs is not finite over the records of \(D\). Examples are an audited metaphysical-causation assertion whose declared
+predicate has no recorded extension (Proposition~\ref{prop:causality-closure})
+and a proposed intentional or teleological predicate whose extension is
+unrecorded (Proposition~\ref{prop:agency-closure}), in each case
+provided the asserted property is true in some expansion of \(D\)
+and false in another.
+
+\begin{remark}[Optimization and objective data are not excluded]\label{rem:optimization-not-excluded}
+Raw features expressing optimization, objective, or selection criteria
+pass through the scheme of Definition~\ref{def:residual-scheme}; they
+are not dismissed by definition. Under the fixed role meanings
+(Remark~\ref{rem:fixed-role-meanings}), typical classifications
+include: a predicate or specification record possibly supporting a
+\Ptwo{} projection; a map or transition-selection record possibly
+supporting a \Pone{} or \Pfour{} projection; a route-comparison or
+route-choice record possibly supporting a \Pthree{} projection; an
+audit or check record possibly supporting a \Psix{} projection; an
+empirical-bridge annotation; or an outside-domain structure when an assertion of the
+feature uses an unrecorded predicate or uncarried sort and is true in some expansion of \(D\) and false in another, and every other assertion field meets the additional conditions of criterion (viii). A feature that
+fits none of these receives whichever of criteria (iii)--(ix) it meets (for
+instance (ix-c) for a record with only datum fields, such as a value tagged
+objective), and category~(x) only when none holds.
+\end{remark}
+
+\paragraph{The running example as a description.} The example of
+Section~\ref{sec:primitive-role-architecture} is a description
+\(D_{\mathrm{ex}}\in\FATCD{}\) whose raw records are listed below, with the
+references the text of the example fixes and the projection that uses each
+record. Every reference points to a declared record, and the audit part
+carries a bookkeeping record for each claim, so \(D_{\mathrm{ex}}\) is finite,
+closed and audited. Threshold, witness, level, collapse and audit annotations
+are attached to the three clusters \(C_1\), \(C_5\) and \(C_6\) described after
+the table.
+\begin{center}
+\footnotesize
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.3\linewidth}>{\raggedright\arraybackslash}p{0.22\linewidth}>{\raggedright\arraybackslash}X@{}}
+\toprule
+Record & Relates to & Used by \\
+\midrule
+four state records \(0,1,2,3\) & & \\
+state-set object record \(S_0\) listing \(0,1,2,3\) & state records & declared domain and codomain of \(F\) and of its transition record, domain of \(q\); \Pone{} and \Pfive{} projections \\
+object records \(A\), \(B\) and a quotient-object record \(\{A,B\}\) listing them & & \Pfive{} projection \\
+map record for \(F\), declared use \emph{update} & \(S_0\) & \Pone{} projection \\
+relation record \(E\), of declared use quotient, whose datum fields list the classes \(\{0,1\}\) and \(\{2,3\}\) under class-name fields \(A\) and \(B\) & & \Pone{} and \Pfive{} projections \\
+map record for \(q\), declared use \emph{packaging}, declared domain \(S_0\), codomain \(\{A,B\}\) & \(S_0\), state records, quotient-object record & \Pfive{} projection \\
+quotient-validity check record for \(q\) and \(E\), checking the two fibers, their equality with the \(E\)-classes (so \(E=\ker q\)), and coverage of \(\{A,B\}\), and that every member of a class of \(E\) lies in \(S_0\) & state, object, \(q\)-map and relation records & \Pfive{} projection \\
+comparison record for the split pair \((0,1)\) & map and relation records & \Pone{} projection \\
+trace record \(0\to2\to3\) & & \Psix{} projection \\
+a replay record carrying only reference fields to the trace and to the map record for \(F\), and a check record carrying reference fields to the trace and to the map record for \(F\) together with the certificate \(\tau_1=F(\tau_0)\wedge\tau_2=F(\tau_1)\), where \(\tau=(0,2,3)\) & the trace and the map record for \(F\) & \Psix{} projection \\
+event and provenance records & the trace & \Psix{} projection \\
+transition record for \(F\), whose graph lists the same four pairs as the map record for \(F\), carrying in its law field the certificate \((\forall x\in S_0\,(t(x)\in S_0),\mathrm{true})\), \(t\) being this record (the transition law of Section~\ref{sec:primitive-role-architecture} with its definedness conjunct omitted), where \(S_0=\{0,1,2,3\}\) (no separate check record) & map record for \(F\), \(S_0\) and state records & \\
+index record \(\mathrm{idx}\) with two datum fields named \(A\) and \(B\) (field names, distinct from the identifiers of the object records \(A\) and \(B\), as are the class-name fields of \(E\)) holding the lists \((0,1)\) and \((2,3)\), with one comparison field recording the bijection \(\beta\) from these two fields to the class fields \(A\) and \(B\) of \(E\), together with its certificate that each recorded value equals that of its \(\beta\)-image, written entrywise with indexing (\(A(\cdot)_k\) denoting entry \(k\) of the field \(A\)): \(\bigwedge_{k<2}(A(\mathrm{idx})_k=A(E)_k\wedge B(\mathrm{idx})_k=B(E)_k)\) & relation record \(E\) & \\
+\bottomrule
+\end{tabularx}
+\end{center}
+The split-pair comparison carries the certificate
+\((E(0,1)\wedge((0\in\mathrm{dom}F\leftrightarrow1\notin\mathrm{dom}F)\vee(0\in\mathrm{dom}F\wedge1\in\mathrm{dom}F\wedge E(F(0),F(0))\wedge E(F(1),F(1))\wedge\neg E(F(0),F(1)))),\mathrm{true})\); \(F(0)\) and \(F(1)\) are
+defined because \(F\) is a total map record on \(S_0\), so this is alternative
+(b) of the \(W_1\) row. The quotient-validity check
+carries the certificate, recomputed true,
+\(\forall u,v\in S_0\,(E(u,v)\leftrightarrow q(u)=q(v))\wedge 0\ne1\wedge q(0)=q(1)\wedge\forall z\in\{A,B\}\,\exists u\in S_0\,(q(u)=z)\wedge\forall u\in|E|\,(u\in S_0)\wedge\forall u\in S_0\,(q(u)\in\{A,B\})\),
+the \(W_5\) formula with \(X=S_0\), \(Q=\{A,B\}\), \(x=0\), \(y=1\) (the numerals in \(0\ne1\) replace the record-sorted variables \(x,y\) and denote records). Both certificates name their declared inputs.
+No threshold annotation targets a cluster containing the transition record. The \Pone{}
+cluster \(C_1\) contains \(F\), \(E\), \(S_0\), the split-pair comparison and their referenced
+state records. The \Pfive{} cluster \(C_5\) contains \(S_0\), the four state records, the object
+records \(A\) and \(B\), the quotient-object record \(\{A,B\}\), the map record for \(q\), the relation
+\(E=\ker q\) and the finite quotient-validity check. The \Psix{} cluster \(C_6\)
+contains the event, trace, provenance, replay and check records and the map
+record for \(F\). For each
+\(i\in\{1,5,6\}\), \(D_{\mathrm{ex}}\) carries a threshold, witness-schema,
+level, collapse-case, claim, honest audit and nonclaim annotation assigned to
+the displayed active projection, the threshold, witness-schema,
+collapse-case, level and nonclaim annotations each targeting exactly
+\(C_i\), each of the three level annotations recording the verification level,
+so that no projection makes a level crossing (Definition~\ref{def:role-projection}); for \(i=6\) these annotations also include a claim annotation
+\(c_\tau\) referencing the event, trace and check records, whose statement is the formula of the check record's certificate (so \(c_\tau\) satisfies the representation condition of Definition~\ref{def:annotations}), with an
+honest audit \(a_\tau\) referencing \(c_\tau\), the event, trace, \(F\) and
+check records, and certifying precisely those equations from the check
+record, both assigned to the active \Psix{} projection, which discharges the
+\(\Audit{D}\) conjunct of \(W_6(C_6)\) certified by the \Psix{} audit. It
+carries no lift or forgetting annotation and no other annotation. Each threshold annotation carries only its typing, target and label, each level annotation only its typing, target and level, and each claim, collapse-case and nonclaim annotation only datum and reference fields besides its statement and hypothesis fields. For each \(i\in\{1,5,6\}\), the role claim has statement \(W_i(C_i)\).
+Its audit references that claim and its named records, lists the
+row's content certificates, recomputed true, together with
+\((W_i(C_i),\mathrm{true})\), and concludes \(W_i(C_i)\).
+For \(i=6\), the latter certificate is recomputed after
+\(a_\tau\) is established honest in \(\mathrm{Audit}_0(D_{\mathrm{ex}})\). The
+\Pfour{} status names the law-bearing transition record as its seed. The index record references \(E\); its equality-check field records that its
+two lists equal, entry by entry, the class lists of \(E\). Recomputing that equality
+verifies its presentation-variant label. The table and
+these annotations exhaust \(\Raw{D_{\mathrm{ex}}}\). Consequently, for the decomposition record that assigns all these annotations to their projections and names the transition record as the \Pfour{} seed, \(A(\Dec{D_{\mathrm{ex}}})\cup S(\Dec{D_{\mathrm{ex}}})\) contains every feature except the index record, and \(\Residual{D_{\mathrm{ex}}}\) consists of the index record alone, classified as a presentation variant of the relation record; a well-formed record leaving \(c_\tau\) and \(a_\tau\) unassigned has them as further record residuals, each licensed (ix-a).
+
+\subsection{Non-circularity and non-overbreadth}\label{subsec:non-circularity-non-overbreadth}
+
+Two proposition schemas record the definition-theoretic facts used by
+the later theorem chain: the domain does not presuppose the answer to
+the exact-six question, and it is structurally restrictive enough
+for that question to remain substantive.
+
+\begin{proposition}[Non-circularity schema for \FATCD{}]\label{prop:non-circularity}
+Membership in \FATCD{} is not defined by requiring a
+decomposition/exhaustion record or by requiring any derived role
+projection to exist. Concretely, the description \(D_0\) of
+Remark~\ref{rem:fatcd-minimality} lies in \FATCD{} and has no derived role
+projection, and the description \(D_{\mathrm{norm}}\) of
+Remark~\ref{rem:fatcd-minimality} (analysed in
+Remark~\ref{rem:recognition-open}) lies in \FATCD{}, and its raw record \(N\)
+is licensed only label (x) in every well-formed decomposition record.
+\end{proposition}
+
+\begin{proof}
+We inspect the clauses that govern membership, namely those of
+Definitions~\ref{def:raw-record}--\ref{def:fatcd}, and the residual
+classification scheme of Definition~\ref{def:residual-scheme}.
+\begin{enumerate}[label=(\alph*),topsep=2pt,itemsep=1pt]
+  \item The raw grammar permits a witness-schema annotation to name \(P_i\),
+    and honesty checks any role claim a description actually makes. Neither
+    such an annotation nor a role claim is required for membership in
+    \FATCD{}. Its membership conditions require finite fields, closed
+    references, and honest audits for claims present; they require no
+    derived \(\pi_i\), role-channel assignment, or decomposition record.
+    Thus optional role-naming data do not presuppose a role projection.
+  \item No membership clause excludes a candidate seventh-role feature by
+    definition. A candidate seventh-role feature is, at the raw-grammar
+    level, a record or annotation of one of the declared kinds; nothing in
+    Definitions~\ref{def:finite}--\ref{def:audited} filters a feature out on
+    the ground that it might resist absorption into a
+    \Pone{}--\Psix{} projection. Such a feature is therefore admissible
+    whenever its containing description satisfies all membership conditions of \FATCD{}, and is carried forward to
+    the residual classification scheme rather than barred at the door.
+  \item The residual classification scheme
+    (Definition~\ref{def:residual-scheme}) is declarative and carries the
+    categories (x) and (xi)---an unresolved candidate seventh-role threat,
+    and a recorded seventh-role screen---as explicit failure
+    options. At the domain-definition level the scheme records the available
+    labels but does not assert that those two categories are empty, so it
+    cannot smuggle the exact-six answer into the definition of the domain.
+\end{enumerate}
+Since none of (a)--(c) ties admissibility to the existence of a role
+projection or a six-channel record, membership in \FATCD{} is independent of
+the exact-six question, which is what was claimed. For the concrete clause,
+\(D_0\) carries no annotation, so no witness-schema annotation exists and no
+tuple \(\pi_i(D_0)\) can be formed (Definition~\ref{def:role-projection}); \(D_{\mathrm{norm}}\) lies in \FATCD{}
+and its record \(N\) receives label (x) in every well-formed decomposition record: \(N\)
+has a predicate field containing a closed formula and is referenced by a claim annotation, so both branches of (ix-c) fail; \(D_{\mathrm{norm}}\) has no map,
+relation, path, order, transition, refinement, event, provenance, trace,
+replay or check record, so no cluster satisfies any \(W_i\), no record is a
+covered seed, every channel is \(\absentrec\), and (i), (ii) and (v) fail; \(N\)
+has a predicate field and records no checked equality, isomorphism or level
+translation, so it begins no (R4) chain and (iii), (iv) fail; \(N\) is not an
+annotation, so (vi), (vii), (ix-a) and (ix-b) fail; \(N\) gives its predicate
+by an explicit formula over recorded values, so (viii) fails; and
+\(D_{\mathrm{norm}}\) has no witness-schema annotation naming a candidate
+outside \(P_1,\dots,P_6\), so (xi) fails
+(Remark~\ref{rem:recognition-open}).
+\end{proof}
+
+\begin{proposition}[Non-overbreadth schema for \FATCD{}]\label{prop:non-overbreadth}
+\FATCD{} is structurally restricted and does not admit arbitrary
+syntactic material: every record of a description in \FATCD{} is finite,
+typed and reference-closed, every claim it carries is referred to by an honest
+audit annotation,
+unclaimed records may occur but support no projection without the attachment
+data of Definition~\ref{def:threshold-attachment}, and mentioning a role name without the supporting threshold,
+witness, level, collapse, nonclaim and bookkeeping data does not by itself produce a
+derived role projection. In particular, if no witness-schema annotation of
+\(D\) names \(P_i\), then no \(\pi_i(D,C)\) is admissible.
+\end{proposition}
+
+\begin{proof}
+Let \(D \in \FATCD{}\). We inspect the admissibility conditions of
+Definitions~\ref{def:finite}--\ref{def:threshold-attachment} in turn.
+\begin{enumerate}[label=(\roman*),topsep=2pt,itemsep=1pt]
+  \item By Definition~\ref{def:finite}, \(\Raw{D}\) contains finitely many
+    records and annotations, each record or annotation carries finite typed
+    fields, and no infinite semantic, probabilistic, topological, geometric,
+    causal, optimization, or resource structure is admitted unless finitely
+    represented and bookkept as a raw feature. Thus unbounded or
+    unrepresented material is excluded at the level of finiteness.
+  \item By Definition~\ref{def:closed}, every source, target, endpoint,
+    index, transition, order, refinement, trace, event, provenance, replay,
+    check, and annotation reference is bound to a declared record of \(D\).
+    Hence no dangling or externally defined reference can occur, and the
+    syntactic material of \(D\) is self-contained.
+  \item By Definition~\ref{def:audited}(e), every claim carried by \(D\)
+    is referred to by an honest audit annotation. Promotions, translations,
+    lifts, forgetting, visibility and empirical-bridge assertions carry the
+    fields required by Definition~\ref{def:audited}(g). Thus a claim lacking
+    an honest audit, or one of these annotations lacking its required
+    fields, cannot occur in a member of \FATCD{}; an assertion field of an
+    unclaimed content record needs no audit.
+  \item By Definition~\ref{def:threshold-attachment}, a role projection
+    cannot be asserted on a cluster \(C\) until the raw features of \(C\), a
+    threshold annotation, a witness schema, a record of collapse cases, a
+    level annotation, a nonclaim annotation targeting exactly \(C\), and an
+    audit record are all present in \(\Raw{D}\).
+    Hence a role name supplied without this attachment data does not, by the
+    act of naming alone, produce a projection.
+\end{enumerate}
+Combining (i)--(iii), every record of \(D\) is finite, typed and
+reference-closed, and every claim of \(D\) is honestly audited; a record about
+which no claim is made needs no audit (Definition~\ref{def:audited}), and by
+(iv) it supports no projection unless the attachment data are present. By (iv), mentioning a role name without the supporting
+threshold, witness, level, collapse, nonclaim and bookkeeping data does not by itself
+produce a derived role projection. This establishes both halves of the
+claim. For the last clause, admissibility of \(\pi_i(D,C)\) requires a
+witness-schema annotation naming \(P_i\) and targeting exactly \(C\)
+(Definition~\ref{def:role-projection}).
+\end{proof}
+
+\subsection{The scoped exact-six question over \FATCD{}}\label{subsec:scoped-exact-six-question}
+
+We can now state the scoped exact-six question precisely.
+
+\begin{definition}[Scoped exact-six question]\label{def:scoped-exact-six-question}
+The \emph{scoped exact-six question} over \FATCD{} asks whether, for every
+\(D \in \FATCD{}\), there exists at least one decomposition/exhaustion record
+\(\Dec{D}\) whose role-channel structure consists of exactly the six typed
+closure-role channels \Pone{}, \Ptwo{}, \Pthree{}, \Pfour{}, \Pfive{},
+\Psix{}, each assigned exactly one of the five statuses later formalized in
+Section~\ref{sec:decomposition-exhaustion}, such that no kind residual of
+\(D\) and no element of \(\Residual{D}\) is licensed label (x) or (xi) of
+Definition~\ref{def:residual-scheme} relative to \(\Dec{D}\). No uniqueness is built into this
+question. For a class \(\mathcal D\subseteq\FATCD{}\), the affirmative answer
+for every \(D\in\mathcal D\) is denoted \(\ScopedExactSix{\mathcal D}\).
+Section~\ref{sec:scoped-exact-six} establishes \(\ScopedExactSix{\FATCD_{\mathrm{RH}}}\),
+where \(\FATCD_{\mathrm{RH}}\subseteq\FATCD{}\) is the class of descriptions
+satisfying the recognition hypothesis introduced in
+Section~\ref{sec:upper-bound-classification}
+(Definition~\ref{def:recognition-hypothesis}); the recognized forms of
+probability, causality and agency
+(Propositions~\ref{prop:probability-closure}--\ref{prop:agency-closure}) are
+classified without that hypothesis. Label (x) is licensed for every in-scope
+assertion-bearing record placed by none of (i)--(ix), for instance an unclaimed
+predicate record whose closed formula is \(0+0=1\), or the true formula \(0+0=0\), between rational constants (Remark~\ref{rem:recognition-open}); one object record together with such a predicate record already lies in \FATCD{} but not in \(\FATCD_{\mathrm{RH}}\) (it has no claims, so it is audited; the predicate record has a closed assertion field, carries no seed, contributes to no aligned cluster, begins no (R4) chain, is not an annotation and lies in the covered scope, so (R1)--(R5) fail as for \(N\) in Remark~\ref{rem:recognition-open});
+a negative answer for \(D\) therefore need not exhibit any candidate role.
+\end{definition}
+
+The unrestricted assertion \(\ScopedExactSix{\FATCD{}}\) fails: the finite
+audited normalization description of Remark~\ref{rem:recognition-open} lies
+in \FATCD{} and has a residual feature labelled (x) in every well-formed decomposition
+record (verified in Remark~\ref{rem:recognition-open}; see also
+Proposition~\ref{thm:integrated-stress}(d)). Label (x) there records that no
+criterion (i)--(ix) places the normalization predicate; it does not exhibit a
+seventh role.
+
+\begin{remark}[Channels, not active projections]\label{rem:channel-vs-activation-reminder}
+An affirmative answer to the scoped exact-six question asserts the
+existence of six role channels per description, not six active derived
+projections per description. The distinction introduced in
+Remark~\ref{rem:projection-vs-membership} and formalized in
+Section~\ref{sec:decomposition-exhaustion} is preserved throughout.
+\end{remark}
+
+\begin{remark}[Relation to the Foundations theorem]\label{rem:fatcd-foundations-relation}
+Proving \(\ScopedExactSix{\FATCD_{\mathrm{RH}}}\) is not a re-derivation of the
+canonical unavoidability result of Foundations~I~\citep{Tsiokos2026SixBirdsFoundations},
+and \(\ScopedExactSix{\FATCD_{\mathrm{RH}}}\) does not follow from that result
+alone. The Foundations theorem derives the \Pone{}--\Psix{} vocabulary
+under minimal hypotheses of composability with limited interface
+access; the scoped exact-six claim asserts that, within the finite
+audited typed closure regime of \FATCD{} and under the recognition hypothesis of
+Section~\ref{sec:upper-bound-classification}, every admissible description
+admits a six-channel decomposition/exhaustion record without a seventh
+irreducible typed role in the covered scope. The two results share
+vocabulary but address different questions.
+\end{remark}

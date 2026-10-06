@@ -1,0 +1,198 @@
+\section{Mechanization: declarations, coverage, and trust base}\label{app:mechanization}
+
+The theorem chain of this paper is accompanied by a Lean~4 development, the
+integrated \texttt{SixBirds} project, available at the code repository of
+Appendix~\ref{app:code-availability}. This appendix is the canonical disclosure
+venue for that development. For every numbered definition and claim it records
+the Lean declaration that realizes it and the \emph{fidelity} of that
+realization, and Subsection~\ref{app:result-notes} gives a note on each result.
+The mapping is maintained in the repository and reproduced here.
+
+\subsection{Fidelity of the correspondence}\label{app:fidelity-legend}
+
+Each theorem and proposition has a note in Subsection~\ref{app:result-notes}
+naming its Lean declaration and its fidelity. We distinguish six fidelities:
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item \emph{verified} --- a faithful Lean derivation of the statement from
+    non-trivial hypotheses;
+  \item \emph{narrowed / parametric} --- a genuine Lean proof, but over a single
+    concrete witness, a parametric record, or a narrowed input space rather than
+    the full generality of the paper statement;
+  \item \emph{schema (projection)} --- the Lean declaration reuses
+    supplied hypotheses or encoded definitions, or constructs, projects or
+    assembles records and their proofs, without formalizing the paper's
+    full mathematical content; it is therefore \emph{not} described as a
+    verified proof of the corresponding paper statement;
+  \item \emph{trivial} --- the Lean statement reduces to \texttt{True} by
+    construction, or ranges over a hand-built total classifier; it records a
+    bookkeeping fact, not a derivation;
+  \item \emph{typed mirror} --- for definitions, a Lean structure or inductive
+    mirroring the paper definition;
+  \item \emph{none} --- the declaration does not establish the statement for
+    any instance.
+\end{itemize}
+We state plainly that \textbf{no claim in the present development is a faithful
+derivation in the first sense}. The Lean track is a typed harness: it fixes the
+objects as typed records, exposes the channel, status, and residual machinery,
+and checks that malformed and misaligned cases are rejected (the semantic
+regression tests of the \texttt{SixBirds.SemanticTests} module); but the
+load-bearing classification and closure statements are projections, schemas, or
+trivially-true bookkeeping over those records. The notes are worded
+accordingly. A reader who wants the mathematics should read the body proofs; the
+Lean track certifies typed well-formedness and case rejection, not the theorems.
+
+\subsection{The recognition hypothesis and the upper-bound classifier}\label{app:recognition}
+
+The honest status of the central no-seventh-role result
+(Theorem~\ref{thm:upper-bound-classification}) is legible in the Lean. The
+classifier \texttt{SixBirds.classifyResidual} is a total function on the finite
+raw-record kinds, every branch of which lands in a covered class; the
+declarations \texttt{upper\_bound\_classification} and the three closure lemmas
+are \texttt{True} by construction over it. This is exactly why the body states
+the result conditionally, under the recognition hypothesis
+(Definition~\ref{def:recognition-hypothesis}): the Lean classifier imposes
+covered outputs by construction; it neither represents nor proves the
+paper-side recognition hypothesis or the quantification over every licensed
+label. The
+paper-side recognition hypothesis has no independent Lean correspondent, and the
+failure of recognition-completeness for \FATCD{}
+(Remark~\ref{rem:recognition-open}) lies precisely in the gap between the classifier's by-construction coverage and a derived
+exhaustiveness.
+
+\subsection{Declaration and coverage table}\label{app:table}
+
+The table maps each result to its Lean declaration in the \texttt{SixBirds}
+namespace and its audited coverage. All declarations are \texttt{sorry}-free and
+axiom-clean relative to the trust base of \S\ref{app:trust-base}; the coverage
+column records fidelity in the sense of \S\ref{app:fidelity-legend}, not mere
+presence.
+
+{\footnotesize
+\begin{longtable}{@{}c >{\raggedright\arraybackslash}p{0.27\linewidth} >{\raggedright\arraybackslash}p{0.34\linewidth} >{\raggedright\arraybackslash}p{0.20\linewidth}@{}}
+\toprule
+\S & result & Lean declaration & coverage \\
+\midrule
+\endfirsthead
+\toprule
+\S & result & Lean declaration & coverage \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+§2 & Definition~\ref{def:primitive-roles} & \texttt{SixBirds.\allowbreak Role} & typed mirror (def.) \\
+§2 & Definition~\ref{def:level-trichotomy} & \texttt{SixBirds.\allowbreak Level} & typed mirror (def.) \\
+§2 & Definition~\ref{def:selected-lift-atlas} & \texttt{SixBirds.\allowbreak SelectedLiftAtlas} & typed mirror (def.) \\
+§2 & Proposition~\ref{prop:boundary-distinctions} & \texttt{SixBirds.\allowbreak boundary\_\allowbreak distinctions} & schema (projection) \\
+§3 & Definition~\ref{prop:honest-bookkeeping} & \texttt{SixBirds.\allowbreak honest\_\allowbreak bookkeeping\_\allowbreak admissibility} & schema (projection) \\
+§3 & Proposition~\ref{prop:typed-non-collapse} & \texttt{SixBirds.\allowbreak typed\_\allowbreak non\_\allowbreak collapse} & schema (projection) \\
+§3 & Definition~\ref{prop:level-profile} & \texttt{SixBirds.\allowbreak level\_\allowbreak profile} & trivial \\
+§3 & Definition~\ref{prop:forgetting-lifts} & \texttt{SixBirds.\allowbreak forgetting\_\allowbreak lifts} & schema (projection) \\
+§3 & Remark~\ref{prop:activation-thresholds} & \texttt{SixBirds.\allowbreak activation\_\allowbreak thresholds} & schema (projection) \\
+§3 & Definition~\ref{prop:visibility} & \texttt{SixBirds.\allowbreak visibility} & schema (projection) \\
+§3 & Definition~\ref{prop:empirical-bridge} & \texttt{SixBirds.\allowbreak empirical\_\allowbreak bridge} & schema (projection) \\
+§3 & Proposition~\ref{prop:nonclaim-closure} & \texttt{SixBirds.\allowbreak nonclaim\_\allowbreak closure} & schema (projection) \\
+§4 & Definition~\ref{def:raw-record} & \texttt{SixBirds.\allowbreak RawRecord} & typed mirror (def.) \\
+§4 & Definition~\ref{def:annotations} & \texttt{SixBirds.\allowbreak AnnotationKind} & typed mirror (def.) \\
+§4 & Definition~\ref{def:finite} & \texttt{SixBirds.\allowbreak FiniteDescription} & typed mirror (def.) \\
+§4 & Definition~\ref{def:closed} & \texttt{SixBirds.\allowbreak ClosedDescription} & typed mirror (def.) \\
+§4 & Definition~\ref{def:audited} & \texttt{SixBirds.\allowbreak AuditedDescription} & typed mirror (def.) \\
+§4 & Definition~\ref{def:fatcd} & \texttt{SixBirds.\allowbreak FATCD} & typed mirror (def.) \\
+§4 & Definition~\ref{def:threshold-attachment} & \texttt{SixBirds.\allowbreak ThresholdAttachment} & typed mirror (def.) \\
+§4 & Definition~\ref{def:role-projection} & \texttt{SixBirds.\allowbreak DerivedRoleProjection} & typed mirror (def.) \\
+§4 & Definition~\ref{def:residual-scheme} & \texttt{SixBirds.\allowbreak ResidualClassificationScheme} & typed mirror (def.) \\
+§4 & Definition~\ref{def:scoped-exact-six-question} & \texttt{SixBirds.\allowbreak ScopedExactSixQuestion} & typed mirror (def.) \\
+§4 & Proposition~\ref{prop:non-circularity} & \texttt{SixBirds.\allowbreak non\_\allowbreak circularity} & schema (projection) \\
+§4 & Proposition~\ref{prop:non-overbreadth} & \texttt{SixBirds.\allowbreak non\_\allowbreak overbreadth} & schema (projection) \\
+§5 & Definition~\ref{def:common-witness-data} & \texttt{SixBirds.\allowbreak CommonWitnessData} & typed mirror (def.) \\
+§5 & Theorem~\ref{thm:six-role-lower-bounds} & \texttt{SixBirds.\allowbreak six\_\allowbreak role\_\allowbreak lower\_\allowbreak bounds} & schema (projection) \\
+§5 & Proposition~\ref{prop:p1-witness} & \texttt{SixBirds.\allowbreak p1\_\allowbreak witness} & narrowed / parametric \\
+§5 & Proposition~\ref{prop:p2-witness} & \texttt{SixBirds.\allowbreak p2\_\allowbreak witness} & narrowed / parametric \\
+§5 & Proposition~\ref{prop:p3-witness} & \texttt{SixBirds.\allowbreak p3\_\allowbreak witness} & narrowed / parametric \\
+§5 & Proposition~\ref{prop:p4-witness} & \texttt{SixBirds.\allowbreak p4\_\allowbreak witness} & narrowed / parametric \\
+§5 & Proposition~\ref{prop:p5-witness} & \texttt{SixBirds.\allowbreak p5\_\allowbreak witness} & narrowed / parametric \\
+§5 & Proposition~\ref{prop:p6-witness} & \texttt{SixBirds.\allowbreak p6\_\allowbreak witness} & narrowed / parametric \\
+§6 & Proposition~\ref{prop:alignment-rules} & \texttt{SixBirds.\allowbreak alignment\_\allowbreak rules} & schema (projection) \\
+§6 & Proposition~\ref{prop:probability-closure} & \texttt{SixBirds.\allowbreak probability\_\allowbreak closure} & trivial \\
+§6 & Proposition~\ref{prop:causality-closure} & \texttt{SixBirds.\allowbreak causality\_\allowbreak closure} & trivial \\
+§6 & Proposition~\ref{prop:agency-closure} & \texttt{SixBirds.\allowbreak agency\_\allowbreak closure} & trivial \\
+§6 & Theorem~\ref{thm:upper-bound-classification} & \texttt{SixBirds.\allowbreak upper\_\allowbreak bound\_\allowbreak classification} & trivial \\
+§7 & Definition~\ref{def:channel-status} & \texttt{SixBirds.\allowbreak ChannelStatus} & typed mirror (def.) \\
+§7 & Definition~\ref{def:decomposition-record} & \texttt{SixBirds.\allowbreak DecompositionRecord} & typed mirror (def.) \\
+§7 & Theorem~\ref{thm:decomposition-existence} & \texttt{SixBirds.\allowbreak decomposition\_\allowbreak existence} & schema (projection) \\
+§7 & Theorem~\ref{thm:six-channel-exactness} & \texttt{SixBirds.\allowbreak six\_\allowbreak channel\_\allowbreak exactness} & schema (projection) \\
+§7 & Proposition~\ref{prop:channel-vs-activation} & \texttt{SixBirds.\allowbreak channel\_\allowbreak vs\_\allowbreak activation} & schema (projection) \\
+§7 & Proposition~\ref{prop:non-uniqueness} & \texttt{SixBirds.\allowbreak non\_\allowbreak uniqueness} & none \\
+§8 & Remark~\ref{prop:dependency-stress} & \texttt{SixBirds.\allowbreak dependency\_\allowbreak stress} & schema (projection) \\
+§8 & Remark~\ref{prop:circularity-stress} & \texttt{SixBirds.\allowbreak circularity\_\allowbreak stress} & schema (projection) \\
+§8 & Remark~\ref{prop:channel-activation-stress} & \texttt{SixBirds.\allowbreak channel\_\allowbreak activation\_\allowbreak stress} & narrowed / parametric \\
+§8 & Remark~\ref{prop:role-alignment-stress} & \texttt{SixBirds.\allowbreak role\_\allowbreak alignment\_\allowbreak stress} & narrowed / parametric \\
+§8 & Remark~\ref{prop:residual-stress} & \texttt{SixBirds.\allowbreak residual\_\allowbreak stress} & trivial \\
+§8 & Remark~\ref{prop:overclaim-stress} & \texttt{SixBirds.\allowbreak overclaim\_\allowbreak stress} & schema (projection) \\
+§8 & Proposition~\ref{thm:integrated-stress} & \texttt{SixBirds.\allowbreak integrated\_\allowbreak stress} & schema (projection) \\
+§9 & Theorem~\ref{thm:scoped-exact-six} & \texttt{SixBirds.\allowbreak scoped\_\allowbreak exact\_\allowbreak six} & schema (projection) \\
+\bottomrule
+\end{longtable}
+}
+
+\subsection{Trust base and axiom audit}\label{app:trust-base}
+
+The dependency audit accepts only the standard Lean and Mathlib trust base:
+\texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}
+(function extensionality is a theorem derived from \texttt{Quot.sound}). No project-local axiom is
+admitted for any declaration recorded as a theorem. The validation harness
+(\texttt{scripts/validate\_lean.sh}) rejects project-local axioms and
+\texttt{sorry}, and runs a semantic audit that rejects \texttt{:= True} and
+\texttt{:= False} definition stubs and all-purpose residual classifiers. The
+trust-base check certifies that the typed harness is axiom-clean relative to that
+base; it does not, and is not intended to, upgrade a schema or a trivially-true
+statement to a derivation. The fidelity column of \S\ref{app:table} is the
+governing record of what each declaration establishes.
+
+\subsection{Notes on individual results}\label{app:result-notes}
+
+For each result, the note below records the Lean declaration that corresponds to it and the extent of that correspondence.
+
+\begin{description}[style=unboxed,leftmargin=0pt,itemsep=3pt]
+  \item[Proposition~\ref{prop:boundary-distinctions}.] The Lean declaration \texttt{SixBirds.boundary\_distinctions} has fidelity schema (projection) of the legend above: its encoded hypotheses, definitions or record data supply its conclusion; it does not derive the corresponding paper statement.
+  \item[Proposition~\ref{prop:typed-non-collapse}.] The Lean declaration \texttt{SixBirds.typed\_non\_collapse} has fidelity schema (projection) of the legend above: its encoded hypotheses, definitions or record data supply its conclusion; it does not derive the corresponding paper statement.
+  \item[Proposition~\ref{prop:nonclaim-closure}.] The Lean declaration \texttt{SixBirds.nonclaim\_closure} has fidelity schema (projection) of the legend above: its encoded hypotheses, definitions or record data supply its conclusion; it does not derive the corresponding paper statement.
+  \item[Proposition~\ref{prop:non-circularity}.] The Lean declaration \texttt{SixBirds.non\_circularity} has fidelity schema (projection) of the legend above: its encoded hypotheses, definitions or record data supply its conclusion; it does not derive the corresponding paper statement.
+  \item[Proposition~\ref{prop:non-overbreadth}.] The Lean declaration \texttt{SixBirds.non\_overbreadth} has fidelity schema (projection) of the legend above: its encoded hypotheses, definitions or record data supply its conclusion; it does not derive the corresponding paper statement. The Lean declaration is identical in statement and proof to \texttt{SixBirds.non\_circularity} and re-extracts the admissibility fields of the record rather than establishing the structural-restriction content of the proposition.
+  \item[Theorem~\ref{thm:six-role-lower-bounds}.] The Lean declaration \texttt{SixBirds.six\_role\_lower\_bounds} has fidelity schema (projection) of the legend above: its encoded hypotheses, definitions or record data supply its conclusion; it does not derive the corresponding paper statement.
+  \item[Proposition~\ref{prop:p1-witness}.] The Lean development establishes this for one concrete description \texttt{witnessDescription}\allowbreak\ \texttt{Role.P1} under parametric hypotheses (alignment, threshold attachment, and finite/\allowbreak closed/\allowbreak audited verifications of that fixed witness); the narrowing is recorded in the table of this appendix (\texttt{SixBirds.p1\_witness}).
+  \item[Proposition~\ref{prop:p2-witness}.] The Lean development establishes this for one concrete description \texttt{witnessDescription}\allowbreak\ \texttt{Role.P2} under parametric hypotheses (alignment, threshold attachment, and finite/\allowbreak closed/\allowbreak audited verifications of that fixed witness); the narrowing is recorded in the table of this appendix (\texttt{SixBirds.p2\_witness}).
+  \item[Proposition~\ref{prop:p3-witness}.] The Lean development establishes this for one concrete description \texttt{witnessDescription}\allowbreak\ \texttt{Role.P3} under parametric hypotheses (alignment, threshold attachment, and finite/\allowbreak closed/\allowbreak audited verifications of that fixed witness); the narrowing is recorded in the table of this appendix (\texttt{SixBirds.p3\_witness}).
+  \item[Proposition~\ref{prop:p4-witness}.] The Lean development establishes this for one concrete description \texttt{witnessDescription}\allowbreak\ \texttt{Role.P4} under parametric hypotheses (alignment, threshold attachment, and finite/\allowbreak closed/\allowbreak audited verifications of that fixed witness; the attached level is fixed to the verification level rather than the structural-categorical level of the prose); the narrowing is recorded in the table of this appendix (\texttt{SixBirds.p4\_witness}).
+  \item[Proposition~\ref{prop:p5-witness}.] The Lean development establishes this for one concrete description \texttt{witnessDescription}\allowbreak\ \texttt{Role.P5} under parametric hypotheses (alignment over the same raw-kind cluster used for P1, threshold attachment, and finite/\allowbreak closed/\allowbreak audited verifications of that fixed witness); the narrowing is recorded in the table of this appendix (\texttt{SixBirds.p5\_witness}).
+  \item[Proposition~\ref{prop:p6-witness}.] The Lean development establishes this for one concrete description \texttt{witnessDescription}\allowbreak\ \texttt{Role.P6} under parametric hypotheses (alignment over event/\allowbreak provenance/\allowbreak replay/\allowbreak check records, threshold attachment, and finite/\allowbreak closed/\allowbreak audited verifications of that fixed witness); the narrowing is recorded in the table of this appendix (\texttt{SixBirds.p6\_witness}).
+  \item[Theorem~\ref{thm:upper-bound-classification}.] The Lean declaration is a check of the classifier: every \texttt{RawKind} branch of \texttt{classifyResidual} lands in a class whose \texttt{CoveredResidualClass} branch is \texttt{True}, and the uncovered constructors \texttt{unresolvedThreat}/\allowbreak\texttt{genuineSeventhRole} are never produced; ``no seventh role'' holds by construction rather than by derivation from feature content. (\texttt{SixBirds.upper\_bound\_classification}).
+  \item[Proposition~\ref{prop:alignment-rules}.] The Lean declaration \texttt{SixBirds.alignment\_rules} has fidelity schema (projection) of the legend above: its encoded hypotheses, definitions or record data supply its conclusion; it does not derive the corresponding paper statement.
+  \item[Proposition~\ref{prop:probability-closure}.] The Lean declaration is a single-record check: \texttt{classifyResidual} maps \texttt{RawKind.probability} to \texttt{composite}, whose \texttt{CoveredResidualClass} branch is \texttt{True}; it does not establish the paper's universal probability/uncertainty closure. (\texttt{SixBirds.probability\_closure}).
+  \item[Proposition~\ref{prop:causality-closure}.] The Lean declaration is a single-record check: \texttt{classifyResidual} maps \texttt{RawKind.causality} to \texttt{composite}, whose \texttt{CoveredResidualClass} branch is \texttt{True}; the \Pfive{}-inadmissibility content of the proposition is absent and no universal residual-causality closure is established. (\texttt{SixBirds.causality\_closure}).
+  \item[Proposition~\ref{prop:agency-closure}.] The Lean declaration is a single-record check: \texttt{classifyResidual} maps \texttt{RawKind.agency} to \texttt{empiricalBridgeAnnotation}, whose \texttt{CoveredResidualClass} branch is \texttt{True}; the \Pone{}-inadmissibility content is absent and no universal residual-agency closure is established. (\texttt{SixBirds.agency\_closure}).
+  \item[Theorem~\ref{thm:decomposition-existence}.] The Lean declaration \texttt{SixBirds.decomposition\_existence} has fidelity schema (projection) of the legend above: its encoded hypotheses, definitions or record data supply its conclusion; it does not derive the corresponding paper statement.
+  \item[Theorem~\ref{thm:six-channel-exactness}.] The Lean declaration \texttt{SixBirds.six\_channel\_exactness} has fidelity schema (projection) of the legend above: its encoded hypotheses, definitions or record data supply its conclusion; it does not derive the corresponding paper statement.
+  \item[Proposition~\ref{prop:channel-vs-activation}.] The Lean declaration \texttt{SixBirds.channel\_vs\_activation} has fidelity schema (projection) of the legend above: its encoded hypotheses, definitions or record data supply its conclusion; it does not derive the corresponding paper statement.
+  \item[Proposition~\ref{prop:non-uniqueness}.] The Lean development exhibits two concrete decomposition records of a single description that differ only in their \texttt{P1} channel status; since the status of a channel is fixed by the description, at most one of these records is well-formed, so the Lean declaration does not witness the proposition, and the further sources of non-uniqueness in the prose (level assignments, choice of witness cluster or representation of the witness predicate, residual labels, loss/lift placement) are not mechanized. The Lean declaration is \texttt{SixBirds.non\_uniqueness}.
+  \item[Proposition~\ref{thm:integrated-stress}.] The Lean declaration \texttt{SixBirds.integrated\_stress} has fidelity schema (projection) of the legend above, bundling the six stress conjuncts: its encoded hypotheses, definitions or record data supply its conclusion; it does not derive the corresponding paper statement.
+  \item[Theorem~\ref{thm:scoped-exact-six}.] The Lean declaration \texttt{SixBirds.scoped\_exact\_six} has fidelity schema (projection) of the legend above: its encoded hypotheses, definitions or record data supply its conclusion; it does not derive the corresponding paper statement.
+\end{description}
+
+\paragraph{The running example.} The module \texttt{SixBirds.Examples.RunningExample}
+constructs a typed proxy for \(D_{\mathrm{ex}}\) as a finite, closed and audited
+\FATCD{}, proves the split pair, the replay and check of the trace and the
+equivalence of the lens classes by computation, constructs the \Pone{}, \Pfive{}
+and \Psix{} projections, and gives a well-formed decomposition record with the
+statuses stated in Section~\ref{sec:decomposition-exhaustion}, classifying the
+index record as a presentation variant. For each active status the record
+checks that the raw record kinds its role requires are present in the
+description; the three projections are constructed separately and are not
+linked to the status field. The absent statuses of \Ptwo{} and \Pthree{} and the
+below-threshold status of \Pfour{} are assigned, not derived from the content,
+and the record does not track a residual set. The typed layer has no
+annotation kind for transitions; the transition is a separate raw record
+referring to the map record of \(F\), and no threshold annotation targets it. The paper's expanded \(D_{\mathrm{ex}}\) explicitly includes a \(q\)-map, a
+quotient-validity check and claim and audit contents absent from this Lean
+raw-record list. Lean checks kind presence and assigned statuses; it does not
+verify the honesty predicate of Definition~\ref{def:audited}, the paper's \(W_5\) check, or the
+singleton residual calculation.

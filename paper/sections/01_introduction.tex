@@ -1,0 +1,444 @@
+\section{Introduction}\label{sec:introduction}
+
+
+Six Birds Foundations I~\citep{Tsiokos2026SixBirdsFoundations} studied
+how a layer of description closes over what it
+tracks~\citep{Anderson1972}. It worked with finite theory packages
+\(\mathcal{T} = (Z, f, \Sigma_f, E, \mathcal{A})\): a finite space \(Z\)
+of micro-descriptions, a lens \(f\) recording what the layer can see,
+the definable content \(\Sigma_f\) that the lens induces, a completion
+operator \(E\) whose fixed points are the layer's
+theories~\citep{DaveyPriestley2002}, and an audit functional
+\(\mathcal{A}\). From two assumptions, that constructions compose and
+that the layer sees its states only through a limited interface, it
+derived six primitive closure roles \Pone{}, \ldots, \Psix{}.
+
+This paper asks whether the list of six is complete. Could a
+description need a seventh role, for probability, say, or for causation
+or agency? Asked of all possible descriptions, the question is too
+loose to answer, so the paper makes it precise. It gives each role an
+exact meaning, states the rules a description must follow before a
+role claim counts, and fixes a domain of finite descriptions on which
+the question can be settled. On that domain it proves that each role
+occurs, classifies the stated forms of probability, causality and
+agency, and gives every description a record with exactly six role
+channels. Under an explicit recognition hypothesis, every residual feature is placed by
+one of nine criteria (labels (i)--(ix), listed in
+Section~\ref{subsec:objects-at-a-glance}): membership in one or two active role clusters,
+role content not yet absorbed, a checked re-presentation or level translation, an annotation,
+bookkeeping or assertion-free data, or content outside the covered
+scope. Residual features are of two kinds: every content record and
+structural annotation, even one an active role uses (a \emph{kind residual}),
+and every record a decomposition record leaves unassigned (a \emph{record
+residual}). Under the hypothesis, therefore, no residual feature of either kind is left as
+an unresolved seventh-role candidate. The exact-six statement is the
+last step of this chain, not its whole content.
+
+\subsection{The three parts}\label{subsec:three-pillars}
+
+The paper has three parts, each supplying structure the other two lack.
+\begin{itemize}[topsep=2pt,itemsep=2pt]
+  \item \emph{Role architecture}
+    (Section~\ref{sec:primitive-role-architecture}). It fixes what each
+    role means; the three levels at which a role can be present
+    (behavior, verification, structure); where each pair of roles meets
+    without one collapsing into the other; and how data moves between
+    levels.
+  \item \emph{Admissibility}
+    (Section~\ref{sec:admissibility-meta-theory}). It states the
+    bookkeeping discipline: a role claim counts only when its
+    hypotheses, changes of level, translations and visibility
+    assumptions are explicitly recorded. Under this discipline the roles
+    stay distinct as types (typed non-collapse), with no claim that they
+    are independent generators.
+  \item \emph{The exact-six chain}
+    (Sections~\ref{sec:fatcd-domain}--\ref{sec:scoped-exact-six}). It
+    defines the domain \FATCD{} of finite audited typed closure
+    descriptions and proves lower bounds (each role occurs), an
+    upper-bound classification under the recognition hypothesis, with
+    separate closures for the recognized forms of probability, causality
+    and agency, and a decomposition theorem (six channels, each with a
+    status), a checklist of misreadings that these results rule out, and
+    the terminal theorem (Section~\ref{sec:scoped-exact-six}).
+\end{itemize}
+
+\subsection{The terminal theorem, informally}\label{subsec:terminal-informal}
+
+In plain terms: every finite audited description can be sorted into six role
+channels, each marked active or given one of four reasons for being inactive,
+together with a set of leftover records; under a stated hypothesis every
+leftover is of a listed kind (a re-presentation or level shift of placed
+content, role content not placed in an active channel, an artifact of what an
+instrument can see, an empirical-bridge annotation, structure outside the
+domain, or bookkeeping and data without an assertion of its own), so no
+leftover calls for a seventh role.
+
+A finite audited typed closure description \(D\) is a finitely
+presented collection of typed raw records and annotations subject to
+finiteness, closure and audit conditions (every claim it carries is referred
+to by an honest audit annotation, which need not certify it). The role
+vocabulary \Pone{}--\Psix{} enters \(D\) not as a constraint on
+admissibility but as a family of derived projections \(\pi_i(D)\),
+each available when threshold, witness-schema, collapse-case, level,
+nonclaim and audit data are
+attached to raw features. Theorems~\ref{thm:decomposition-existence} and~\ref{thm:six-channel-exactness} state that
+every \(D \in \FATCD{}\) has a well-formed decomposition record
+\(\Dec{D}\) with exactly the six role channels \Pone{}, \ldots, \Psix{},
+each in exactly one of five statuses (active, or one of four reasons for
+inactivity), and that each \(r\in\Residual{D}\) receives one of eleven labels.
+Under an explicit recognition hypothesis
+(Definition~\ref{def:recognition-hypothesis}), every such label lies in
+(iii)--(ix), and every kind residual and every record residual is licensed only
+labels among (i)--(ix), so none is left as an unresolved candidate for a
+seventh role. The claim is about role channels, not active projections, and
+the decomposition is existential, not unique.
+
+\paragraph{Where the content lies.} The parts of the terminal theorem have
+different sources. That a decomposition record has six channels is part
+of its definition (Definition~\ref{def:decomposition-record}), which is
+indexed by the six roles. That every description has a well-formed record
+in which each channel carries one status and every raw feature is
+accounted for is proved by construction, for every description and
+without the recognition hypothesis
+(Theorem~\ref{thm:decomposition-existence} and
+Theorem~\ref{thm:six-channel-exactness}(i)--(ii)). That each role occurs somewhere is
+proved by explicit witnesses (Theorem~\ref{thm:six-role-lower-bounds}).
+That the recognized forms of probability, causality and agency need no
+seventh role is proved case by case
+(Propositions~\ref{prop:probability-closure}--\ref{prop:agency-closure}).
+For a description satisfying the recognition hypothesis, no kind residual
+and no record residual is licensed label (x) or (xi)
+(Theorem~\ref{thm:upper-bound-classification}).
+Theorem~\ref{thm:scoped-exact-six} states these parts together, under
+that hypothesis. The recognition hypothesis lists five ways a feature can be
+recognized; each is a version, independent of the decomposition record, of
+label criteria among (i)--(ix), and the proof of
+Theorem~\ref{thm:upper-bound-classification} checks the correspondence. That
+check uses no property of the particular witness rows or seed clauses
+(Remark~\ref{rem:classification-scope}); the number six enters through
+Definition~\ref{def:decomposition-record}, and the particular predicates
+through Theorem~\ref{thm:six-role-lower-bounds} and
+Propositions~\ref{prop:probability-closure}--\ref{prop:agency-closure}.
+
+\paragraph{What the hypothesis adds.} Criterion (xi) presupposes (x). Hence a description meets the condition of Definition~\ref{def:scoped-exact-six-question} exactly when some well-formed decomposition record licenses label (x) for none of its kind residuals and none of its record residuals. The recognition hypothesis is a sufficient condition for this that refers to no decomposition record: Theorem~\ref{thm:upper-bound-classification} proves sufficiency, and Remark~\ref{rem:classification-scope} shows it is not necessary. Recognized features are therefore placed by (i)--(ix) whatever decomposition
+record is chosen.
+
+\paragraph{How restrictive the hypothesis is.} The exclusion of a seventh role rests
+on the hypothesis, which some descriptions in the domain fail
+(Remark~\ref{rem:recognition-open}). That remark also calibrates the
+hypothesis: the finite normalization description \(D_{\mathrm{norm}}\) fails it;
+the same weights presented as the row of a transition kernel satisfy it; and a closed check-language formula \(\varphi\) without atoms \(W_j\), in a description with two distinct declared records of one kind, can be re-presented as a covered \Ptwo{} seed recording its truth value in the extended description, provided that description stays in \FATCD{}; a false formula is represented by its checked negation. In the completed description channel \Ptwo{} is active and channel \Pfive{} is not \(\absentrec\). When wrapping preserves the truth value of a true closed assertion, the seed records the same checked content, so the hypothesis constrains only presentation, and the
+original record can be dropped when nothing else depends on it (the removal
+conditions of Remark~\ref{rem:recognition-open}); if it must be kept, it is
+classified on its own and may still fail the hypothesis. Label (xi) is realized in \FATCD{} by the
+description \(D_{\mathrm{scr}}\) of the same remark.
+
+\subsection{What the paper does and does not claim}\label{subsec:intro-nonclaims}
+
+The terminal theorem is scoped exact-six, not unrestricted exact-six.
+It makes none of the following stronger claims:
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item unrestricted exact-six, or any claim about all emergence
+    phenomena;
+  \item that every \(D \in \FATCD{}\) activates all six roles or
+    carries six active nontrivial witnesses;
+  \item that the decomposition/exhaustion record \(\Dec{D}\) is unique
+    or canonical;
+  \item a full six-primitives algebra or global primitive
+    independence;
+  \item empirical realization;
+  \item internal instrument-family completeness;
+  \item any statement about broader domains without further work.
+\end{itemize}
+These are scope boundaries, collected in
+Section~\ref{sec:limitations-nonclaims} and enforced locally by the
+theorem-chain results that would otherwise overread them.
+
+\subsection{The objects at a glance}\label{subsec:objects-at-a-glance}
+
+The paper works with a small set of objects, defined formally in
+Sections~\ref{sec:fatcd-domain} and~\ref{sec:decomposition-exhaustion};
+this preview fixes their roles so that the earlier sections can be read with
+them in mind. A \emph{description} \(D\) is a finite audited typed closure
+description (Definition~\ref{def:fatcd}). Its raw content \(\Raw{D}\) is a
+finite collection of typed raw records, such as objects, maps, relations,
+paths, transitions, traces and checks (Definition~\ref{def:raw-record}),
+together with annotations of level, threshold, lift, forgetting, visibility
+and empirical bridge (Definition~\ref{def:annotations}). Its audit part
+\(\Audit{D}\subseteq\Raw{D}\) holds the bookkeeping record of every claim it
+carries (Definition~\ref{def:audited}). A \emph{role projection} \(\pi_i(D)\)
+reads a cluster of raw features as the role \(P_i\), and is admissible only
+when threshold, witness-schema, collapse-case, level, nonclaim and audit
+data are attached to the cluster
+(Definitions~\ref{def:threshold-attachment} and~\ref{def:role-projection}). A
+\emph{decomposition record} \(\Dec{D}\) gives each of the six role channels
+exactly one of five statuses (Definition~\ref{def:channel-status}): an
+\activeproj{}, when an admissible projection exists; \collapsedbc{}, when
+otherwise a candidate cluster offered as the witness fails its witness
+schema; \belowthr{}, when otherwise a covered seed is present (so no
+admissible projection and no failed offer exists; the name refers to incomplete
+witness or attachment data, not necessarily a numerical threshold); \outsidescope{}, when otherwise
+role content is declared outside the covered scope; and \absentrec{}, with the
+absence recorded, in the remaining case. The
+raw features that no channel accounts for form the set \(\Residual{D}\) of
+\emph{record residuals}, each classified under the scheme of
+Definition~\ref{def:residual-scheme}; that definition calls every content
+record and structural annotation a \emph{residual feature} (\emph{kind
+residual}), including records used by an active cluster. The
+scheme has eleven labels: (i)--(ii) membership in, or sharing between, active
+clusters; (iii)--(iv) presentation variants and level shifts; (v) role-aligned or covered-seed
+content not absorbed by an active projection, content checked in a failed offer, or an activation-threshold refinement; (vi)--(vii) visibility and
+empirical-bridge annotations; (viii) content outside the covered scope; (ix)
+bookkeeping, annotation and assertion-free data; (x) an unresolved candidate,
+placed by none of (i)--(ix); (xi) a recorded seventh-role screen.
+
+\paragraph{Working vocabulary.} Several words carry a technical meaning
+throughout. The entries below anticipate definitions of Sections~\ref{sec:fatcd-domain}--\ref{sec:decomposition-exhaustion} and are meant to be consulted when a term is first met.
+\begin{itemize}[topsep=2pt,itemsep=1pt]
+  \item \emph{Honest bookkeeping}: every claim a description carries, and
+    every change of level, translation, lift, forgetting map, visibility
+    assumption and empirical bridge that the claim uses, has an explicit
+    record carried in \(\Audit{D}\) (Definitions~\ref{def:annotations} and~\ref{prop:honest-bookkeeping}).
+  \item \emph{Threshold annotation}: a declared record attached to a
+    cluster of raw features before the cluster is read as a role; the
+    reading also needs a witness schema, the collapse cases, a level
+    annotation, a nonclaim annotation and an audit record
+    (Definition~\ref{def:role-projection}).
+  \item \emph{Witness schema}: a statement of what data in the cluster
+    would support that reading.
+  \item \emph{Instrument}: the declared means under which content is
+    visible or suppressed (Definition~\ref{prop:visibility}).
+  \item \emph{Covered scope}: the records not satisfying the outside-scope
+    criterion of Definition~\ref{def:residual-scheme}. A record lies outside it when an assertion quantifies over a
+    sort with no recorded finite carrier or uses a predicate whose extension
+    \(D\) does not record, the assertion is true in some expansion of
+    \(D\) and false in another, and its other assertions are of the same kind or
+    serve a role witness (exact criterion: paragraph \emph{Terms used in the
+    label criteria} after Definition~\ref{def:residual-scheme}). Such a
+    record receives label (viii) and is certified for no role. Whether a
+    record lies outside depends on presentation: a finite assertion written
+    as a formula over recorded field values lies inside the covered scope,
+    while the same assertion written with a declared predicate name whose
+    extension \(D\) does not record lies outside
+    (Remark~\ref{rem:recognition-open}). Not every finite, recorded feature
+    inside the covered scope meets the recognition criteria: the normalization
+    predicate of Remark~\ref{rem:recognition-open} does not.
+  \item \emph{Covered}: in \emph{covered seed} the word names seed clauses
+    (1)--(6) of Definition~\ref{def:channel-status}; in \emph{covered scope}
+    it refers to the outside-scope criterion of Definition~\ref{def:residual-scheme}, under which a record with an assertion that is not finitely checkable lies inside the covered scope when another of its assertion fields is finitely checkable and serves no witness; in label (ix), \emph{already-covered}
+    bookkeeping is an annotation whose non-exempt fields are data or
+    references. The three uses are unrelated.
+  \item \emph{Closure}: several senses occur. The \emph{closure content} of a
+    feature (Definition~\ref{def:recognition-hypothesis}) is the subdescription
+    reached by its references; a \emph{closure operation} in criterion (xi) is an
+    extensive, monotone, idempotent map on a finite order; \emph{reference-closed}
+    means \(\Closed{D}\). A \emph{closure role} is one
+    of the six roles, in the sense of Foundations~I; the \emph{closure
+    condition} \(\Closed{D}\) requires the references and bookkeeping
+    specified in Definition~\ref{def:closed}; and the \emph{closures} in
+    Section~\ref{sec:upper-bound-classification} classify the stated
+    recognized forms of probability, causality and agency without the
+    recognition hypothesis.
+  \item \emph{Residual feature}: in
+    Definition~\ref{def:residual-scheme}, every content record and every
+    structural annotation (a \emph{kind residual}: the raw grammar fixes no
+    role reading for any of them, so members of active clusters are included); in a
+    decomposition record (Definition~\ref{def:decomposition-record}),
+    \(\Residual{D}\) contains the raw records and annotations that no channel
+    accounts for (the \emph{record residuals}); Section~\ref{sec:decomposition-exhaustion}
+    compares the two sets. The
+    upper-bound classification and the recognition hypothesis cover both
+    classes; the decomposition theorems apply them to \(\Residual{D}\).
+  \item \emph{Admissible}: the meaning depends on the object qualified. An
+    admissible claim satisfies Definition~\ref{prop:honest-bookkeeping};
+    admissible forgetting and lifts, visibility records and empirical-bridge
+    claims satisfy Definitions~\ref{prop:forgetting-lifts},
+    \ref{prop:visibility} and~\ref{prop:empirical-bridge}; an admissible
+    description is a member of \FATCD{} (Definition~\ref{def:fatcd}); an
+    admissible projection is a derived role projection
+    (Definition~\ref{def:role-projection}), whose cluster satisfies its
+    witness schema \(W_i\), with the attachment data of
+    Definition~\ref{def:threshold-attachment}; and an admissible role witness carries the common witness data of
+    Definition~\ref{def:common-witness-data}. In
+    Section~\ref{sec:integrated-stress}, a misreading is called excluded when it
+    is not licensed by the results of
+    Sections~\ref{sec:fatcd-domain}--\ref{sec:decomposition-exhaustion}.
+  \item \emph{Closed unconditionally}: said of probability, causality and
+    agency, it means closed without the recognition hypothesis, in the
+    recognized forms of
+    Propositions~\ref{prop:probability-closure}--\ref{prop:agency-closure}.
+    Other finite, audited, in-domain forms remain subject to the
+    recognition hypothesis; content outside the covered scope is
+    classified as an outside-domain structure.
+  \item \emph{Recognition hypothesis}
+    (Definition~\ref{def:recognition-hypothesis}): every residual feature is
+    recognized in one of five ways: (R1) it is role content: it contributes
+    a required field to an aligned cluster (that is, removing the record from
+    the cluster falsifies its witness predicate; the phrase concerns
+    membership, not a particular field) or carries a covered seed, and
+    each of its assertion fields is required for a witness at an aligned
+    cluster containing it, an input to that witness's check, or a named
+    field of its seed; or it is a member of an honestly failed offer whose
+    assertion fields are inputs to the recorded check; (R2) it is a
+    structural annotation carrying only the fields its declared operation
+    requires and no independent assertion, or a bookkeeping annotation whose
+    non-exempt fields are data or references; (R3) it is role-neutral data
+    without an assertion of its own, or a predicate record supplying no witness field whose only assertion field is a formula with free variables whose truth value varies under assignments respecting the declared sorts of the free variables, using only predicates whose extensions \(D\) records and quantifying only over sorts whose carriers \(D\) records, referenced by no claim annotation and by certificates only through \(s(t)\) (this branch constrains presentation, not content; Remark~\ref{rem:recognition-open}); (R4) it is a checked re-presentation or
+    level translation of such content; (R5) an assertion of it uses an unrecorded predicate or uncarried sort and is true in some expansion of \(D\) and false in another, its other assertions being of the same kind or serving a witness (an outside-domain structure).
+    The upper bound, that no seventh role is needed, is proved under this
+    hypothesis. It is a genuine restriction: some descriptions in the
+    domain do not satisfy it. Recognition constrains presentation, not content:
+    Remark~\ref{rem:recognition-open} shows how a closed check-language
+    formula without atoms \(W_j\) can be recorded, with its truth value, as a
+    covered \Ptwo{} seed; recognition alone does not show that the feature
+    concerns representability.
+\end{itemize}
+
+\paragraph{Symbols used before their definition.} Sections~\ref{sec:primitive-role-architecture}
+and~\ref{sec:admissibility-meta-theory} use the following symbols, which are
+defined later.
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{@{}l>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{0.30\linewidth}@{}}
+\toprule
+Symbol & Meaning & Defined in \\
+\midrule
+\FATCD{} & the domain of finite, closed, audited descriptions & Definition~\ref{def:fatcd} \\
+\(\Raw{D}\) & all declared records of \(D\), content records (``raw records'') and annotations alike; its elements are the raw features & Definition~\ref{def:annotations} \\
+\(\mathrm{Ann}_\Theta\) & a threshold annotation & Definition~\ref{def:annotations} \\
+\(\Audit{D}\) & the honest audit annotations of \(D\); claim, promotion, translation and similar annotations they reference are \emph{carried in} \(\Audit{D}\) & Definition~\ref{def:annotations} \\
+\(\pi_i(D)\), \(W_i\) & a derived role projection and its witness predicate & \(W_i\): \emph{Witness types} table, Section~\ref{sec:primitive-role-architecture} (paragraph \emph{Witness predicates}); \(\pi_i\): Definition~\ref{def:role-projection} \\
+\(\Status{i}{D}\) & the status of channel \(i\), one of five values & Definition~\ref{def:channel-status} \\
+\(\Dec{D}\), \(\Residual{D}\) & a decomposition record and its record residuals & Definition~\ref{def:decomposition-record} \\
+kind residual & every content record and structural annotation, including members of active clusters & Definition~\ref{def:residual-scheme} \\
+\(\operatorname{Classify}\) & the scheme assigning a label to each residual feature & Definition~\ref{def:residual-scheme} \\
+covered seed & the core record of a role witness, which may be present without the rest of that witness: an update map with its source relation; a one-variable macro-specification whose recorded evaluations take both truth values, with a realization relation targeting it; a route non-reducibility certificate; a law-bearing stage, order, transition or refinement record; a quotient relation or packaging map; an event, provenance or trace record, or a trace check & Definition~\ref{def:channel-status} \\
+\(\mathrm{Audit}_0(D)\) & the honest audits whose certificates and conclusion contain no atom \(W_j\) & Definition~\ref{def:audited} \\
+declared use & the typed field of a map, partial-map or relation record, with value update, packaging, quotient, realization or other & Definition~\ref{def:raw-record} \\
+assertion field & a field of role predicate, comparison, invariant, law or claim & Definition~\ref{def:raw-record} \\
+honest audit & an audit annotation meeting the honesty condition & Definition~\ref{def:audited} \\
+offer, failed offer & a claim naming \(P_i\) and \(C\) with an honest audit recording \(W_i(C)\) (for a failed offer, recording \(W_i(C)=\mathrm{false}\)) & Definitions~\ref{def:audited} and~\ref{def:channel-status} \\
+well-typed interpretation & an assignment of values to the datum fields of \(D\) keeping its records, kinds, declared uses, distribution-valued markers, field roles, references and formula- and term-valued fields fixed, unrecorded predicate extensions and unlisted-sort carriers varying arbitrarily; required certificates must match their prescribed conditions in all of them & Definition~\ref{def:audited}(c1) \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[>={Stealth[length=2mm]},
+  box/.style={rectangle,rounded corners,draw,align=center,font=\footnotesize,minimum height=8mm,text width=2.6cm}]
+\node[box] (s2) at (0,0) {\S\ref{sec:primitive-role-architecture}\\ roles and levels};
+\node[box] (s3) at (3.6,0) {\S\ref{sec:admissibility-meta-theory}\\ admissibility};
+\node[box] (s4) at (7.2,0) {\S\ref{sec:fatcd-domain}\\ the domain \FATCD{}};
+\node[box] (s5) at (3.6,-1.6) {\S\ref{sec:lower-bounds}\\ lower bounds};
+\node[box] (s6) at (7.2,-1.6) {\S\ref{sec:upper-bound-classification}\\ upper-bound classification};
+\node[box] (s7) at (5.4,-3.2) {\S\ref{sec:decomposition-exhaustion}\\ decomposition};
+\node[box] (s8) at (1.8,-3.2) {\S\ref{sec:integrated-stress}\\ misreading checks};
+\node[box] (s9) at (1.8,-4.8) {\S\ref{sec:scoped-exact-six}\\ scoped exact six};
+\draw[->] (s2) -- (s3);
+\draw[->] (s3) -- (s4);
+\draw[->] (s4) -- (s5);
+\draw[->] (s4) -- (s6);
+\draw[->] (s5) -- (s7);
+\draw[->] (s6) -- node[right,font=\scriptsize] {Thm.~\ref{thm:six-channel-exactness}(iii)} (s7);
+\draw[->] (s7) -- (s9);
+\draw[->] (s5) -- (s9);
+\draw[->,dotted] (s7) -- (s8);
+\draw[->,dotted] (s8) -- node[right,font=\scriptsize] {consistency check} (s9);
+\draw[->,dashed] (s4) to[bend right=25] node[above,font=\scriptsize] {definitions} (s3);
+\draw[->,dashed] (s4) to[bend right=35] (s2);
+\draw[->,dashed] (s7) to[bend left=20] node[below left,font=\scriptsize] {channel statuses} (s2);
+\draw[->,dashed] (s9) to[bend right=30] node[right,font=\scriptsize] {inventory of \(D_i\)} (s7);
+\end{tikzpicture}
+\caption{Dependencies between the sections that build the terminal theorem.
+Solid arrows show the order of the argument; dashed arrows mark forward uses:
+Sections~\ref{sec:primitive-role-architecture}
+and~\ref{sec:admissibility-meta-theory} use definitions from
+Section~\ref{sec:fatcd-domain}, and Section~\ref{sec:primitive-role-architecture}
+uses the channel statuses of Section~\ref{sec:decomposition-exhaustion}.
+Propositions~\ref{prop:channel-vs-activation} and~\ref{prop:non-uniqueness} also
+use the record-by-record inventory of \(D_1,\dots,D_6\) in the proof of the last
+clause of Theorem~\ref{thm:scoped-exact-six}, which uses only
+Theorem~\ref{thm:six-role-lower-bounds} and the definitions; this forward use
+creates no cycle. The
+solid arrow from Section~\ref{sec:admissibility-meta-theory} to
+Section~\ref{sec:fatcd-domain} marks that Definition~\ref{def:role-projection}
+uses Definitions~\ref{prop:level-profile} and~\ref{prop:forgetting-lifts}, and
+label criteria (vi) and (vii) of Definition~\ref{def:residual-scheme} use
+Definitions~\ref{prop:visibility} and~\ref{prop:empirical-bridge}. Among the
+definitions carried by the dashed arrow back to
+Section~\ref{sec:admissibility-meta-theory}, Definition~\ref{def:audited}
+requires every claim of a description to be referred to by an honest audit,
+which Definition~\ref{prop:honest-bookkeeping} further requires to certify the claim's recorded statement or, for an offer, record the value of \(W_i(C)\); the dotted arrow from Section~\ref{sec:integrated-stress} to
+Section~\ref{sec:scoped-exact-six} marks a consistency check that the proof of
+the terminal theorem does not use. The solid arrow from Section~\ref{sec:lower-bounds} to
+Section~\ref{sec:decomposition-exhaustion} marks Propositions~\ref{prop:channel-vs-activation}
+and~\ref{prop:non-uniqueness}, which reuse the descriptions \(D_i\); the existence argument in the proof of
+Theorem~\ref{thm:decomposition-existence} does not use Section~\ref{sec:lower-bounds};
+only its closing non-vacuity remark cites Theorem~\ref{thm:six-role-lower-bounds}.}\label{fig:dependencies}
+\end{figure}
+
+\subsection{Organization}\label{subsec:organization}
+
+Section~\ref{sec:primitive-role-architecture} fixes the role meanings,
+the three levels, the boundaries between roles, and the selected-lift
+atlas. Section~\ref{sec:admissibility-meta-theory} states the
+admissibility rules. Section~\ref{sec:fatcd-domain} defines \FATCD{} and
+poses the exact-six question over it. Section~\ref{sec:lower-bounds}
+shows that each role occurs. Section~\ref{sec:upper-bound-classification}
+classifies the recognized forms of probability, causality and agency
+without the recognition hypothesis, and proves the general upper bound
+under it.
+Section~\ref{sec:decomposition-exhaustion} builds the six-channel
+decomposition record and shows that it exists but need not be unique.
+Section~\ref{sec:integrated-stress} checks the chain against misreadings,
+and Section~\ref{sec:scoped-exact-six} states and proves the terminal
+theorem. Section~\ref{sec:discussion} discusses the result and places it
+beside earlier Six Birds work, and Sections~\ref{sec:limitations-nonclaims}
+and~\ref{sec:future-work} give its limits and open directions. Appendix~\ref{app:provenance} records development provenance and
+evidence hygiene, and Appendix~\ref{app:mechanization} documents the
+Lean mechanization, with a note on the Lean counterpart of each result. Appendix~\ref{app:version-history} records the version history and is not needed for reading the paper. The Lean development checks the typed objects and rejects
+malformed cases; the proofs of the numbered results are the ones in the body.
+Figure~\ref{fig:dependencies} shows how the sections depend on one another.
+Sections~\ref{sec:primitive-role-architecture}
+and~\ref{sec:admissibility-meta-theory} use the domain \FATCD{} and the
+channel statuses before they are formally defined. The record, witness and audit definitions refer to one another. A reader
+checking proofs can use the following route, consulting forward references
+as needed:
+\begin{enumerate}[label=(\arabic*),topsep=2pt,itemsep=1pt]
+  \item Section~\ref{subsec:objects-at-a-glance};
+  \item Definitions~\ref{def:raw-record} and~\ref{def:annotations};
+  \item the paragraphs of Section~\ref{sec:primitive-role-architecture} from
+    \emph{Witness types} through \emph{Route certificates}, with the witness
+    table and the full Definition~\ref{def:audited} at hand, using its clause
+    (f) to order the evaluation of honesty and witness predicates;
+  \item Definitions~\ref{def:finite}--\ref{def:fatcd}, then
+    Definitions~\ref{prop:honest-bookkeeping}, \ref{prop:level-profile}
+    and~\ref{prop:forgetting-lifts};
+  \item the rest of Section~\ref{sec:fatcd-domain} and
+    Definition~\ref{def:channel-status};
+  \item the rest of Section~\ref{sec:primitive-role-architecture};
+  \item Definitions~\ref{prop:visibility} and~\ref{prop:empirical-bridge} and
+    Proposition~\ref{prop:nonclaim-closure};
+  \item Sections~\ref{sec:lower-bounds}--\ref{sec:decomposition-exhaustion}
+    and~\ref{sec:scoped-exact-six}.
+\end{enumerate}
+Propositions~\ref{prop:channel-vs-activation} and~\ref{prop:non-uniqueness}
+also use the record inventory in the proof of
+Theorem~\ref{thm:scoped-exact-six} (p.~\pageref{thm:scoped-exact-six}). The other definitions and results of
+Section~\ref{sec:admissibility-meta-theory} are not cited in
+Sections~\ref{sec:fatcd-domain}--\ref{sec:scoped-exact-six}, and
+Section~\ref{sec:integrated-stress} is a separate check against misreadings;
+the proof of Theorem~\ref{thm:scoped-exact-six} does not use it.
+
+\paragraph{Example descriptions.} The running example \(D_{\mathrm{ex}}\)
+(Sections~\ref{sec:primitive-role-architecture}, \ref{sec:fatcd-domain}
+and~\ref{sec:decomposition-exhaustion}); the lower-bound descriptions
+\(D_1,\dots,D_6\) (Propositions~\ref{prop:p1-witness}--\ref{prop:p6-witness});
+\(D_0\) and the normalization description \(D_{\mathrm{norm}}\)
+(Remark~\ref{rem:fatcd-minimality}, analysed in
+Remark~\ref{rem:recognition-open}, paragraphs \emph{The counterexample} and \emph{Verification}), the latter failing the recognition
+hypothesis; \(D_{\mathrm{scr}}\), which realizes label (xi)
+(Remark~\ref{rem:recognition-open}, paragraph \emph{A description passing the screen}); and \(D_{\mathrm c}\), \(D_{\mathrm o}\),
+\(D_T\) and \(D_{\mathrm{all}}\), which realize the five channel statuses
+(proof of Proposition~\ref{prop:channel-vs-activation}).

@@ -1,0 +1,97 @@
+\section{Version history}\label{app:version-history}
+
+Version~1 appeared on Zenodo on 20 April 2026, Version~2 on Qeios on 9 June
+2026, and Version~3 on 2 October 2026. Each subsection lists the differences
+from the preceding version.
+
+\subsection{Version 3}
+
+Version~3 keeps every numbered result of Version~2 with its number, label and
+type, in the same order. The titles of Remarks~\ref{rem:repaired-alignments}
+and~\ref{rem:three-repaired-alignments} (``corrected'' became ``excluded''
+alignments) and of Remark~\ref{rem:recognition-open} changed.
+
+\paragraph{Corrected statements.} Definition~\ref{def:level-trichotomy}
+qualifies lossy forgetting, and Definition~\ref{def:selected-lift-atlas}
+qualifies non-uniqueness and lossiness.
+Definition~\ref{prop:forgetting-lifts} makes the loss-record and
+uniqueness-proof requirements explicit; Version~2 already admitted
+lossless forgetting and unique lifts when proved and recorded.
+Proposition~\ref{prop:boundary-distinctions} is stated as the failure of
+\(W_i\) for a cluster built from the bare boundary datum.
+Proposition~\ref{prop:non-overbreadth} no longer claims that unaudited
+material cannot enter \FATCD{}, which fails for unclaimed records.
+Propositions~\ref{prop:probability-closure}--\ref{prop:agency-closure}
+concluded that a feature of a recognized form classifies as a \(P_i\)
+projection, which needs attachment data; they now license label (i) or (v),
+or another listed label, for every well-formed decomposition record.
+Definition~\ref{def:channel-status} replaces five conditions that were not
+shown to be exclusive and exhaustive by an ordered rule.
+Remark~\ref{rem:recognition-open} left open whether the recognition
+hypothesis holds on \FATCD{}; Version~3 proves that it does not
+(\(D_{\mathrm{norm}}\in\FATCD\setminus\FATCD_{\mathrm{RH}}\)), and
+Theorem~\ref{thm:scoped-exact-six}, whose conclusion Version~2 named
+\(\operatorname{ScopedExactSix}(\FATCD)\), now concludes
+\(\operatorname{ScopedExactSix}(\FATCD_{\mathrm{RH}})\);
+Definition~\ref{def:scoped-exact-six-question} records that the unrestricted
+statement fails. Proposition~\ref{thm:integrated-stress} replaces the
+readiness claim of Version~2 by clauses (a)--(e). The scope statements of
+Remarks~\ref{rem:typed-non-collapse-vs-independence},
+\ref{prop:activation-thresholds}, \ref{rem:classification-scope},
+\ref{prop:dependency-stress} and~\ref{prop:residual-stress} were corrected
+in the same way.
+
+\paragraph{Added hypotheses and strengthened results.}
+Definition~\ref{def:fatcd} requires realization relations to list exactly the
+satisfying candidates, and Definition~\ref{def:threshold-attachment} requires
+nonclaim, collapse-case and witness-schema annotations targeting the cluster.
+Theorem~\ref{thm:upper-bound-classification} holds for every well-formed
+decomposition record and adds a pointwise form;
+Theorem~\ref{thm:six-channel-exactness} adds clause (iv), independence of the
+status sequence from the decomposition record;
+Proposition~\ref{prop:channel-vs-activation} realizes every active-channel
+count from \(0\) to \(6\) in \(\FATCD_{\mathrm{RH}}\), and all five
+statuses in one description; Proposition~\ref{prop:non-uniqueness}
+exhibits distinct well-formed records in \(\FATCD_{\mathrm{RH}}\); Proposition~\ref{prop:typed-non-collapse}
+covers every \(W_k\); and Theorem~\ref{thm:scoped-exact-six} adds clauses (d)
+and (e).
+
+\paragraph{Definitions and scope.} Version~3 specifies the witness
+predicates through the \emph{Witness types} table, audit honesty through
+Definition~\ref{def:audited}, and licensed labels through
+Definition~\ref{def:residual-scheme}. It distinguishes kind residuals
+from record residuals and extends recognition to bookkeeping annotations,
+with alternatives (R1)--(R5). Category (xi), called a genuine seventh
+irreducible typed role in Version~2, is a recorded screen, not proof
+of a new role. Remark~\ref{rem:recognition-open} adds the screen example
+and conditional closed-formula wrapping constructions, showing that
+recognition depends on presentation.
+
+\paragraph{Additions and removals.} Version~3 adds Subsection~\ref{subsec:objects-at-a-glance}
+with its vocabulary, symbols and example index; a running example; figures of
+the section dependencies and of the three levels; the label-criteria table;
+and collects the Lean-counterpart notes, formerly footnotes to the
+results, in Appendix~\ref{app:result-notes}. The
+nonclaim ``no surrogate terminal evidence'' and the statement that
+\(\mathrm{P6}_{\mathrm{drive}}\) is a face of \(\Psix{}\) were removed.
+``Regressions'' and ``guardrails'' are called misreadings and checks, and
+Section~\ref{sec:integrated-stress} is titled accordingly.
+
+\subsection{Version 2}
+
+Version~2 made the upper bound conditional on an explicit recognition
+hypothesis: it added Definition~\ref{def:recognition-hypothesis} and
+Remark~\ref{rem:recognition-open}, so that the upper-bound classification of
+Version~1 (Theorem~6.7) became Theorem~\ref{thm:upper-bound-classification} and
+its scope remark became Remark~\ref{rem:classification-scope}, and the absence
+of a seventh role in the terminal theorem was stated under that hypothesis.
+Statements of Section~\ref{sec:admissibility-meta-theory} that fix
+admissibility conditions rather than assert consequences were stated as
+definitions (Definitions~3.1, 3.5, 3.6, 3.9 and~3.11) or as a remark
+(Remark~3.8), the stress checks of Section~\ref{sec:integrated-stress} as
+Remarks~8.1--8.6, and the integrated stress theorem as
+Proposition~\ref{thm:integrated-stress}. The proof of
+Proposition~\ref{prop:boundary-distinctions} was completed over all fifteen
+rows of the boundary matrix, corrections from external review were
+incorporated, and notes on the Lean counterpart of each result were added,
+with an appendix describing the Lean development.

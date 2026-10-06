@@ -1,0 +1,26 @@
+\section{Provenance and evidence hygiene}\label{app:provenance}
+
+
+The development of the theorem chain of
+Sections~\ref{sec:fatcd-domain}--\ref{sec:integrated-stress} was assisted by
+automated drafting and proof-search tooling, the Aristotle
+system~\citep{Achim2025Aristotle}. We record this for transparency and to fix the
+division of evidential labor precisely. Such tooling produces \emph{candidate}
+definitions, statements, and arguments; it carries no evidential weight of its
+own, and nothing in this paper rests on it.
+
+The mathematical content is established solely by the proofs given in the body.
+The machine-\emph{checked} component of the work --- which declarations are
+realized in Lean, and at what fidelity --- is documented separately in
+Appendix~\ref{app:mechanization}; the automated tooling named above is distinct
+from that mechanization and assisted drafting only. No raw output of that tooling
+is offered as mathematical evidence anywhere in the manuscript: where a section
+draws on machine assistance, the load-bearing content is the section's own proof,
+and the recorded mechanization is exactly as described in
+Appendix~\ref{app:mechanization}.
+
+\subsection{Code availability}\label{app:code-availability}
+
+The \LaTeX{} source of this manuscript and the accompanying Lean mechanization
+artifacts are available at
+\url{https://github.com/ioannist/six-birds-foundations-ii}.

@@ -1,0 +1,36 @@
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+
+% Integrated exact-six notation layer.
+\newcommand{\FATCD}{\ensuremath{\mathsf{FATCD}}}
+\newcommand{\Raw}[1]{\ensuremath{\operatorname{Raw}\!\left(#1\right)}}
+\newcommand{\Audit}[1]{\ensuremath{\operatorname{Audit}\!\left(#1\right)}}
+\newcommand{\Closed}[1]{\ensuremath{\operatorname{Closed}\!\left(#1\right)}}
+\newcommand{\Dec}[1]{\ensuremath{\operatorname{Dec}\!\left(#1\right)}}
+\newcommand{\Residual}[1]{\ensuremath{\operatorname{Residual}\!\left(#1\right)}}
+\newcommand{\Chan}[2]{\ensuremath{\operatorname{Chan}_{#1}\!\left(#2\right)}}
+\newcommand{\Status}[2]{\ensuremath{\operatorname{Status}_{#1}\!\left(#2\right)}}
+\newcommand{\ScopedExactSix}[1]{\ensuremath{\operatorname{ScopedExactSix}\!\left(#1\right)}}
+
+% Channel status tags.
+\newcommand{\activeproj}{\textit{active\_\allowbreak projection}}
+\newcommand{\belowthr}{\textit{below\_\allowbreak threshold}}
+\newcommand{\collapsedbc}{\textit{collapsed\_\allowbreak boundary\_\allowbreak case}}
+\newcommand{\absentrec}{\textit{absent\_\allowbreak with\_\allowbreak record}}
+\newcommand{\outsidescope}{\textit{inapplicable\_\allowbreak outside\_\allowbreak scope}}
+
+% Primitive role labels.
+\newcommand{\Pone}{\ensuremath{\mathrm{P1}}}
+\newcommand{\Ptwo}{\ensuremath{\mathrm{P2}}}
+\newcommand{\Pthree}{\ensuremath{\mathrm{P3}}}
+\newcommand{\Pfour}{\ensuremath{\mathrm{P4}}}
+\newcommand{\Pfive}{\ensuremath{\mathrm{P5}}}
+\newcommand{\Psix}{\ensuremath{\mathrm{P6}}}
