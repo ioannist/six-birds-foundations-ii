@@ -3,8 +3,10 @@
 Companion repository for the paper:
 
 > **Six Birds Foundations II: Admissibility, Meta-Theory, and the Exact-Six Program**
-> Ioannis Tsiokos. Preprint, 2026.
-> DOI: [10.5281/zenodo.19672278](https://doi.org/10.5281/zenodo.19672278)
+> Ioannis Tsiokos. Preprint, Version 3, October 2, 2026.
+> DOI (v3): [10.5281/zenodo.23096828](https://doi.org/10.5281/zenodo.23096828);
+> v2 (Qeios, June 9, 2026): [10.32388/A6LBSO](https://doi.org/10.32388/A6LBSO);
+> v1 (April 20, 2026): [10.5281/zenodo.19672278](https://doi.org/10.5281/zenodo.19672278)
 
 This repository contains the LaTeX sources and submission artifacts for the
 paper, together with a Lean 4 validation track. The authoritative Lean track is
@@ -100,7 +102,7 @@ The recovered partial track can still be checked directly:
   author = {Tsiokos, Ioannis},
   title  = {Six Birds Foundations II: Admissibility, Meta-Theory, and the Exact-Six Program},
   year   = {2026},
-  doi    = {10.5281/zenodo.19672278},
-  note   = {Preprint}
+  doi    = {10.5281/zenodo.23096828},
+  note   = {Preprint, Version 3}
 }
 ```
